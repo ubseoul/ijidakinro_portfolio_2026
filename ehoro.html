@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ehoro Village — Adé Ijidakinro</title>
+<meta name="description" content="A lo-fi music companion with spirit collection. Designed, engineered, and shipped solo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ═══ RESET & BASE ═══ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: #050505;
+  color: #f5f5f5;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ═══ CSS VARIABLES ═══ */
+:root {
+  --bg: #050505;
+  --surface: rgba(15,15,15,.7);
+  --card: rgba(255,255,255,.03);
+  --card-border: rgba(255,255,255,.06);
+  --card-hover: rgba(255,255,255,.06);
+  --t1: #f5f5f5;
+  --t2: #b0b0b0;
+  --t3: #707070;
+  --t4: #404040;
+  --accent: #c8a87c;
+  --accent-dim: rgba(200,168,124,.08);
+  --accent-border: rgba(200,168,124,.15);
+  --positive: #6c9;
+  --negative: #c77;
+  --serif: 'Fraunces', Georgia, serif;
+  --mono: 'JetBrains Mono', monospace;
+  --max-w: 980px;
+  --content-w: 680px;
+}
+
+/* ═══ UTILITY ═══ */
+::selection { background: rgba(200,168,124,.25); color: #fff; }
+img { max-width: 100%; display: block; }
+a { color: var(--t2); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--t1); }
+
+/* ═══ BACK NAV ═══ */
+.back-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  padding: 20px 32px;
+  background: linear-gradient(to bottom, rgba(5,5,5,.95) 0%, rgba(5,5,5,.6) 70%, transparent 100%);
+  pointer-events: none;
+}
+.back-link {
+  pointer-events: all;
+  font-size: .75rem;
+  color: var(--t3);
+  letter-spacing: .08em;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color .2s;
+}
+.back-link:hover { color: var(--t1); }
+.back-link svg { width: 16px; height: 16px; transition: transform .2s; }
+.back-link:hover svg { transform: translateX(-3px); }
+
+/* ═══ HERO ═══ */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 32px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(200,168,124,.04) 0%, transparent 70%);
+}
+.hero-label {
+  font-size: .6rem;
+  color: var(--t3);
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0; animation: fadeUp .8s .3s ease forwards;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.1;
+  max-width: 700px;
+  opacity: 0; animation: fadeUp .8s .5s ease forwards;
+}
+.hero-sub {
+  font-size: 1rem;
+  color: var(--t2);
+  margin-top: 16px;
+  max-width: 520px;
+  font-weight: 300;
+  opacity: 0; animation: fadeUp .8s .7s ease forwards;
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 24px;
+  margin-top: 32px;
+  opacity: 0; animation: fadeUp .8s .9s ease forwards;
+}
+.hero-meta-item {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.hero-meta-label {
+  font-size: .5rem;
+  color: var(--t4);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.hero-meta-val {
+  font-size: .8rem;
+  color: var(--t2);
+  font-weight: 400;
+}
+.hero-cta {
+  margin-top: 40px;
+  opacity: 0; animation: fadeUp .8s 1.1s ease forwards;
+}
+.hero-cta a {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  background: var(--t1);
+  color: var(--bg);
+  border-radius: 10px;
+  font-size: .8rem;
+  font-weight: 600;
+  transition: transform .2s, box-shadow .2s;
+}
+.hero-cta a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255,255,255,.06);
+  color: var(--bg);
+}
+.hero-cta a svg { width: 14px; height: 14px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══ SECTION LAYOUT ═══ */
+.section {
+  padding: 80px 32px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.section-narrow {
+  max-width: var(--content-w);
+}
+.section-divider {
+  width: 40px; height: 1px;
+  background: var(--t4);
+  margin: 0 auto;
+}
+
+/* ═══ SECTION HEADERS ═══ */
+.section-label {
+  font-size: .55rem;
+  color: var(--t4);
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+
+/* ═══ BODY TEXT ═══ */
+.body-text {
+  font-size: .92rem;
+  color: var(--t2);
+  line-height: 1.75;
+  font-weight: 300;
+}
+.body-text + .body-text { margin-top: 16px; }
+.body-text strong { color: var(--t1); font-weight: 500; }
+
+/* ═══ FULL-BLEED IMAGE ═══ */
+.img-full {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+  overflow: hidden;
+}
+.img-full img {
+  width: 100%;
+  display: block;
+}
+.img-full-contained {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+}
+.img-caption {
+  font-size: .6rem;
+  color: var(--t4);
+  text-align: center;
+  margin-top: 12px;
+  letter-spacing: .04em;
+}
+
+/* ═══ IMAGE GRID ═══ */
+.img-grid {
+  display: grid;
+  gap: 12px;
+}
+.img-grid-2 { grid-template-columns: 1fr 1fr; }
+.img-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.img-grid-item {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+}
+.img-grid-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.img-grid-item.phone {
+  background: #0a0a0a;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.img-grid-item.phone img {
+  width: auto; max-height: 500px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* ═══ CALLOUT CARD ═══ */
+.callout {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 32px;
+  margin: 40px 0;
+}
+.callout-quote {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--t1);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.callout-attr {
+  font-size: .7rem;
+  color: var(--t3);
+}
+
+/* ═══ STAT STRIP ═══ */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  background: var(--card-border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 40px 0;
+}
+.stat-item {
+  background: var(--bg);
+  padding: 28px 24px;
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--mono);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--t1);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-size: .6rem;
+  color: var(--t3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* ═══ TAG PILLS ═══ */
+.tag-row {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 20px;
+}
+.tag {
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: .65rem;
+  font-weight: 500;
+  background: var(--card);
+  color: var(--t2);
+  border: 1px solid var(--card-border);
+}
+
+/* ═══ FEATURE CARDS ═══ */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 32px 0;
+}
+.feature-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color .2s, background .2s;
+}
+.feature-card:hover {
+  border-color: rgba(255,255,255,.1);
+  background: var(--card-hover);
+}
+.feature-icon {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+.feature-name {
+  font-size: .85rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.feature-desc {
+  font-size: .75rem;
+  color: var(--t3);
+  line-height: 1.5;
+}
+
+/* ═══ PROCESS STEPS ═══ */
+.process-step {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+  position: relative;
+}
+.process-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 23px; top: 48px; bottom: -40px;
+  width: 1px;
+  background: var(--card-border);
+}
+.process-num {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--t3);
+  background: var(--bg);
+  position: relative; z-index: 1;
+}
+.process-content {}
+.process-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.process-text {
+  font-size: .85rem;
+  color: var(--t2);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ═══ TECH STACK TABLE ═══ */
+.stack-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 32px 0;
+}
+.stack-item {
+  background: var(--bg);
+  padding: 20px 24px;
+}
+.stack-label {
+  font-size: .5rem;
+  color: var(--t4);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.stack-val {
+  font-size: .85rem;
+  color: var(--t2);
+}
+
+/* ═══ LESSON CARD ═══ */
+.lesson-card {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 12px;
+}
+.lesson-title {
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--t1);
+  margin-bottom: 6px;
+}
+.lesson-text {
+  font-size: .8rem;
+  color: var(--t2);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ═══ FOOTER ═══ */
+.case-footer {
+  padding: 80px 32px;
+  text-align: center;
+}
+.case-footer-label {
+  font-size: .5rem;
+  color: var(--t4);
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.case-footer-title {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.case-footer-links {
+  display: flex; justify-content: center; gap: 20px;
+}
+.case-footer-links a {
+  font-size: .75rem;
+  color: var(--t3);
+  padding: 10px 20px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  transition: all .2s;
+}
+.case-footer-links a:hover {
+  color: var(--t1);
+  border-color: rgba(255,255,255,.15);
+  background: var(--card);
+}
+
+/* ═══ FADE-IN ON SCROLL ═══ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .hero { padding: 0 20px 60px; min-height: 90vh; }
+  .section { padding: 60px 20px; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .img-grid-2 { grid-template-columns: 1fr; }
+  .img-grid-3 { grid-template-columns: 1fr 1fr; }
+  .stack-grid { grid-template-columns: 1fr; }
+  .stat-strip { grid-template-columns: 1fr 1fr; }
+  .process-step { grid-template-columns: 36px 1fr; gap: 14px; }
+  .process-num { width: 36px; height: 36px; font-size: .6rem; }
+  .process-step:not(:last-child)::after { left: 17px; top: 36px; }
+  .back-nav { padding: 16px 20px; }
+  .callout { padding: 24px; }
+  .hero-meta { gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .stat-strip { grid-template-columns: 1fr; }
+  .img-grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ═══ REDUCED MOTION ═══ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .fade-in { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ BACK NAV ═══ -->
+<nav class="back-nav">
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back
+  </a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <p class="hero-label">Product Design · Game Design · Full-Stack Engineering</p>
+  <h1>Ehoro Village</h1>
+  <p class="hero-sub">A lo-fi music companion with a spirit collection game. It rewards you for doing nothing. I designed it, engineered it, and shipped it — solo.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Role</span>
+      <span class="hero-meta-val">Designer & Solo Developer</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Timeline</span>
+      <span class="hero-meta-val">Jan – Feb 2026</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Stack</span>
+      <span class="hero-meta-val">Vanilla JS · Supabase · GitHub Pages</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Status</span>
+      <span class="hero-meta-val" style="color:var(--positive);">Live</span>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="https://ubseoul.github.io/ehoro_village_music/" target="_blank" rel="noopener">
+      Try Ehoro Village
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ HERO IMAGE ═══ -->
+<div class="img-full fade-in" style="margin-bottom: 0;">
+  <div class="img-full-contained">
+    <img src="images/desktop-main.png" alt="Ehoro Village — desktop view with Lofi Girl stream and spirit collection sidebar" loading="lazy">
+  </div>
+</div>
+
+<!-- ═══ THE SPARK ═══ -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">The Spark</p>
+  <h2 class="section-title">I like games. I like lo-fi. I like maximizing my time.</h2>
+  <p class="body-text">I've always loved games — especially Pokémon — and cozy gaming experiences. I'm also the kind of person who has a lo-fi stream running in the background of basically everything I do. At some point I thought: <strong>what if the music could give me something back?</strong></p>
+  <p class="body-text">Not in a productivity-app-that-guilts-you way. More like a quiet little world that grows while you work. You listen, eggs appear, spirits hatch, and your village slowly comes to life. You don't have to pay attention. That's the whole point.</p>
+  <p class="body-text">I also wanted to teach people about <strong>Yoruba culture</strong> through the game — the spirit names, the lore, the world-building. Games are one of the best ways to introduce someone to a culture without making it feel like homework.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">How It Works</p>
+  <h2 class="section-title">Companion, not competition.</h2>
+  <p class="body-text">Ehoro Village is built around a single idea: <strong>reward presence, not attention.</strong> You open it, press play, and let it run. The app does the rest.</p>
+</section>
+
+<section class="section fade-in" style="padding-top: 0;">
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎧</div>
+      <div class="feature-name">Stream & Earn</div>
+      <div class="feature-desc">Lo-fi music plays in the background. Every 60 minutes of listening, you earn an egg. First-timers get one in 4 minutes.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🥚</div>
+      <div class="feature-name">Hatch Spirits</div>
+      <div class="feature-desc">Place eggs in your hatchery. They hatch into spirits — each with a name, personality, traits, and moods. Six unique species to discover.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✨</div>
+      <div class="feature-name">Evolve & Cultivate</div>
+      <div class="feature-desc">Feed your spirits pills crafted from ingredients. Evolve them through three stages. Choose alignments — wicked or heavenly — that change their abilities.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏘️</div>
+      <div class="feature-name">Grow Your Village</div>
+      <div class="feature-desc">Your listening time, spirits, and crafting all contribute to your village rank. Progress from Stone to Bronze and beyond. It's passive — like a garden.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SCREENSHOTS: ONBOARDING ═══ -->
+<section class="section fade-in" style="padding-top: 0;">
+  <div class="img-grid img-grid-3">
+    <div class="img-grid-item phone">
+      <img src="images/login.png" alt="Ehoro Village login screen" loading="lazy">
+    </div>
+    <div class="img-grid-item phone">
+      <img src="images/onboarding.png" alt="Professor Mowang onboarding tutorial" loading="lazy">
+    </div>
+    <div class="img-grid-item phone">
+      <img src="images/spirit-select.png" alt="Choose your first spirit companion" loading="lazy">
+    </div>
+  </div>
+  <p class="img-caption">Sign in → Meet Professor Mowang → Pick your first spirit</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ DESIGN PHILOSOPHY ═══ -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Design Philosophy</p>
+  <h2 class="section-title">Most apps want your full attention. This one doesn't.</h2>
+  <p class="body-text">Every design decision in Ehoro Village comes back to one principle: <strong>don't steal people's time.</strong> Modern apps are built to keep you scrolling, tapping, engaging. Ehoro is the opposite — it's designed to sit quietly in the background while you do your actual work.</p>
+  <p class="body-text">That constraint shaped everything. The UI is a sidebar, not a full-screen takeover. The game loop runs on timers, not skill checks. There's no FOMO mechanic, no daily login punishment. If you miss a day, your spirits are just a little sleepy when you come back. That's it.</p>
+
+  <div class="callout">
+    <p class="callout-quote">"I enforced the companion-first philosophy by keeping everything in a single file. If the whole app can live in one HTML document, it can't get too complicated."</p>
+  </div>
+
+  <p class="body-text">The dark theme isn't just an aesthetic choice — the app is meant to run alongside whatever you're actually doing. A dark, glassy interface disappears into your workspace instead of fighting it. Light theme exists too, styled like warm parchment for daytime vibes.</p>
+</section>
+
+<!-- ═══ MOBILE + ITEMS SCREENSHOTS ═══ -->
+<section class="section fade-in" style="padding-top: 0;">
+  <div class="img-grid img-grid-2">
+    <div class="img-grid-item phone">
+      <img src="images/mobile.png" alt="Ehoro Village on mobile" loading="lazy">
+    </div>
+    <div class="img-grid-item phone">
+      <img src="images/items-tab.png" alt="Items tab — hatchery, ingredients, and crafting" loading="lazy">
+    </div>
+  </div>
+  <p class="img-caption">Responsive on mobile · Items tab with hatchery, ingredients, and crafting</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ BUILDING IT ═══ -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Building It</p>
+  <h2 class="section-title">One HTML file, one database, zero frameworks.</h2>
+  <p class="body-text">The entire frontend is a single HTML file. No React, no build tools, no npm. Just vanilla JavaScript, CSS, and a Supabase backend for auth, data, and real-time game logic. The constraint was intentional — I wanted to ship fast and keep it simple.</p>
+</section>
+
+<section class="section fade-in" style="padding-top: 0;">
+  <div class="stack-grid">
+    <div class="stack-item">
+      <div class="stack-label">Frontend</div>
+      <div class="stack-val">Single HTML file · Vanilla JS · CSS</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-label">Backend</div>
+      <div class="stack-val">Supabase (PostgreSQL + Auth + RPC)</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-label">Auth</div>
+      <div class="stack-val">Email/password · Google OAuth · Guest mode</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-label">Hosting</div>
+      <div class="stack-val">GitHub Pages — free, instant deploys</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-label">Security</div>
+      <div class="stack-val">Row-Level Security · 32 RPCs · CSP · XSS sanitization</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-label">Assets</div>
+      <div class="stack-val">19 custom PNG sprites — all made by me</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-narrow fade-in" style="padding-top: 0;">
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="stat-num">1</div>
+      <div class="stat-label">HTML File</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1,800+</div>
+      <div class="stat-label">Lines of Code</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">11</div>
+      <div class="stat-label">Database Tables</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">32</div>
+      <div class="stat-label">Server RPCs</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SUPABASE SCREENSHOT ═══ -->
+<section class="section fade-in" style="padding-top: 0;">
+  <div class="img-full-contained" style="max-width: var(--max-w); margin: 0 auto;">
+    <img src="images/supabase.png" alt="Supabase dashboard — e-village project, status healthy" loading="lazy">
+  </div>
+  <p class="img-caption">The Supabase backend — healthy, running on free tier, ready for ~1,000 concurrent users</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ THE HARD PARTS ═══ -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">The Hard Parts</p>
+  <h2 class="section-title">Debugging a database at 2am teaches you things.</h2>
+  <p class="body-text">This wasn't a weekend project that went smoothly. I went through <strong>10+ development sessions</strong>, multiple database migrations, and a debugging saga that taught me more about PostgreSQL than any course could.</p>
+
+  <div class="process-step" style="margin-top: 40px;">
+    <div class="process-num">01</div>
+    <div class="process-content">
+      <h3 class="process-title">The 404 Mystery</h3>
+      <p class="process-text">After deploying V2.0, all 8 new server functions returned 404 errors. Expeditions, pills, cultivation — everything broke. Turns out PostgREST returns 404 for <em>runtime SQL errors</em>, not just missing functions. The actual bug? I was using JSONB operators on a native PostgreSQL array column. Took 6 SQL patches to fix.</p>
+    </div>
+  </div>
+
+  <div class="process-step">
+    <div class="process-num">02</div>
+    <div class="process-content">
+      <h3 class="process-title">Schema Drift</h3>
+      <p class="process-text">After multiple sprint iterations, column names and constraints were inconsistent. A CHECK constraint on the emblems table only allowed 3 types but the app had 5. Every new feature required verifying the actual schema before writing any SQL.</p>
+    </div>
+  </div>
+
+  <div class="process-step">
+    <div class="process-num">03</div>
+    <div class="process-content">
+      <h3 class="process-title">Security at Scale</h3>
+      <p class="process-text">V1.0 stored game state in localStorage — no validation, easy to cheat. V2.0 moved everything to server-side RPCs with Row-Level Security, rate limiting, and XSS sanitization. The migration broke most features temporarily, but the app is now production-ready for real users.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ THE MANIFESTO ═══ -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Working With AI</p>
+  <h2 class="section-title">I built this with Claude. The manifesto is what made it work.</h2>
+  <p class="body-text">I used Claude as my coding partner for this entire project. But here's the thing — <strong>AI doesn't remember your last session.</strong> Every new conversation starts from zero. So I wrote a manifesto.</p>
+  <p class="body-text">The manifesto is a living technical document that I carry into every AI session. It has the database schema, the coding rules, the design philosophy, the session history — everything an AI needs to pick up exactly where the last one left off. No wasted time re-explaining context.</p>
+
+  <div class="callout">
+    <p class="callout-quote">"Having a clear manifesto is essential. It gives the AI a reference point to maintain consistency throughout development."</p>
+  </div>
+
+  <p class="body-text">This ended up being one of the biggest lessons from the project. The manifesto isn't just documentation — it's a collaboration protocol. It grew from a one-page overview to a detailed technical spec with 12 sections, session logs, and explicit rules for what AI assistants should and shouldn't do.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ WHAT I LEARNED ═══ -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Takeaways</p>
+  <h2 class="section-title">Three things I'd tell past me.</h2>
+
+  <div class="lesson-card" style="margin-top: 24px;">
+    <div class="lesson-title">Design your database schema like your life depends on it.</div>
+    <div class="lesson-text">Schema drift caused 80% of my bugs. Column names changed, constraints didn't match, types were wrong. If I started over, I'd spend a full day just on the schema before writing any frontend code.</div>
+  </div>
+
+  <div class="lesson-card">
+    <div class="lesson-title">Constraints breed creativity.</div>
+    <div class="lesson-text">One HTML file. No frameworks. No build step. These weren't limitations — they forced me to think harder about architecture and kept scope manageable. The app shipped because of the constraints, not despite them.</div>
+  </div>
+
+  <div class="lesson-card">
+    <div class="lesson-title">If you're building with AI, write the manual first.</div>
+    <div class="lesson-text">The manifesto changed everything. Suddenly every AI session was productive from the first message. No re-explaining, no contradictions, no regressions. The document IS the product — the code just implements it.</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ WHAT'S NEXT ═══ -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">What's Next</p>
+  <h2 class="section-title">This thing's still growing.</h2>
+  <p class="body-text">Ehoro Village is live and playable right now. I'm actively working on adding <strong>original lo-fi music</strong> (I make beats — so this one's personal), expanding the spirit roster, and refining the monetization model so the game stays accessible to everyone regardless of income.</p>
+  <p class="body-text">The target? <strong>First 100 real users.</strong> College students ages 17–20 who already have lo-fi running while they study. If I can make them close one other tab and open Ehoro Village instead, I've won.</p>
+
+  <div class="tag-row">
+    <span class="tag">Vanilla JS</span>
+    <span class="tag">Supabase</span>
+    <span class="tag">PostgreSQL</span>
+    <span class="tag">Game Design</span>
+    <span class="tag">UI/UX</span>
+    <span class="tag">Glassmorphism</span>
+    <span class="tag">AI-Assisted Dev</span>
+    <span class="tag">Lo-Fi</span>
+    <span class="tag">Yoruba Culture</span>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="case-footer fade-in">
+  <p class="case-footer-label">Thanks for reading</p>
+  <h2 class="case-footer-title">Want to see more?</h2>
+  <div class="case-footer-links">
+    <a href="https://ubseoul.github.io/ehoro_village_music/" target="_blank" rel="noopener">Try Ehoro Village →</a>
+    <a href="https://github.com/ubseoul" target="_blank" rel="noopener">GitHub</a>
+    <a href="index.html">← Back to Portfolio</a>
+  </div>
+</footer>
+
+<div style="height: 60px;"></div>
+
+<!-- ═══ SCROLL FADE-IN ═══ -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
