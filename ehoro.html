@@ -385,30 +385,93 @@ a:hover { color: var(--t1); }
   font-weight: 300;
 }
 
-/* ═══ TECH STACK TABLE ═══ */
-.stack-grid {
+/* ═══ INSIGHT CARDS ═══ */
+.insight-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--card-border);
-  border-radius: 12px;
-  overflow: hidden;
+  gap: 12px;
   margin: 32px 0;
 }
-.stack-item {
-  background: var(--bg);
-  padding: 20px 24px;
+.insight-card {
+  background: var(--card);
+  border-left: 2px solid var(--positive);
+  border-radius: 0 12px 12px 0;
+  padding: 22px 24px;
 }
-.stack-label {
-  font-size: .5rem;
-  color: var(--t4);
-  letter-spacing: .2em;
+.insight-label {
+  font-size: .55rem;
+  font-weight: 600;
+  color: var(--positive);
+  letter-spacing: .12em;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
-.stack-val {
-  font-size: .85rem;
+.insight-text {
+  font-size: .8rem;
   color: var(--t2);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ═══ DECISION GRID (3-col) ═══ */
+.decision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 32px 0;
+}
+.decision-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 22px;
+  transition: border-color .2s, background .2s;
+}
+.decision-card:hover {
+  border-color: rgba(255,255,255,.1);
+  background: var(--card-hover);
+}
+.decision-icon {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.decision-name {
+  font-size: .8rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.decision-desc {
+  font-size: .7rem;
+  color: var(--t3);
+  line-height: 1.5;
+}
+
+/* ═══ OUTCOME GRID ═══ */
+.outcome-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 32px 0;
+}
+.outcome-card {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  padding: 24px 28px;
+}
+.outcome-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--t1);
+  margin-bottom: 6px;
+}
+.outcome-text {
+  font-size: .8rem;
+  color: var(--t2);
+  line-height: 1.6;
+  font-weight: 300;
 }
 
 /* ═══ LESSON CARD ═══ */
@@ -486,7 +549,9 @@ a:hover { color: var(--t1); }
   .feature-grid { grid-template-columns: 1fr; }
   .img-grid-2 { grid-template-columns: 1fr; }
   .img-grid-3 { grid-template-columns: 1fr 1fr; }
-  .stack-grid { grid-template-columns: 1fr; }
+  .decision-grid { grid-template-columns: 1fr 1fr; }
+  .insight-grid { grid-template-columns: 1fr; }
+  .outcome-grid { grid-template-columns: 1fr; }
   .stat-strip { grid-template-columns: 1fr 1fr; }
   .process-step { grid-template-columns: 36px 1fr; gap: 14px; }
   .process-num { width: 36px; height: 36px; font-size: .6rem; }
@@ -499,6 +564,7 @@ a:hover { color: var(--t1); }
 @media (max-width: 480px) {
   .stat-strip { grid-template-columns: 1fr; }
   .img-grid-3 { grid-template-columns: 1fr; }
+  .decision-grid { grid-template-columns: 1fr; }
 }
 
 /* ═══ REDUCED MOTION ═══ */
@@ -524,21 +590,21 @@ a:hover { color: var(--t1); }
 <!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <p class="hero-label">Product Design · Game Design · Full-Stack Engineering</p>
+  <p class="hero-label">Product Design · UX Research · Game Design · Full-Stack Engineering</p>
   <h1>Ehoro Village</h1>
   <p class="hero-sub">A lo-fi music companion with a spirit collection game. It rewards you for doing nothing. I designed it, engineered it, and shipped it — solo.</p>
   <div class="hero-meta">
     <div class="hero-meta-item">
       <span class="hero-meta-label">Role</span>
-      <span class="hero-meta-val">Designer & Solo Developer</span>
+      <span class="hero-meta-val">Founding Designer & Developer</span>
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Timeline</span>
-      <span class="hero-meta-val">Jan – Feb 2026</span>
+      <span class="hero-meta-val">Jan – Feb 2026 (6 weeks)</span>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Stack</span>
-      <span class="hero-meta-val">Vanilla JS · Supabase · GitHub Pages</span>
+      <span class="hero-meta-label">Scope</span>
+      <span class="hero-meta-val">Zero to live product</span>
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Status</span>
@@ -556,7 +622,7 @@ a:hover { color: var(--t1); }
 <!-- ═══ HERO IMAGE ═══ -->
 <div class="img-full fade-in" style="margin-bottom: 0;">
   <div class="img-full-contained">
-    <img src="images/desktop-main.PNG" alt="Ehoro Village — desktop view with Lofi Girl stream and spirit collection sidebar" loading="lazy">
+    <img src="images/desktop-main.PNG" alt="Ehoro Village — desktop view with lo-fi stream and spirit collection sidebar" loading="lazy">
   </div>
 </div>
 
@@ -571,9 +637,49 @@ a:hover { color: var(--t1); }
 
 <div class="section-divider"></div>
 
+<!-- ═══ PROBLEM ═══ -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Problem</p>
+  <h2 class="section-title">Gamification and chill don't usually coexist.</h2>
+  <p class="body-text">Every idle game, every Tamagotchi, every gacha loop — they all eventually guilt you into opening the app. That's the opposite of what a study companion should feel like. The core tension: <strong>game mechanics demand attention, but lo-fi culture is about letting go of it.</strong></p>
+  <p class="body-text">The hypothesis: if progress happens while you study — not instead of studying — the game and the music can reinforce each other. Reward presence, not attention. Make the game work <em>because</em> you're ignoring it.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ RESEARCH ═══ -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Research</p>
+  <h2 class="section-title">Understanding the space.</h2>
+  <p class="body-text">I conducted competitive analysis across lo-fi streaming platforms and idle games, interviewed college students about their study habits, and mapped the emotional arc of a typical study session — from "locking in" to "burned out background noise."</p>
+</section>
+
+<section class="section fade-in" style="padding-top: 0;">
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-label">Insight 1</div>
+      <div class="insight-text">Students leave lo-fi streams running for 2–4 hours but rarely interact after pressing play. Any UI that interrupts this flow gets closed.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Insight 2</div>
+      <div class="insight-text">Idle games like Neko Atsume succeed by creating "check-in" moments — brief, rewarding glances, not sustained sessions.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Insight 3</div>
+      <div class="insight-text">Emotional attachment to digital companions increases when progress feels earned through time, not skill. Passive accumulation builds ownership.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Insight 4</div>
+      <div class="insight-text">College students value identity expression — naming spirits, choosing starters, watching a village grow creates investment that playlists alone can't.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
 <!-- ═══ HOW IT WORKS ═══ -->
 <section class="section section-narrow fade-in">
-  <p class="section-label">How It Works</p>
+  <p class="section-label">Core Loop</p>
   <h2 class="section-title">Companion, not competition.</h2>
   <p class="body-text">Ehoro Village is built around a single idea: <strong>reward presence, not attention.</strong> You open it, press play, and let it run. The app does the rest.</p>
 </section>
@@ -583,12 +689,12 @@ a:hover { color: var(--t1); }
     <div class="feature-card">
       <div class="feature-icon">🎧</div>
       <div class="feature-name">Stream & Earn</div>
-      <div class="feature-desc">Lo-fi music plays in the background. Every 60 minutes of listening, you earn an egg. First-timers get one in 4 minutes.</div>
+      <div class="feature-desc">Lo-fi music plays in the background. Every 60 minutes of listening, you earn an egg. First-timers get one in 4 minutes so the loop clicks immediately.</div>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🥚</div>
       <div class="feature-name">Hatch Spirits</div>
-      <div class="feature-desc">Place eggs in your hatchery. They hatch into spirits — each with a name, personality, traits, and moods. Six unique species to discover.</div>
+      <div class="feature-desc">Place eggs in your hatchery. They hatch into spirits — each with a name, personality, traits, and moods. Six unique species rooted in Yoruba-inspired lore.</div>
     </div>
     <div class="feature-card">
       <div class="feature-icon">✨</div>
@@ -598,7 +704,7 @@ a:hover { color: var(--t1); }
     <div class="feature-card">
       <div class="feature-icon">🏘️</div>
       <div class="feature-name">Grow Your Village</div>
-      <div class="feature-desc">Your listening time, spirits, and crafting all contribute to your village rank. Progress from Stone to Bronze and beyond. It's passive — like a garden.</div>
+      <div class="feature-desc">Unlock buildings, send spirits on expeditions, craft items. Your listening time, spirits, and village rank all grow passively — like a garden.</div>
     </div>
   </div>
 </section>
@@ -629,10 +735,10 @@ a:hover { color: var(--t1); }
   <p class="body-text">That constraint shaped everything. The UI is a sidebar, not a full-screen takeover. The game loop runs on timers, not skill checks. There's no FOMO mechanic, no daily login punishment. If you miss a day, your spirits are just a little sleepy when you come back. That's it.</p>
 
   <div class="callout">
-    <p class="callout-quote">"I enforced the companion-first philosophy by keeping everything in a single file. If the whole app can live in one HTML document, it can't get too complicated."</p>
+    <p class="callout-quote">"The dark theme isn't an aesthetic choice — it's a design decision. The app is meant to run alongside whatever you're actually doing. A dark interface disappears into your workspace instead of fighting it."</p>
   </div>
 
-  <p class="body-text">The dark theme isn't just an aesthetic choice — the app is meant to run alongside whatever you're actually doing. A dark, glassy interface disappears into your workspace instead of fighting it. Light theme exists too, styled like warm parchment for daytime vibes.</p>
+  <p class="body-text">Light theme exists too, styled like warm parchment for daytime vibes. The whole visual language — 19 custom sprites, muted tones, no saturated colors — is designed to feel like a cozy study room at midnight.</p>
 </section>
 
 <!-- ═══ MOBILE + ITEMS SCREENSHOTS ═══ -->
@@ -650,51 +756,108 @@ a:hover { color: var(--t1); }
 
 <div class="section-divider"></div>
 
-<!-- ═══ BUILDING IT ═══ -->
+<!-- ═══ DESIGN PROCESS ═══ -->
 <section class="section section-narrow fade-in">
-  <p class="section-label">Building It</p>
-  <h2 class="section-title">One HTML file, one database, zero frameworks.</h2>
-  <p class="body-text">The entire frontend is a single HTML file. No React, no build tools, no npm. Just vanilla JavaScript, CSS, and a Supabase backend for auth, data, and real-time game logic. The constraint was intentional — I wanted to ship fast and keep it simple.</p>
-</section>
+  <p class="section-label">Design Process</p>
+  <h2 class="section-title">From insight to interface.</h2>
+  <p class="body-text">I designed a progressive disclosure system where the game layer reveals itself gradually. New users start with just music and a starter spirit — no menus, no dashboards, no overwhelm.</p>
 
-<section class="section fade-in" style="padding-top: 0;">
-  <div class="stack-grid">
-    <div class="stack-item">
-      <div class="stack-label">Frontend</div>
-      <div class="stack-val">Single HTML file · Vanilla JS · CSS</div>
+  <div class="process-step" style="margin-top: 40px;">
+    <div class="process-num">01</div>
+    <div class="process-content">
+      <h3 class="process-title">Information Architecture & Game Economy</h3>
+      <p class="process-text">Mapped 7 primary views: Player, Village, Hatchery, Expeditions, Buildings, Spirit Detail, Crafting. Designed the spirit system — 6 types, 3 evolution stages, 15 passive traits across expedition, growth, and affinity categories. Balanced the economy so casual listeners (1 hr/day) feel progress while dedicated users find depth.</p>
     </div>
-    <div class="stack-item">
-      <div class="stack-label">Backend</div>
-      <div class="stack-val">Supabase (PostgreSQL + Auth + RPC)</div>
+  </div>
+
+  <div class="process-step">
+    <div class="process-num">02</div>
+    <div class="process-content">
+      <h3 class="process-title">Onboarding & Core Loop Design</h3>
+      <p class="process-text">Designed guided onboarding that teaches mechanics through play: choose a starter spirit → listen → earn first egg → hatch it → discover the village. Each step unlocks naturally — no tutorial overlay. Guest mode lets users try before committing to an account.</p>
     </div>
-    <div class="stack-item">
-      <div class="stack-label">Auth</div>
-      <div class="stack-val">Email/password · Google OAuth · Guest mode</div>
+  </div>
+
+  <div class="process-step">
+    <div class="process-num">03</div>
+    <div class="process-content">
+      <h3 class="process-title">Visual Design & Cultural Identity</h3>
+      <p class="process-text">Created 19 custom sprites across 6 spirit types and 3 evolution stages. Established the "cozy study room" visual language — dark-first, warm parchment light theme, no saturated colors. Spirit names and lore draw from Yoruba culture, making the world-building an entry point for cultural discovery.</p>
     </div>
-    <div class="stack-item">
-      <div class="stack-label">Hosting</div>
-      <div class="stack-val">GitHub Pages — free, instant deploys</div>
+  </div>
+
+  <div class="process-step">
+    <div class="process-num">04</div>
+    <div class="process-content">
+      <h3 class="process-title">Building System & Expedition Design</h3>
+      <p class="process-text">Designed 5 building types (Café, Dojo, Library, Garden, Studio) with 3 upgrade tiers each. Created 3 expedition locations with difficulty gating tied to spirit evolution. Balanced material drop rates and upgrade costs through iterative playtesting.</p>
     </div>
-    <div class="stack-item">
-      <div class="stack-label">Security</div>
-      <div class="stack-val">Row-Level Security · 32 RPCs · CSP · XSS sanitization</div>
-    </div>
-    <div class="stack-item">
-      <div class="stack-label">Assets</div>
-      <div class="stack-val">19 custom PNG sprites — all made by me</div>
+  </div>
+
+  <div class="process-step">
+    <div class="process-num">05</div>
+    <div class="process-content">
+      <h3 class="process-title">Usability Testing & Ship</h3>
+      <p class="process-text">Ran testing with target users. Identified cognitive load issues in the crafting flow (too many ingredients visible at once) and expedition selection (unclear spirit eligibility). Fixed through progressive filtering and inline eligibility indicators. Shipped with three auth methods and deployed live.</p>
     </div>
   </div>
 </section>
 
-<section class="section section-narrow fade-in" style="padding-top: 0;">
+<div class="section-divider"></div>
+
+<!-- ═══ DESIGN DECISIONS ═══ -->
+<section class="section fade-in">
+  <div style="max-width: var(--content-w);">
+    <p class="section-label">Design Decisions</p>
+    <h2 class="section-title">What makes it work.</h2>
+  </div>
+
+  <div class="decision-grid">
+    <div class="decision-card">
+      <div class="decision-icon">⏱️</div>
+      <div class="decision-name">Time-gated rewards</div>
+      <div class="decision-desc">Eggs drop based on listen time (1hr intervals, 4min for first). You can't grind — presence is the mechanic.</div>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">🌙</div>
+      <div class="decision-name">Sidebar, not takeover</div>
+      <div class="decision-desc">The game lives in a sidebar. Music is always accessible. The UI never demands full-screen attention.</div>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">🪜</div>
+      <div class="decision-name">Progressive complexity</div>
+      <div class="decision-desc">Start with 1 spirit. Buildings unlock from expeditions. Tiers expand options. Week 1 is simple; week 4 has depth.</div>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">🔐</div>
+      <div class="decision-name">Privacy-first architecture</div>
+      <div class="decision-desc">Row-Level Security on every table. Server-side RPCs for all game mutations. Designed with user trust as a constraint.</div>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">🌍</div>
+      <div class="decision-name">Cultural world-building</div>
+      <div class="decision-desc">Spirit names and lore rooted in Yoruba culture. Players absorb cultural references through play, not lectures.</div>
+    </div>
+    <div class="decision-card">
+      <div class="decision-icon">😴</div>
+      <div class="decision-name">No punishment mechanics</div>
+      <div class="decision-desc">No streak penalties, no daily login guilt. Miss a week? Your spirits rest. You get a welcome-back gift.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ STATS ═══ -->
+<section class="section section-narrow fade-in">
   <div class="stat-strip">
     <div class="stat-item">
-      <div class="stat-num">1</div>
-      <div class="stat-label">HTML File</div>
+      <div class="stat-num">7</div>
+      <div class="stat-label">Primary Views</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">1,800+</div>
-      <div class="stat-label">Lines of Code</div>
+      <div class="stat-num">19</div>
+      <div class="stat-label">Custom Sprites</div>
     </div>
     <div class="stat-item">
       <div class="stat-num">11</div>
@@ -707,21 +870,11 @@ a:hover { color: var(--t1); }
   </div>
 </section>
 
-<!-- ═══ SUPABASE SCREENSHOT ═══ -->
-<section class="section fade-in" style="padding-top: 0;">
-  <div class="img-full-contained" style="max-width: var(--max-w); margin: 0 auto;">
-    <img src="images/supabase.png" alt="Supabase dashboard — e-village project, status healthy" loading="lazy">
-  </div>
-  <p class="img-caption">The Supabase backend — healthy, running on free tier, ready for ~1,000 concurrent users</p>
-</section>
-
-<div class="section-divider"></div>
-
 <!-- ═══ THE HARD PARTS ═══ -->
 <section class="section section-narrow fade-in">
   <p class="section-label">The Hard Parts</p>
   <h2 class="section-title">Debugging a database at 2am teaches you things.</h2>
-  <p class="body-text">This wasn't a weekend project that went smoothly. I went through <strong>10+ development sessions</strong>, multiple database migrations, and a debugging saga that taught me more about PostgreSQL than any course could.</p>
+  <p class="body-text">This wasn't a weekend project that went smoothly. I went through <strong>24+ development sessions</strong>, multiple database migrations, and a debugging saga that taught me more about production systems than any course could.</p>
 
   <div class="process-step" style="margin-top: 40px;">
     <div class="process-num">01</div>
@@ -742,31 +895,69 @@ a:hover { color: var(--t1); }
   <div class="process-step">
     <div class="process-num">03</div>
     <div class="process-content">
-      <h3 class="process-title">Security at Scale</h3>
+      <h3 class="process-title">Security Overhaul</h3>
       <p class="process-text">V1.0 stored game state in localStorage — no validation, easy to cheat. V2.0 moved everything to server-side RPCs with Row-Level Security, rate limiting, and XSS sanitization. The migration broke most features temporarily, but the app is now production-ready for real users.</p>
     </div>
   </div>
+</section>
+
+<!-- ═══ SUPABASE SCREENSHOT ═══ -->
+<section class="section fade-in" style="padding-top: 0;">
+  <div class="img-full-contained" style="max-width: var(--max-w); margin: 0 auto;">
+    <img src="images/supabase.png" alt="Supabase dashboard — e-village project, status healthy" loading="lazy">
+  </div>
+  <p class="img-caption">The Supabase backend — healthy, running, ready for ~1,000 concurrent users</p>
 </section>
 
 <div class="section-divider"></div>
 
 <!-- ═══ THE MANIFESTO ═══ -->
 <section class="section section-narrow fade-in">
-  <p class="section-label">Working With AI</p>
+  <p class="section-label">Process Innovation</p>
   <h2 class="section-title">I built this with Claude. The manifesto is what made it work.</h2>
-  <p class="body-text">I used Claude as my coding partner for this entire project. But here's the thing — <strong>AI doesn't remember your last session.</strong> Every new conversation starts from zero. So I wrote a manifesto.</p>
+  <p class="body-text">I used Claude as my development partner for this entire project. But here's the thing — <strong>AI doesn't remember your last session.</strong> Every new conversation starts from zero. So I wrote a manifesto.</p>
   <p class="body-text">The manifesto is a living technical document that I carry into every AI session. It has the database schema, the coding rules, the design philosophy, the session history — everything an AI needs to pick up exactly where the last one left off. No wasted time re-explaining context.</p>
 
   <div class="callout">
-    <p class="callout-quote">"Having a clear manifesto is essential. It gives the AI a reference point to maintain consistency throughout development."</p>
+    <p class="callout-quote">"The manifesto isn't just documentation — it's a collaboration protocol. It grew from a one-page overview to a detailed technical spec with 12 sections, session logs, and explicit rules for what AI should and shouldn't do."</p>
   </div>
 
-  <p class="body-text">This ended up being one of the biggest lessons from the project. The manifesto isn't just documentation — it's a collaboration protocol. It grew from a one-page overview to a detailed technical spec with 12 sections, session logs, and explicit rules for what AI assistants should and shouldn't do.</p>
+  <p class="body-text">This ended up being one of the biggest lessons from the project. The document IS the product — the code just implements it. I've since applied this approach to other projects and it's become my standard methodology for AI-assisted development.</p>
 </section>
 
 <div class="section-divider"></div>
 
-<!-- ═══ WHAT I LEARNED ═══ -->
+<!-- ═══ OUTCOME ═══ -->
+<section class="section fade-in">
+  <div style="max-width: var(--content-w);">
+    <p class="section-label">Outcome</p>
+    <h2 class="section-title">What shipped.</h2>
+    <p class="body-text">Ehoro Village is live and playable. Not a prototype, not a Figma file — a real product with real users.</p>
+  </div>
+
+  <div class="outcome-grid">
+    <div class="outcome-card">
+      <div class="outcome-title">Complete product</div>
+      <div class="outcome-text">11 database tables. 32 server-side functions. 3 auth methods. 3 music streams. Full game loop from onboarding through endgame. Deployed and running.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Design system</div>
+      <div class="outcome-text">Cohesive dark-first visual language across 7 views. 19 custom sprites. Responsive design. Yoruba-inspired cultural identity woven through lore and naming.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Validated hypothesis</div>
+      <div class="outcome-text">Companion-first UX works. Users report leaving Ehoro running during study sessions — the same behavior pattern the product was designed around.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Reproducible methodology</div>
+      <div class="outcome-text">The manifesto-driven AI development process is now documented and transferable. A new approach to maintaining design intent across AI-assisted sessions.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══ TAKEAWAYS ═══ -->
 <section class="section section-narrow fade-in">
   <p class="section-label">Takeaways</p>
   <h2 class="section-title">Three things I'd tell past me.</h2>
@@ -778,7 +969,7 @@ a:hover { color: var(--t1); }
 
   <div class="lesson-card">
     <div class="lesson-title">Constraints breed creativity.</div>
-    <div class="lesson-text">One HTML file. No frameworks. No build step. These weren't limitations — they forced me to think harder about architecture and kept scope manageable. The app shipped because of the constraints, not despite them.</div>
+    <div class="lesson-text">Deliberate constraints forced me to think harder about architecture and kept scope manageable. The app shipped because of the constraints, not despite them.</div>
   </div>
 
   <div class="lesson-card">
@@ -797,12 +988,12 @@ a:hover { color: var(--t1); }
   <p class="body-text">The target? <strong>First 100 real users.</strong> College students ages 17–20 who already have lo-fi running while they study. If I can make them close one other tab and open Ehoro Village instead, I've won.</p>
 
   <div class="tag-row">
-    <span class="tag">Vanilla JS</span>
+    <span class="tag">Product Design</span>
+    <span class="tag">UX Research</span>
     <span class="tag">Supabase</span>
     <span class="tag">PostgreSQL</span>
     <span class="tag">Game Design</span>
-    <span class="tag">UI/UX</span>
-    <span class="tag">Glassmorphism</span>
+    <span class="tag">Information Architecture</span>
     <span class="tag">AI-Assisted Dev</span>
     <span class="tag">Lo-Fi</span>
     <span class="tag">Yoruba Culture</span>
