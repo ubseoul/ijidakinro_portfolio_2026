@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adé Ijidakinro — Resume</title>
+<meta name="description" content="Founding Product Designer specializing in AI-augmented product work. Michigan HCI grad, ex-P&G. Live product at Ehoro Village.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --paper: #fdfcfa;
+  --ink: #1a1a1a;
+  --ink-soft: #444;
+  --ink-mute: #666;
+  --rule: #d4cfc4;
+  --accent: #8a6d3a;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+
+html { -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--sans);
+  background: #e8e4dc;
+  color: var(--ink);
+  line-height: 1.45;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 8.5in;
+  margin: 0 auto;
+  background: var(--paper);
+  padding: 0.55in 0.65in;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.12);
+  border-radius: 2px;
+  position: relative;
+}
+
+/* Download button */
+.toolbar {
+  max-width: 8.5in;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.btn:hover { background: #2a2a2a; transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.btn-ghost:hover { background: var(--ink); color: var(--paper); }
+.btn svg { width: 14px; height: 14px; }
+
+/* Header */
+.header { margin-bottom: 18px; }
+.name {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.contacts {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.contacts a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+.contacts a:hover { border-color: var(--ink-soft); }
+.contacts .sep { color: var(--rule); margin: 0 8px; }
+
+/* Summary */
+.summary {
+  font-size: 0.85rem;
+  color: var(--ink);
+  line-height: 1.55;
+  padding: 14px 0 16px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 18px;
+  font-weight: 400;
+}
+.summary strong { font-weight: 600; }
+
+/* Section headers */
+.section-head {
+  font-family: var(--serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 18px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+/* Job entries */
+.job { margin-bottom: 14px; page-break-inside: avoid; }
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 2px;
+}
+.job-title {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.job-title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
+.job-date {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink-mute);
+  font-family: var(--sans);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+.job-meta {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+/* Bullets */
+ul.bullets {
+  list-style: none;
+  padding-left: 0;
+}
+ul.bullets li {
+  font-size: 0.81rem;
+  color: var(--ink);
+  line-height: 1.45;
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 4px;
+}
+ul.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.55em;
+  width: 4px; height: 4px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+ul.bullets strong { font-weight: 600; }
+ul.bullets em { font-style: italic; }
+
+/* Projects + Skills compact */
+.project {
+  margin-bottom: 8px;
+  page-break-inside: avoid;
+}
+.project-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.project-title {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.project-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+.project-desc {
+  font-size: 0.79rem;
+  color: var(--ink);
+  line-height: 1.45;
+  margin-top: 2px;
+}
+.project-desc strong { font-weight: 600; }
+
+/* Education */
+.edu {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 0.82rem;
+  margin-bottom: 3px;
+}
+.edu-school { font-family: var(--serif); font-weight: 600; }
+.edu-degree { color: var(--ink-soft); }
+.edu-date { font-size: 0.75rem; color: var(--ink-mute); font-weight: 500; letter-spacing: 0.02em; white-space: nowrap; }
+.edu-honors {
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* Skills */
+.skills {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+}
+.skill-row {
+  font-size: 0.79rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.skill-label {
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 0.82rem;
+  margin-right: 4px;
+}
+
+/* Two-column layout for projects+skills row to save space */
+.two-col {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+  margin-top: 4px;
+}
+
+/* === PRINT === */
+@media print {
+  @page {
+    size: letter;
+    margin: 0.4in 0.45in;
+  }
+  body {
+    background: white;
+    padding: 0;
+    color: black;
+    font-size: 10pt;
+  }
+  .toolbar { display: none !important; }
+  .page {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    max-width: 100%;
+    margin: 0;
+  }
+  .name { font-size: 22pt; }
+  .summary { font-size: 9.5pt; padding: 10px 0; margin-bottom: 12px; }
+  .section-head { margin: 12px 0 6px; font-size: 9pt; }
+  .job-title { font-size: 10.5pt; }
+  .job-date, .edu-date { font-size: 8.5pt; }
+  .job-meta { font-size: 8.5pt; margin-bottom: 3px; }
+  ul.bullets li { font-size: 9pt; margin-bottom: 2px; line-height: 1.35; }
+  .project-title { font-size: 9.5pt; }
+  .project-desc { font-size: 8.5pt; line-height: 1.35; }
+  .edu { font-size: 9pt; }
+  .skill-row { font-size: 8.5pt; line-height: 1.4; }
+  .job { margin-bottom: 10px; }
+  a { color: black !important; text-decoration: none !important; }
+}
+
+/* Small screen / mobile */
+@media (max-width: 720px) {
+  .page { padding: 28px 22px; }
+  .toolbar { padding: 0 8px; }
+  .name { font-size: 1.8rem; }
+  .job-head { flex-direction: column; gap: 0; }
+  .edu { flex-direction: column; gap: 0; }
+  .two-col { grid-template-columns: 1fr; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <a href="index.html" class="btn btn-ghost">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Portfolio
+  </a>
+  <button class="btn" onclick="window.print()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6z"/></svg>
+    Download PDF
+  </button>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1 class="name">Adé Ijidakinro</h1>
+    <p class="contacts">
+      Maplewood, NJ
+      <span class="sep">•</span>
+      734-596-1963
+      <span class="sep">•</span>
+      <a href="mailto:ijidakinroade@gmail.com">ijidakinroade@gmail.com</a>
+      <span class="sep">•</span>
+      <a href="https://ijidakinro.com" target="_blank" rel="noopener">ijidakinro.com</a>
+      <span class="sep">•</span>
+      <a href="https://linkedin.com/in/adeijidakinro" target="_blank" rel="noopener">linkedin.com/in/adeijidakinro</a>
+      <span class="sep">•</span>
+      <a href="https://ehorovillage.com" target="_blank" rel="noopener">ehorovillage.com</a>
+    </p>
+  </header>
+
+  <!-- SUMMARY -->
+  <p class="summary">
+    <strong>Founding Product Designer</strong> specializing in AI-augmented product work. Michigan HCI grad with three years of enterprise stakeholder management at <strong>P&amp;G ($20M+ initiatives)</strong> and a live, shipped product at <strong>Ehoro Village</strong>. I lead design and research, author the methodology teams build against, and ship internal tools that make teams faster.
+  </p>
+
+  <!-- EXPERIENCE -->
+  <h2 class="section-head">Experience</h2>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">Founding Product Designer <em>· Ehoro Village</em></span>
+      <span class="job-date">Jan 2024 – Present</span>
+    </div>
+    <p class="job-meta">New York Metro · Team of 6 (Product, Engineering ×2, Sound Design, Illustration, PM)</p>
+    <ul class="bullets">
+      <li><strong>Architected a unified design system across 7 product surfaces</strong> on a six-person team, ensuring UI consistency from a live, shipping product through every new feature track.</li>
+      <li><strong>Authored a living AI-augmented development manifesto across 24+ build sessions</strong> — a reproducible methodology now used as the team's standard playbook for maintaining design intent and code quality across AI-assisted work.</li>
+      <li>Led generative research with 17–20 year-old college students to validate a <strong>companion-first UX hypothesis</strong> — that rewarding passive presence over active attention increases session duration and emotional attachment — translating findings into the team's product direction.</li>
+      <li>Applied <strong>adult-learning principles</strong> to a progressive-disclosure onboarding system, replacing static tutorials with experiential guided play to reduce cognitive load for novice users.</li>
+      <li>Designed and balanced a complex product system through iterative playtesting — 6 spirit types, 3 evolution stages, 15 trait effects, 5 building types, 3 expedition locations, crafting and alignment mechanics.</li>
+      <li>Built an internal <strong>Python/Streamlit UX feedback analysis tool</strong> that identifies high-risk users and ranks feedback by severity, <strong>cutting team triage time by 40–60%</strong>.</li>
+      <li>Established the visual language — 19 custom sprites and a dark-first design system rooted in Yoruba cultural identity — across desktop and mobile.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">Product Designer &amp; UX Researcher <em>· Public Interest Technology Knowledge Network (Braid)</em></span>
+      <span class="job-date">Jan 2023 – May 2024</span>
+    </div>
+    <p class="job-meta">Ann Arbor, MI · University of Michigan</p>
+    <ul class="bullets">
+      <li><strong>Directed generative and evaluative UX research operations</strong>, synthesizing qualitative data from <strong>100+ diverse stakeholders</strong> into a centralized insight repository structured for non-technical partners.</li>
+      <li><strong>Facilitated 5+ cross-functional synthesis workshops</strong> with PM, engineering, marketing, and strategy — producing the articulation of product purpose that drove a homepage and identity redesign and a <strong>40% lift in new sign-ups</strong>.</li>
+      <li>Designed high-fidelity prototypes in Figma, ran usability testing with first-time visitors and existing community members, and partnered with engineering on handoff and iteration.</li>
+      <li>Designed a new brand mark with the head of strategy, inspired by the West African <em>Ife knot</em>, embedding community roots into the platform identity.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-title">Program Manager <em>· Procter &amp; Gamble</em></span>
+      <span class="job-date">Jun 2021 – Jul 2022</span>
+    </div>
+    <p class="job-meta">Cincinnati, OH · Recipient of the P&amp;G CEO Award</p>
+    <ul class="bullets">
+      <li><strong>Spearheaded enterprise needs analysis</strong> and led a <strong>7-person cross-functional team</strong> redesigning P&amp;G's internal business intelligence tooling, improving operational efficiency and yielding <strong>$200K in cost savings</strong>.</li>
+      <li><strong>Managed international stakeholder coordination across 11 regional project managers</strong> for a global loss-analysis operation, driving <strong>$20M+ in savings</strong> across markets.</li>
+      <li>Scaled a pilot initiative into the <strong>Leankit Program Management Dashboard</strong>, achieving organic adoption across 10+ internal teams.</li>
+    </ul>
+  </div>
+
+  <!-- AI PROJECTS -->
+  <h2 class="section-head">AI Projects</h2>
+
+  <div class="project">
+    <div class="project-head">
+      <span class="project-title">AI-Augmented Development Manifesto <em>· Methodology</em></span>
+      <span class="job-date">2024 – Present</span>
+    </div>
+    <p class="project-desc">Living technical methodology across <strong>24+ AI build sessions</strong> at Ehoro Village. A reproducible protocol for maintaining design intent, data-model coherence, and team alignment across AI-assisted product work.</p>
+  </div>
+
+  <div class="project">
+    <div class="project-head">
+      <span class="project-title">UX Feedback Analyzer <em>· Python · Streamlit</em></span>
+      <span class="job-date">2025</span>
+    </div>
+    <p class="project-desc">Internal tool built for the Ehoro Village team. Surfaces high-risk users and prioritizes unstructured feedback, <strong>reducing team triage time by 40–60%</strong>.</p>
+  </div>
+
+  <div class="project">
+    <div class="project-head">
+      <span class="project-title">Break Lab <em>· breaklab.app</em></span>
+      <span class="job-date">2024 – Present</span>
+    </div>
+    <p class="project-desc">Browser-based drum sampler shipped to real music producers. Complex interaction design — waveform slicing, step sequencer, live looper — built under the manifesto methodology.</p>
+  </div>
+
+  <!-- EDUCATION -->
+  <h2 class="section-head">Education</h2>
+
+  <div class="edu">
+    <span><span class="edu-school">University of Michigan</span> <span class="edu-degree">— M.S., Information (UX Research &amp; Design, HCI)</span></span>
+    <span class="edu-date">2022 – 2024</span>
+  </div>
+  <div class="edu">
+    <span><span class="edu-school">University of Michigan</span> <span class="edu-degree">— B.A., Political Science &amp; Computer Science</span></span>
+    <span class="edu-date">2017 – 2021</span>
+  </div>
+  <p class="edu-honors">Achievement Fellow, School of Information · P&amp;G CEO Award Recipient</p>
+
+  <!-- SKILLS -->
+  <h2 class="section-head">Skills</h2>
+
+  <div class="skills">
+    <p class="skill-row"><span class="skill-label">AI &amp; Workflow:</span> Prompt engineering, AI-augmented development, manifesto-driven workflow design, multi-model fluency (Claude, ChatGPT, Gemini)</p>
+    <p class="skill-row"><span class="skill-label">Product Design:</span> Figma, Adobe Creative Suite, prototyping, design systems, information architecture, interaction design</p>
+    <p class="skill-row"><span class="skill-label">Research:</span> User research, usability testing, generative &amp; evaluative methods, journey mapping, synthesis facilitation</p>
+    <p class="skill-row"><span class="skill-label">Development:</span> JavaScript, HTML/CSS, Python, Supabase, PostgreSQL, Streamlit, Git/GitHub</p>
+    <p class="skill-row"><span class="skill-label">Program Management:</span> Agile/Scrum (PSM 1 Certified), Jira, Leankit, cross-functional leadership, enterprise stakeholder management</p>
+  </div>
+
+</div>
+
+<div class="toolbar" style="margin-top: 20px;">
+  <button class="btn" onclick="window.print()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6z"/></svg>
+    Download as PDF
+  </button>
+</div>
+
+</body>
+</html>
