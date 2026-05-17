@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How I Work — Adé Ijidakinro</title>
+<meta name="description" content="A short, specific account of how I actually work — manifesto-first, research as alignment, adapted process under real constraints. Drawn from Ehoro Village, Braid, and three years at P&G.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: #050505;
+  color: #f5f5f5;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+:root {
+  --bg: #050505;
+  --card: rgba(255,255,255,.03);
+  --card-border: rgba(255,255,255,.06);
+  --card-hover: rgba(255,255,255,.06);
+  --t1: #f5f5f5;
+  --t2: #b0b0b0;
+  --t3: #707070;
+  --t4: #404040;
+  --accent: #c8a87c;
+  --accent-dim: rgba(200,168,124,.08);
+  --accent-border: rgba(200,168,124,.18);
+  --serif: 'Fraunces', Georgia, serif;
+  --mono: 'JetBrains Mono', monospace;
+  --max-w: 980px;
+  --content-w: 720px;
+}
+
+::selection { background: rgba(200,168,124,.25); color: #fff; }
+a { color: var(--t2); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--t1); }
+
+.back-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  padding: 20px 32px;
+  background: linear-gradient(to bottom, rgba(5,5,5,.95) 0%, rgba(5,5,5,.6) 70%, transparent 100%);
+  pointer-events: none;
+}
+.back-link {
+  pointer-events: all;
+  font-size: .75rem;
+  color: var(--t3);
+  letter-spacing: .08em;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color .2s;
+}
+.back-link:hover { color: var(--t1); }
+.back-link svg { width: 16px; height: 16px; }
+
+/* Hero */
+.hero {
+  min-height: 70vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 32px 80px;
+  position: relative;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 30% 50%, rgba(200,168,124,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-label {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--accent);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity: 0; animation: fadeUp .8s .3s ease forwards;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5.8vw, 4.25rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  max-width: 780px;
+  opacity: 0; animation: fadeUp .8s .5s ease forwards;
+}
+.hero-sub {
+  font-size: 1.0625rem;
+  color: var(--t2);
+  margin-top: 22px;
+  max-width: 620px;
+  font-weight: 300;
+  line-height: 1.65;
+  opacity: 0; animation: fadeUp .8s .7s ease forwards;
+}
+.hero-sub strong { color: var(--t1); font-weight: 500; }
+
+/* Sections */
+.section {
+  padding: 64px 32px;
+  max-width: var(--content-w);
+  margin: 0 auto;
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: .6rem;
+  color: var(--accent);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.body-text {
+  font-size: 1rem;
+  color: var(--t2);
+  line-height: 1.8;
+  font-weight: 300;
+}
+.body-text + .body-text { margin-top: 18px; }
+.body-text strong { color: var(--t1); font-weight: 500; }
+
+/* Principle blocks */
+.principle {
+  margin-bottom: 56px;
+  padding-left: 28px;
+  border-left: 1px solid var(--card-border);
+  position: relative;
+}
+.principle::before {
+  content: '';
+  position: absolute;
+  left: -1px; top: 0;
+  width: 1px; height: 60px;
+  background: var(--accent);
+}
+.principle-num {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--accent);
+  letter-spacing: .2em;
+  margin-bottom: 12px;
+  display: block;
+}
+.principle-title {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+  color: var(--t1);
+  margin-bottom: 16px;
+}
+.principle-body {
+  font-size: .98rem;
+  color: var(--t2);
+  line-height: 1.75;
+  font-weight: 300;
+}
+.principle-body + .principle-body { margin-top: 14px; }
+.principle-body strong { color: var(--t1); font-weight: 500; }
+.principle-evidence {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: var(--accent-dim);
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  font-family: var(--mono);
+  font-size: .78rem;
+  color: var(--t2);
+  line-height: 1.55;
+  letter-spacing: .01em;
+}
+.principle-evidence strong { color: var(--accent); font-weight: 500; }
+
+/* Thesis */
+.thesis {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--t1);
+  line-height: 1.4;
+  letter-spacing: -.01em;
+  padding: 0 0 0 24px;
+  border-left: 2px solid var(--accent);
+  margin: 16px 0 28px;
+}
+.thesis em { color: var(--accent); font-style: italic; }
+
+/* Section divider */
+.section-divider {
+  width: 40px; height: 1px;
+  background: var(--t4);
+  margin: 24px auto;
+}
+
+/* Closing */
+.closing {
+  padding: 64px 32px 80px;
+  max-width: var(--content-w);
+  margin: 0 auto;
+  text-align: left;
+}
+.closing-title {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+  color: var(--t1);
+  margin-bottom: 20px;
+}
+
+/* Footer */
+.case-footer { padding: 60px 32px 80px; text-align: center; }
+.case-footer-label {
+  font-family: var(--mono);
+  font-size: .55rem; color: var(--t4);
+  letter-spacing: .25em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.case-footer-links {
+  display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+}
+.case-footer-links a {
+  font-size: .8rem;
+  color: var(--t3);
+  padding: 12px 22px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  transition: all .2s;
+}
+.case-footer-links a:hover {
+  color: var(--t1);
+  border-color: var(--accent-border);
+  background: var(--card);
+}
+
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 0 20px 60px; min-height: 70vh; }
+  .section, .closing { padding-left: 20px; padding-right: 20px; }
+  .principle { padding-left: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .fade-in { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="back-nav">
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <p class="hero-label">How I Work · Methodology · Adapted, not theoretical</p>
+  <h1>I don't run the Double Diamond. I run whatever the constraints will pay for.</h1>
+  <p class="hero-sub">Six specific operational moves I've actually made on real teams — at <strong>P&amp;G ($20M+ initiatives)</strong>, at <strong>Braid (UMich PIT-KN)</strong>, and now at <strong>Ehoro Village</strong>. Not a philosophy. Not a framework I read about. Concrete moves with concrete receipts.</p>
+</section>
+
+<!-- THESIS -->
+<section class="section fade-in">
+  <p class="section-label">Thesis</p>
+  <p class="thesis">Process is a <em>tool</em>. The job is shipping work that's right for the people it's for. Pick the process that fits the constraint — and write down what you picked, so the team can build against it.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PRINCIPLES -->
+<section class="section fade-in">
+  <p class="section-label">Operational Moves</p>
+
+  <div class="principle">
+    <span class="principle-num">01</span>
+    <h2 class="principle-title">Write the manifesto before the code.</h2>
+    <p class="principle-body">Every AI-augmented project I start now begins with a written spec — data model, design philosophy, coding rules, session log. Not a wireframe. Not a Figma file. A document the entire team (and every AI session) reads before touching the build.</p>
+    <p class="principle-body">The reason: <strong>AI has no memory and teams have drift.</strong> The manifesto is the shared mental model that survives across sessions and people. The document IS the product. The code just implements it.</p>
+    <p class="principle-evidence"><strong>Receipt —</strong> Ehoro Village. 24+ AI build sessions, six-person team, schema drift killed by a single living source of truth.</p>
+  </div>
+
+  <div class="principle">
+    <span class="principle-num">02</span>
+    <h2 class="principle-title">Research is alignment, not a deliverable.</h2>
+    <p class="principle-body">Reports get filed. Workshops change roadmaps. When teams misalign on what a product is for, no amount of visual iteration fixes the UX — because the UX is downstream of the disagreement. The fastest path to a clearer homepage is a synthesis workshop, not another Figma file.</p>
+    <p class="principle-body">So I run research as a <strong>cross-functional alignment exercise</strong>: PM, engineering, marketing, strategy in the same room, reading the same insights, writing the language together.</p>
+    <p class="principle-evidence"><strong>Receipt —</strong> Braid. Five synthesis workshops with 100+ stakeholders produced the language the redesigned homepage spoke — which produced a 40% lift in new sign-ups.</p>
+  </div>
+
+  <div class="principle">
+    <span class="principle-num">03</span>
+    <h2 class="principle-title">Build the internal tool before the next deck.</h2>
+    <p class="principle-body">When triage is eating the team's week, no design improvement matters. The right move is to <strong>build the thing that gives the team back its time</strong>, even if the thing isn't user-facing. Designers can ship internal tooling — and should, when the constraint is a team-velocity problem dressed up as a design problem.</p>
+    <p class="principle-evidence"><strong>Receipt —</strong> Ehoro Village. A Python/Streamlit feedback-analysis tool I built for the team cut triage time by 40–60%, freeing the product track for design and research.</p>
+  </div>
+
+  <div class="principle">
+    <span class="principle-num">04</span>
+    <h2 class="principle-title">Adapt the process to the constraint, not the brand.</h2>
+    <p class="principle-body">The Double Diamond isn't wrong — it's just one shape. Some problems need a discovery sprint. Others need three weeks of synthesis. Others need someone to sit down with the engineers and balance an economy until it stops feeling like a slot machine. <strong>The process you can afford to run is the process that matters.</strong></p>
+    <p class="principle-body">A project with a six-month runway and a 17-year-old user base needs a different methodology than an enterprise BI tool with eleven regional PMs. Treating them the same is how junior teams ship the wrong thing on time.</p>
+    <p class="principle-evidence"><strong>Receipt —</strong> P&amp;G enterprise BI redesign (7-person team, $200K savings) ran a needs-analysis-first process. Ehoro Village ran a hypothesis-first one. Same designer, different shape.</p>
+  </div>
+
+  <div class="principle">
+    <span class="principle-num">05</span>
+    <h2 class="principle-title">Stakeholder management is the work.</h2>
+    <p class="principle-body">Three years of running international program management at P&amp;G — 11 regional PMs, $20M+ initiatives — taught me the part most design education skips: <strong>the design that ships is the one whose stakeholders feel ownership of it.</strong> Not consulted-with. Owned. Written into.</p>
+    <p class="principle-body">In practice that means I write the brief everyone reads first, run the meeting that lets people disagree on paper before they disagree in slack, and put my name on the document so the team knows who to push back on.</p>
+    <p class="principle-evidence"><strong>Receipt —</strong> Global loss-analysis operation at P&amp;G across 11 international PMs. Recipient of the P&amp;G CEO Award.</p>
+  </div>
+
+  <div class="principle">
+    <span class="principle-num">06</span>
+    <h2 class="principle-title">Pick the model for the task.</h2>
+    <p class="principle-body">Multi-model fluency isn't a flex — it's how the work actually gets done. <strong>Claude</strong> for long-running build sessions and taste-sensitive interface code. <strong>ChatGPT</strong> for fast exploratory passes and asset generation. <strong>Gemini</strong> for long-context research synthesis. The skill is matching the cognitive shape of the task to the model — and keeping the manifesto's shared context portable across all three.</p>
+    <p class="principle-evidence"><strong>Receipt —</strong> The <a href="ai.html" style="color: var(--accent); border-bottom: 1px solid var(--accent-border);">AI Projects page</a> documents the methodology in detail.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CLOSING -->
+<section class="closing fade-in">
+  <p class="section-label">In one sentence</p>
+  <h2 class="closing-title">Write the spec. Run the workshop. Build the tool. Adapt the process. Own the stakeholders. Pick the model.</h2>
+  <p class="body-text">That's the methodology. The case studies are the proof that it works on real teams shipping real products.</p>
+</section>
+
+<!-- FOOTER -->
+<footer class="case-footer fade-in">
+  <p class="case-footer-label">See it in practice</p>
+  <div class="case-footer-links">
+    <a href="ehoro.html">Ehoro Village</a>
+    <a href="braid.html">Braid</a>
+    <a href="ai.html">AI Projects</a>
+    <a href="index.html">← Back to Portfolio</a>
+  </div>
+</footer>
+
+<div style="height: 60px;"></div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

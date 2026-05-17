@@ -1,572 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Braid — Adé Ijidakinro</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braid — Adé Ijidakinro</title>
+<meta name="description" content="UX research anchor: directing generative and evaluative research across 100+ community members in public interest tech, driving a 40% engagement lift through a homepage and identity redesign.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: #050505;
+  color: #f5f5f5;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-        :root {
-            --text-primary: rgba(255, 255, 255, 0.95);
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --card-border: rgba(255, 255, 255, 0.15);
-            --accent: #8b5cf6;
-        }
+:root {
+  --bg: #050505;
+  --card: rgba(255,255,255,.03);
+  --card-border: rgba(255,255,255,.06);
+  --card-hover: rgba(255,255,255,.06);
+  --t1: #f5f5f5;
+  --t2: #b0b0b0;
+  --t3: #707070;
+  --t4: #404040;
+  --accent: #c8a87c;
+  --accent-dim: rgba(200,168,124,.08);
+  --accent-border: rgba(200,168,124,.15);
+  --positive: #6c9;
+  --serif: 'Fraunces', Georgia, serif;
+  --mono: 'JetBrains Mono', monospace;
+  --max-w: 980px;
+  --content-w: 680px;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+::selection { background: rgba(200,168,124,.25); color: #fff; }
+img { max-width: 100%; display: block; }
+a { color: var(--t2); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--t1); }
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: #1a1a2e;
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-            line-height: 1.7;
-        }
+/* Back nav */
+.back-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  padding: 20px 32px;
+  background: linear-gradient(to bottom, rgba(5,5,5,.95) 0%, rgba(5,5,5,.6) 70%, transparent 100%);
+  pointer-events: none;
+}
+.back-link {
+  pointer-events: all;
+  font-size: .75rem;
+  color: var(--t3);
+  letter-spacing: .08em;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color .2s;
+}
+.back-link:hover { color: var(--t1); }
+.back-link svg { width: 16px; height: 16px; }
 
-        /* Video Background */
-        .video-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
+/* Hero */
+.hero {
+  min-height: 92vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 32px 80px;
+  position: relative;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 30% 40%, rgba(200,168,124,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-label {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--accent);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity: 0; animation: fadeUp .8s .3s ease forwards;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  max-width: 720px;
+  opacity: 0; animation: fadeUp .8s .5s ease forwards;
+}
+.hero-sub {
+  font-size: 1.0625rem;
+  color: var(--t2);
+  margin-top: 20px;
+  max-width: 600px;
+  font-weight: 300;
+  line-height: 1.6;
+  opacity: 0; animation: fadeUp .8s .7s ease forwards;
+}
+.hero-sub strong { color: var(--t1); font-weight: 500; }
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 28px;
+  margin-top: 36px;
+  opacity: 0; animation: fadeUp .8s .9s ease forwards;
+}
+.hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.hero-meta-label {
+  font-family: var(--mono);
+  font-size: .55rem;
+  color: var(--t4);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.hero-meta-val {
+  font-size: .85rem;
+  color: var(--t2);
+  font-weight: 400;
+}
 
-        .video-bg::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                180deg,
-                rgba(20, 20, 40, 0.4) 0%,
-                rgba(20, 20, 40, 0.6) 50%,
-                rgba(20, 20, 40, 0.7) 100%
-            );
-        }
+/* Outcome banner directly under hero */
+.outcome-banner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 32px;
+  margin-bottom: 80px;
+}
+.outcome-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px;
+  background: var(--accent-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.outcome-item {
+  background: var(--accent-dim);
+  padding: 32px 28px;
+  text-align: center;
+}
+.outcome-num {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.outcome-label {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--t2);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
 
-        .video-bg video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+/* Sections */
+.section {
+  padding: 80px 32px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.section-narrow { max-width: var(--content-w); }
+.section-divider { width: 40px; height: 1px; background: var(--t4); margin: 0 auto; }
+.section-label {
+  font-family: var(--mono);
+  font-size: .6rem;
+  color: var(--accent);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  margin-bottom: 24px;
+}
+.body-text {
+  font-size: .95rem;
+  color: var(--t2);
+  line-height: 1.75;
+  font-weight: 300;
+}
+.body-text + .body-text { margin-top: 16px; }
+.body-text strong { color: var(--t1); font-weight: 500; }
 
-        /* Navigation */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            background: linear-gradient(180deg, rgba(20, 20, 40, 0.8) 0%, transparent 100%);
-        }
+/* Callout */
+.callout {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 14px 14px 0;
+  padding: 28px 32px;
+  margin: 36px 0;
+}
+.callout-quote {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--t1);
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+.callout-attr {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--t3);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
 
-        .nav-back {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
+/* Process */
+.process-step {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+  position: relative;
+}
+.process-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 23px; top: 48px; bottom: -40px;
+  width: 1px;
+  background: var(--card-border);
+}
+.process-num {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--t3);
+  background: var(--bg);
+  position: relative; z-index: 1;
+}
+.process-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.process-text {
+  font-size: .9rem;
+  color: var(--t2);
+  line-height: 1.7;
+  font-weight: 300;
+}
 
-        .nav-back:hover {
-            color: var(--text-primary);
-        }
+/* Insight grid */
+.insight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 32px 0;
+}
+.insight-card {
+  background: var(--card);
+  border-left: 2px solid var(--positive);
+  border-radius: 0 12px 12px 0;
+  padding: 22px 24px;
+}
+.insight-label {
+  font-family: var(--mono);
+  font-size: .55rem;
+  font-weight: 600;
+  color: var(--positive);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.insight-text {
+  font-size: .85rem;
+  color: var(--t2);
+  line-height: 1.65;
+  font-weight: 300;
+}
 
-        .nav-back svg {
-            width: 20px;
-            height: 20px;
-        }
+/* Lesson cards */
+.lesson-card {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 12px;
+}
+.lesson-title {
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--t1);
+  margin-bottom: 8px;
+}
+.lesson-text {
+  font-size: .85rem;
+  color: var(--t2);
+  line-height: 1.6;
+  font-weight: 300;
+}
 
-        /* Main Content */
-        .content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 120px 24px 80px;
-        }
+/* Footer */
+.case-footer {
+  padding: 80px 32px;
+  text-align: center;
+}
+.case-footer-label {
+  font-family: var(--mono);
+  font-size: .55rem;
+  color: var(--t4);
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.case-footer-title {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 28px;
+}
+.case-footer-links {
+  display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+}
+.case-footer-links a {
+  font-size: .8rem;
+  color: var(--t3);
+  padding: 12px 22px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  transition: all .2s;
+}
+.case-footer-links a:hover {
+  color: var(--t1);
+  border-color: var(--accent-border);
+  background: var(--card);
+}
 
-        /* Hero */
-        .project-hero {
-            margin-bottom: 64px;
-            animation: fadeUp 0.8s ease-out;
-        }
+/* Fade-in */
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        .project-label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 16px;
-        }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-        .project-title {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
-        .project-intro {
-            font-size: clamp(1.125rem, 3vw, 1.375rem);
-            font-weight: 300;
-            color: var(--text-secondary);
-            max-width: 600px;
-        }
-
-        /* Meta Info */
-        .meta-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 24px;
-            padding: 32px 0;
-            border-top: 1px solid var(--card-border);
-            border-bottom: 1px solid var(--card-border);
-            margin: 40px 0;
-        }
-
-        .meta-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .meta-label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        .meta-value {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--text-primary);
-        }
-
-        /* Section */
-        .section {
-            margin-bottom: 56px;
-            animation: fadeUp 0.8s ease-out;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            font-weight: 500;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .section p {
-            font-size: 1.0625rem;
-            font-weight: 300;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-        }
-
-        .section p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Quote Block */
-        .quote {
-            font-size: clamp(1.25rem, 3vw, 1.5rem);
-            font-weight: 400;
-            font-style: italic;
-            color: var(--text-primary);
-            padding: 32px 0;
-            border-left: 3px solid var(--accent);
-            padding-left: 24px;
-            margin: 48px 0;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 28px;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-
-        /* Process List */
-        .process-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 24px;
-        }
-
-        .process-item {
-            display: flex;
-            gap: 20px;
-            padding: 24px;
-            background: var(--card-bg);
-            border-radius: 12px;
-            border: 1px solid var(--card-border);
-        }
-
-        .process-number {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--accent);
-            min-width: 40px;
-        }
-
-        .process-content h4 {
-            font-size: 1.125rem;
-            font-weight: 500;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-
-        .process-content p {
-            font-size: 0.9375rem;
-            color: var(--text-secondary);
-            margin: 0;
-        }
-
-        /* Outcome Card */
-        .outcome-card {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 16px;
-            padding: 32px;
-            margin: 48px 0;
-        }
-
-        .outcome-card h3 {
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-        }
-
-        .outcome-card p {
-            font-size: 1.0625rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-        }
-
-        /* Learnings */
-        .learnings {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 32px;
-            margin: 48px 0;
-        }
-
-        .learnings h3 {
-            font-size: 1.125rem;
-            font-weight: 500;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-        }
-
-        .learnings ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .learnings li {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .learnings li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        /* Next Project */
-        .next-project {
-            margin-top: 80px;
-            padding-top: 48px;
-            border-top: 1px solid var(--card-border);
-            text-align: center;
-        }
-
-        .next-label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-
-        .next-link {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            font-weight: 500;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .next-link:hover {
-            color: var(--accent);
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+@media (max-width: 768px) {
+  .hero { padding: 0 20px 60px; min-height: 88vh; }
+  .section { padding: 60px 20px; }
+  .insight-grid { grid-template-columns: 1fr; }
+  .process-step { grid-template-columns: 36px 1fr; gap: 14px; }
+  .process-num { width: 36px; height: 36px; font-size: .6rem; }
+  .process-step:not(:last-child)::after { left: 17px; top: 36px; }
+  .outcome-banner { padding: 0 20px; }
+  .hero-meta { gap: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .fade-in { opacity: 1; transform: none; }
+}
+</style>
 </head>
 <body>
-    <!-- Video Background -->
-    <div class="video-bg">
-        <video autoplay muted loop playsinline>
-            <source src="background.mp4" type="video/mp4">
-        </video>
+
+<nav class="back-nav">
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <p class="hero-label">UX Research · Product Design · Public Interest Tech</p>
+  <h1>Braid</h1>
+  <p class="hero-sub">A storytelling platform for social entrepreneurs that nobody understood when they landed. I led the research and design pass that turned vague "knowledge network" copy into a <strong>40% lift in new sign-ups</strong>.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Role</span>
+      <span class="hero-meta-val">Product Designer &amp; UX Researcher</span>
     </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Team</span>
+      <span class="hero-meta-val">PM, Designer, Engineer, Strategy lead, me</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Timeline</span>
+      <span class="hero-meta-val">Jan 2023 – May 2024</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Methods</span>
+      <span class="hero-meta-val">Generative &amp; evaluative research, synthesis workshops, usability testing</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Origin</span>
+      <span class="hero-meta-val">University of Michigan (PIT-KN)</span>
+    </div>
+  </div>
+</section>
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <a href="index.html" class="nav-back">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-            </svg>
-            Back
-        </a>
-    </nav>
+<!-- OUTCOME BANNER -->
+<div class="outcome-banner fade-in">
+  <div class="outcome-strip">
+    <div class="outcome-item">
+      <div class="outcome-num">40%</div>
+      <div class="outcome-label">Lift in new sign-ups</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-num">100+</div>
+      <div class="outcome-label">Stakeholders coordinated</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-num">5+</div>
+      <div class="outcome-label">Synthesis workshops led</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-num">15+</div>
+      <div class="outcome-label">Qualitative interviews</div>
+    </div>
+  </div>
+</div>
 
-    <!-- Content -->
-    <main class="content">
-        <!-- Hero -->
-        <header class="project-hero">
-            <p class="project-label">Product Design & Research</p>
-            <h1 class="project-title">Braid</h1>
-            <p class="project-intro">Redesigning a platform where social entrepreneurs share their stories — starting with figuring out why nobody understood what it was.</p>
-        </header>
+<!-- CONTEXT -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Context</p>
+  <h2 class="section-title">A platform for social entrepreneurs that nobody could explain.</h2>
+  <p class="body-text">Braid started at the University of Michigan as <strong>PIT-KN — the Public Interest Technology Knowledge Network</strong>. It was built so social entrepreneurs and founders working on civic-tech problems could share the honest highs and lows of their journeys.</p>
+  <p class="body-text">The substance was real. The framing wasn't. The homepage talked about "knowledge networks" and "public interest technology" — language that made sense to insiders and meant nothing to a first-time visitor. People landed, didn't see themselves, and left.</p>
+  <p class="body-text">I joined as <strong>Product Designer and UX Researcher</strong>, leading the research pass that diagnosed the problem and the redesign that fixed it. The work also folded in <strong>data-equity considerations</strong> for the community: many of the entrepreneurs the platform exists for come from communities whose stories have historically been extracted, not amplified.</p>
+</section>
 
-        <!-- Meta -->
-        <div class="meta-grid">
-            <div class="meta-item">
-                <span class="meta-label">Role</span>
-                <span class="meta-value">Lead Product Designer</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Timeline</span>
-                <span class="meta-value">Jan 2023 – May 2024</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Team</span>
-                <span class="meta-value">PM, UX Designer, Developer</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-label">Tools</span>
-                <span class="meta-value">Figma, Notion</span>
-            </div>
-        </div>
+<div class="section-divider"></div>
 
-        <!-- Context -->
-        <section class="section">
-            <p class="section-label">Context</p>
-            <h2 class="section-title">What is Braid?</h2>
-            <p>Braid is a storytelling platform for social entrepreneurs — people building businesses that tackle social problems. It started at the University of Michigan as PIT-KN (Public Interest Technology Knowledge Network), a place where founders could share the real highs and lows of their journeys.</p>
-            <p>The problem was that almost nobody knew that when they landed on the site. My role was to fix that.</p>
-        </section>
+<!-- PROBLEM -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Problem</p>
+  <h2 class="section-title">New visitors couldn't tell what this thing was in 5 seconds.</h2>
+  <p class="body-text">First interviews surfaced the same pattern over and over: visitors arrived, scanned the homepage, and left without a single click into the actual stories. The product worked for people who already knew what it was. It failed at first contact.</p>
 
-        <!-- The Problem -->
-        <section class="section">
-            <p class="section-label">The Problem</p>
-            <h2 class="section-title">New users had no idea what this platform was for</h2>
-            <p>When I joined the team, the homepage was vague. It talked about "knowledge networks" and "public interest technology" — terms that meant something to insiders but nothing to a first-time visitor.</p>
-            <p>I ran interviews with new users and kept hearing the same thing: they couldn't figure out what Braid actually was or why they should care. They'd land on the homepage, get confused, and leave.</p>
-        </section>
+  <div class="callout">
+    <p class="callout-quote">"I grappled with understanding its purpose beyond being a mere 'knowledge network.'"</p>
+    <p class="callout-attr">— User interview participant</p>
+  </div>
 
-        <blockquote class="quote">
-            "I grappled with understanding its purpose beyond being a mere 'knowledge network.'"
-            <br><span style="font-size: 0.875rem; font-style: normal; color: var(--text-muted);">— User interview participant</span>
-        </blockquote>
+  <p class="body-text">That quote became the brief. The redesign wasn't a visual refresh — it was a translation problem.</p>
+</section>
 
-        <!-- Process -->
-        <section class="section">
-            <p class="section-label">Process</p>
-            <h2 class="section-title">How I approached it</h2>
-            
-            <div class="process-list">
-                <div class="process-item">
-                    <span class="process-number">01</span>
-                    <div class="process-content">
-                        <h4>User interviews</h4>
-                        <p>Talked to 15+ community members and new visitors to understand what clicked and what didn't. The pattern was clear: people who stayed found value in the stories and community, but the homepage never surfaced that.</p>
-                    </div>
-                </div>
-                <div class="process-item">
-                    <span class="process-number">02</span>
-                    <div class="process-content">
-                        <h4>Competitive analysis</h4>
-                        <p>Looked at how other community platforms (Medium, Indie Hackers, On Deck) communicated their value. They led with stories and people, not abstract concepts.</p>
-                    </div>
-                </div>
-                <div class="process-item">
-                    <span class="process-number">03</span>
-                    <div class="process-content">
-                        <h4>Messaging and wireframes</h4>
-                        <p>Rewrote the homepage copy to lead with "Your Words. Your Story. Braid." and designed wireframes that surfaced real community content above the fold.</p>
-                    </div>
-                </div>
-                <div class="process-item">
-                    <span class="process-number">04</span>
-                    <div class="process-content">
-                        <h4>Logo redesign</h4>
-                        <p>Worked with the head of strategy to design a new logo inspired by the Ife knot — a West African symbol of community and gathering — to embody the platform's values.</p>
-                    </div>
-                </div>
-                <div class="process-item">
-                    <span class="process-number">05</span>
-                    <div class="process-content">
-                        <h4>Testing and iteration</h4>
-                        <p>Ran usability tests on prototypes, gathered feedback in weekly standups with engineers and marketers, and iterated until the team was aligned.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<div class="section-divider"></div>
 
-        <!-- Outcome -->
-        <section class="section">
-            <p class="section-label">Outcome</p>
-            <h2 class="section-title">The results</h2>
-            <p>We shipped the redesigned homepage and new branding. Within a month, we saw real movement.</p>
+<!-- RESEARCH -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Research</p>
+  <h2 class="section-title">Generative and evaluative work across 100+ stakeholders.</h2>
+  <p class="body-text">I directed both halves of the research stack — generative work to find the gap, evaluative work to prove the fix landed. The community side coordinated with <strong>100+ members</strong>: founders, alumni, organizers, and academics whose work the platform represents.</p>
+</section>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">40%</span>
-                    <span class="stat-label">Increase in new sign-ups</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">100+</span>
-                    <span class="stat-label">Community members engaged</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">5+</span>
-                    <span class="stat-label">Design workshops facilitated</span>
-                </div>
-            </div>
-        </section>
+<section class="section fade-in" style="padding-top: 0;">
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-label">Insight 1</div>
+      <div class="insight-text">Stickiness came from <strong>specific founder stories</strong>, not from the platform's abstract framing. People stayed for narrative, not taxonomy.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Insight 2</div>
+      <div class="insight-text">First-time visitors couldn't translate "public interest technology" into a self-relevant question. The brand was speaking inside-baseball above the fold.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Insight 3</div>
+      <div class="insight-text">Comparable platforms (Medium, Indie Hackers, On Deck) lead with <strong>people and stories</strong>, not categorical descriptions of what they are.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Insight 4</div>
+      <div class="insight-text">The team itself held conflicting mental models of what Braid was supposed to be. Internal alignment was a research finding, not just a design one.</div>
+    </div>
+  </div>
+</section>
 
-        <div class="outcome-card">
-            <h3>Beyond the numbers</h3>
-            <p>The bigger win was alignment. Before the redesign, the team had different ideas about what Braid was supposed to be. The research and workshops forced us to articulate a shared vision — and the new homepage became the artifact that captured it.</p>
-        </div>
+<div class="section-divider"></div>
 
-        <!-- Learnings -->
-        <div class="learnings">
-            <h3>What I learned</h3>
-            <ul>
-                <li>First impressions matter more than features. If people don't understand what you are in 5 seconds, nothing else matters.</li>
-                <li>User interactions at key points (like a homepage) have outsized impact on whether someone engages or bounces.</li>
-                <li>Cross-functional collaboration isn't just nice to have — it's how you get to a streamlined product. Feedback from engineers, marketers, and strategy all shaped the final design.</li>
-            </ul>
-        </div>
+<!-- PROCESS -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Process</p>
+  <h2 class="section-title">From research insight to a redesigned identity.</h2>
 
-        <!-- Next Project -->
-        <div class="next-project">
-            <p class="next-label">Next Project</p>
-            <a href="analyzer.html" class="next-link">UX Feedback Analyzer →</a>
-        </div>
-    </main>
+  <div class="process-step" style="margin-top: 40px;">
+    <div class="process-num">01</div>
+    <div>
+      <h3 class="process-title">Generative research</h3>
+      <p class="process-text">Ran <strong>15+ qualitative interviews</strong> with new visitors and community members. Built a centralized insight repository structured so non-technical stakeholders (organizers, strategy leads) could read findings without needing a translator.</p>
+    </div>
+  </div>
 
-    <script>
-        // Fade in on page load
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 50);
-        });
+  <div class="process-step">
+    <div class="process-num">02</div>
+    <div>
+      <h3 class="process-title">Competitive &amp; comparative analysis</h3>
+      <p class="process-text">Audited how peer platforms surfaced value above the fold. Identified the pattern: narrative-first homepages outperformed taxonomy-first ones in this category, every time.</p>
+    </div>
+  </div>
 
-        // Stagger animations for sections
-        const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
+  <div class="process-step">
+    <div class="process-num">03</div>
+    <div>
+      <h3 class="process-title">Cross-functional synthesis workshops</h3>
+      <p class="process-text">Facilitated <strong>5+ synthesis workshops</strong> with PM, engineering, marketing, and strategy. The goal wasn't agreement on a homepage — it was a shared, written articulation of what Braid was for. The workshops produced the language the redesign would speak.</p>
+    </div>
+  </div>
 
-        sections.forEach((section, index) => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-            observer.observe(section);
-        });
-    </script>
+  <div class="process-step">
+    <div class="process-num">04</div>
+    <div>
+      <h3 class="process-title">Messaging and visual redesign</h3>
+      <p class="process-text">Rewrote the homepage to lead with <em>"Your Words. Your Story. Braid."</em> and surfaced real founder stories above the fold. Worked with the head of strategy to design a new mark inspired by the <strong>Ife knot</strong> — a West African symbol of gathering — that put the community's roots into the identity instead of around it.</p>
+    </div>
+  </div>
+
+  <div class="process-step">
+    <div class="process-num">05</div>
+    <div>
+      <h3 class="process-title">Evaluative testing &amp; ship</h3>
+      <p class="process-text">Ran usability tests on prototypes, iterated through weekly standups with engineers and marketers, and validated the new flow with both first-time visitors and existing members before shipping.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- OUTCOME -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Outcome</p>
+  <h2 class="section-title">A 40% lift, and a team that finally agreed on what Braid was.</h2>
+  <p class="body-text">Within a month of shipping the redesigned homepage and new mark, new sign-ups were up <strong>40%</strong>. But the bigger outcome was the part the metric doesn't capture: the team itself was aligned for the first time, on paper, on what the product was for.</p>
+  <p class="body-text">The redesign became the artifact that captured that alignment — every later product decision could be cross-checked against the homepage's articulation of purpose. The research repository continued to inform the roadmap after I left.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- TAKEAWAYS -->
+<section class="section section-narrow fade-in">
+  <p class="section-label">Takeaways</p>
+  <h2 class="section-title">Three things this project taught me.</h2>
+
+  <div class="lesson-card" style="margin-top: 24px;">
+    <div class="lesson-title">A homepage is a research artifact.</div>
+    <div class="lesson-text">The new homepage worked because it was the written output of synthesis workshops, not because it had better visual hierarchy. Copy that holds up under user testing is research compressed into language.</div>
+  </div>
+
+  <div class="lesson-card">
+    <div class="lesson-title">Internal misalignment shows up as bad UX.</div>
+    <div class="lesson-text">When the team can't articulate what a product is for, the homepage can't either. The fastest path to clearer UX in cases like this is structured cross-functional synthesis, not more visual iteration.</div>
+  </div>
+
+  <div class="lesson-card">
+    <div class="lesson-title">Research for marginalized communities means building the repository, not just the report.</div>
+    <div class="lesson-text">For platforms serving communities whose stories have been historically extracted, the insight repository has to be readable by the community itself — not locked behind a research function. Structure matters as much as findings.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="case-footer fade-in">
+  <p class="case-footer-label">Next</p>
+  <h2 class="case-footer-title">See the AI projects →</h2>
+  <div class="case-footer-links">
+    <a href="ai.html">AI Projects</a>
+    <a href="ehoro.html">Ehoro Village</a>
+    <a href="index.html">← Back to Portfolio</a>
+  </div>
+</footer>
+
+<div style="height: 60px;"></div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
