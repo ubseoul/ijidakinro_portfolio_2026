@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Manifesto — Adé Ijidakinro</title>
-<meta name="description" content="A living technical manifesto that travels with the team into every AI session. 12 sections, 16 rules, 24+ build sessions, one shared mental model that never drifts.">
+<meta name="description" content="A living collaboration protocol for AI-augmented product teams. How I keep a six-person team aligned across 24+ AI build sessions without losing design intent, product direction, or velocity.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -112,7 +112,7 @@ a:hover { color: var(--t1); }
 /* Stats strip */
 .stats-strip {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1px;
   background: var(--card-border);
   border-radius: 14px;
@@ -190,167 +190,93 @@ a:hover { color: var(--t1); }
 }
 .thesis em { color: var(--accent); font-style: italic; font-weight: 400; }
 
-/* Structure diagram */
-.structure-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2px;
-  margin: 32px 0;
-  border-radius: 12px;
-  overflow: hidden;
+/* Principle blocks */
+.principle {
+  margin-bottom: 52px;
+  padding-left: 28px;
+  border-left: 1px solid var(--card-border);
+  position: relative;
 }
-.structure-row {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  transition: border-color .2s, background .2s;
+.principle::before {
+  content: '';
+  position: absolute;
+  left: -1px; top: 0;
+  width: 1px; height: 56px;
+  background: var(--accent);
 }
-.structure-row:hover {
-  border-color: var(--accent-border);
-  background: var(--card-hover);
-}
-.structure-num {
-  display: flex; align-items: center; justify-content: center;
+.principle-num {
   font-family: var(--mono);
-  font-size: .7rem;
+  font-size: .65rem;
   color: var(--accent);
-  border-right: 1px solid var(--card-border);
-  padding: 16px 0;
+  letter-spacing: .2em;
+  margin-bottom: 12px;
+  display: block;
 }
-.structure-content {
-  padding: 16px 20px;
-}
-.structure-name {
-  font-size: .9rem;
-  font-weight: 500;
+.principle-title {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -.01em;
+  line-height: 1.2;
   color: var(--t1);
-  margin-bottom: 3px;
+  margin-bottom: 16px;
 }
-.structure-desc {
-  font-size: .78rem;
-  color: var(--t3);
+.principle-body {
+  font-size: .95rem;
+  color: var(--t2);
+  line-height: 1.75;
   font-weight: 300;
 }
+.principle-body + .principle-body { margin-top: 14px; }
+.principle-body strong { color: var(--t1); font-weight: 500; }
+.principle-evidence {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: var(--accent-dim);
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  font-family: var(--mono);
+  font-size: .78rem;
+  color: var(--t2);
+  line-height: 1.55;
+  letter-spacing: .01em;
+}
+.principle-evidence strong { color: var(--accent); font-weight: 500; }
 
-/* Rules showcase */
-.rules-block {
+/* Callout block */
+.callout-block {
   background: var(--accent-dim);
   border: 1px solid var(--accent-border);
   border-radius: 18px;
   padding: 40px;
-  margin: 36px 0;
+  margin: 40px 0;
 }
-.rules-tag {
+.callout-tag {
   font-family: var(--mono);
   font-size: .65rem;
   color: var(--accent);
   letter-spacing: .2em;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
-.rule-item {
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(200,168,124,.1);
-}
-.rule-item:last-child { border-bottom: none; }
-.rule-num {
-  font-family: var(--mono);
-  font-size: .65rem;
-  color: var(--accent);
-  margin-right: 10px;
-}
-.rule-text {
-  font-size: .9rem;
-  color: var(--t1);
-  font-weight: 400;
-  line-height: 1.55;
-}
-.rule-text em {
+.callout-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.6vw, 1.65rem);
   font-style: italic;
-  color: var(--t2);
   font-weight: 300;
-}
-
-/* Session timeline */
-.timeline {
-  position: relative;
-  padding-left: 28px;
-  margin: 32px 0;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 6px; top: 8px; bottom: 8px;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--accent), var(--card-border));
-}
-.timeline-item {
-  position: relative;
-  margin-bottom: 28px;
-  padding-left: 20px;
-}
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -25px; top: 8px;
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--bg);
-}
-.timeline-item.milestone::before {
-  width: 9px; height: 9px;
-  box-shadow: 0 0 8px rgba(200,168,124,.5);
-}
-.timeline-version {
-  font-family: var(--mono);
-  font-size: .7rem;
-  color: var(--accent);
-  letter-spacing: .08em;
-  margin-bottom: 4px;
-}
-.timeline-title {
-  font-size: .95rem;
-  font-weight: 500;
   color: var(--t1);
-  margin-bottom: 4px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  letter-spacing: -.01em;
 }
-.timeline-body {
-  font-size: .82rem;
-  color: var(--t3);
-  line-height: 1.55;
+.callout-body {
+  font-size: .95rem;
+  color: var(--t2);
+  line-height: 1.75;
   font-weight: 300;
 }
-
-/* Code sample */
-.code-block {
-  background: rgba(0,0,0,.4);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 24px;
-  margin: 28px 0;
-  overflow-x: auto;
-}
-.code-label {
-  font-family: var(--mono);
-  font-size: .6rem;
-  color: var(--t3);
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-.code-block code {
-  font-family: var(--mono);
-  font-size: .78rem;
-  color: var(--t2);
-  line-height: 1.7;
-  display: block;
-  white-space: pre-wrap;
-}
-.code-block code .comment { color: var(--t4); }
-.code-block code .key { color: var(--accent); }
-.code-block code .val { color: var(--positive); }
+.callout-body + .callout-body { margin-top: 14px; }
 
 /* Failure callout */
 .failure-block {
@@ -390,7 +316,7 @@ a:hover { color: var(--t1); }
   border: 1px solid rgba(102,204,153,.15);
   border-radius: 16px;
   padding: 36px;
-  margin: 36px 0;
+  margin: 28px 0;
 }
 .outcome-tag {
   font-family: var(--mono);
@@ -402,7 +328,7 @@ a:hover { color: var(--t1); }
 }
 .outcome-title {
   font-family: var(--serif);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-style: italic;
   font-weight: 400;
   color: var(--t1);
@@ -415,6 +341,42 @@ a:hover { color: var(--t1); }
   font-weight: 300;
 }
 .outcome-body strong { color: var(--t1); font-weight: 500; }
+
+/* Evolution grid */
+.evo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--card-border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 32px 0;
+}
+.evo-cell {
+  background: var(--bg);
+  padding: 28px 24px;
+}
+.evo-phase {
+  font-family: var(--mono);
+  font-size: .6rem;
+  color: var(--t3);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.evo-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--t1);
+  margin-bottom: 8px;
+}
+.evo-body {
+  font-size: .82rem;
+  color: var(--t3);
+  line-height: 1.55;
+  font-weight: 300;
+}
 
 /* Footer */
 .case-footer { padding: 80px 32px; text-align: center; }
@@ -459,10 +421,11 @@ a:hover { color: var(--t1); }
 @media (max-width: 768px) {
   .hero { padding: 0 20px 60px; min-height: 86vh; }
   .section { padding: 56px 20px; }
-  .rules-block { padding: 28px 20px; }
-  .structure-row { grid-template-columns: 44px 1fr; }
+  .callout-block { padding: 28px 20px; }
+  .principle { padding-left: 20px; }
   .stats-strip { margin: 36px 20px; }
   .failure-block, .outcome-card { padding: 24px 20px; }
+  .evo-grid { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -482,20 +445,16 @@ a:hover { color: var(--t1); }
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <p class="hero-label">Living Technical Document · Ehoro Village · V3.3</p>
-  <h1>The document <em>is</em> the product. The code just implements it.</h1>
-  <p class="hero-sub">A 12-section living manifesto that travels into every AI session and every teammate's hands. <strong>16 rules, a full data model, session logs, and a single source of truth</strong> that kept a six-person team coherent across 24+ AI-augmented build cycles.</p>
+  <p class="hero-label">AI Collaboration Protocol · Ehoro Village · Living Document</p>
+  <h1>AI doesn't remember your last session. So I wrote the <em>manual</em>.</h1>
+  <p class="hero-sub">A living collaboration protocol that gives every AI session and every teammate the same shared understanding of the product — <strong>what we're building, why we're building it, and what not to touch</strong>. One document, carried into every working session, so nobody drifts.</p>
 </section>
 
 <!-- STATS -->
 <div class="stats-strip">
   <div class="stat-cell">
-    <p class="stat-num">12</p>
-    <p class="stat-label">Sections</p>
-  </div>
-  <div class="stat-cell">
-    <p class="stat-num">16</p>
-    <p class="stat-label">Rules for AI</p>
+    <p class="stat-num">6</p>
+    <p class="stat-label">Person Team</p>
   </div>
   <div class="stat-cell">
     <p class="stat-num">24+</p>
@@ -503,17 +462,21 @@ a:hover { color: var(--t1); }
   </div>
   <div class="stat-cell">
     <p class="stat-num">V3.3</p>
-    <p class="stat-label">Current Ver.</p>
+    <p class="stat-label">Living Version</p>
+  </div>
+  <div class="stat-cell">
+    <p class="stat-num">0</p>
+    <p class="stat-label">Context Rebuilds</p>
   </div>
 </div>
 
-<!-- WHY IT EXISTS -->
+<!-- WHY -->
 <section class="section fade-in">
   <p class="section-label">The Problem</p>
-  <h2 class="section-title">AI has no memory. Teams have drift.</h2>
-  <p class="body-text">Every AI conversation starts from zero context. Every new session risks contradicting decisions the last one made. And every teammate who wasn't in the room when a choice was made will build against their own assumption of what the product should be.</p>
-  <p class="body-text">Across Ehoro Village's first 14 sessions, this produced real damage: <strong>schema drift, regressions, conflicting naming conventions, design decisions that contradicted the product's core philosophy</strong>. The codebase grew but coherence didn't.</p>
-  <p class="body-text">The manifesto was born out of necessity. It's the document that makes every session start from the same shared model — whether the session is with Claude, with ChatGPT, with Gemini, or with a human teammate who missed last week.</p>
+  <h2 class="section-title">Every AI session starts from zero. That's the problem nobody talks about.</h2>
+  <p class="body-text">Teams adopting AI hit the same wall: the tool is fast, but it has <strong>no memory, no taste, and no shared context</strong>. Every new conversation is a blank slate. And when multiple people on a team are running their own AI sessions against the same product, the result is drift — contradictory decisions, duplicated work, regressions that undo what someone built yesterday.</p>
+  <p class="body-text">Across the first phase of building Ehoro Village, that's exactly what happened. Sessions were productive in isolation but incoherent in aggregate. Design intent eroded. The product was growing, but the team's shared understanding of it wasn't keeping up.</p>
+  <p class="body-text">The manifesto is my answer to that problem. Not more meetings. Not a longer Notion doc nobody reads. <strong>A single living document that every session — human or AI — reads first</strong>, so the team's mental model of the product survives across every context switch.</p>
 </section>
 
 <div class="section-divider"></div>
@@ -521,277 +484,148 @@ a:hover { color: var(--t1); }
 <!-- WHAT IT IS -->
 <section class="section fade-in">
   <p class="section-label">The Artifact</p>
-  <h2 class="section-title">12 sections. One source of truth.</h2>
-  <p class="body-text">The manifesto isn't documentation written after the fact. It's a living spec that evolves every session. Each section has a specific job — together they reconstruct the entire product's mental model from scratch in any new context window.</p>
+  <h2 class="section-title">A collaboration protocol, not documentation.</h2>
 
-  <div class="structure-grid">
-    <div class="structure-row">
-      <div class="structure-num">01</div>
-      <div class="structure-content">
-        <p class="structure-name">Rules for AI Assistants</p>
-        <p class="structure-desc">16 hard rules. Read before touching any code. Vanilla JS only. Don't refactor CSS. Companion, not game.</p>
-      </div>
-    </div>
-    <div class="structure-row">
-      <div class="structure-num">02</div>
-      <div class="structure-content">
-        <p class="structure-name">Product Overview</p>
-        <p class="structure-desc">Stack, auth, target user, core philosophy. One paragraph that sets the tone for everything else.</p>
-      </div>
-    </div>
-    <div class="structure-row">
-      <div class="structure-num">03</div>
-      <div class="structure-content">
-        <p class="structure-name">The S Object</p>
-        <p class="structure-desc">Single global state object. Every render reads from it. Every RPC writes to it. The client-side truth.</p>
-      </div>
-    </div>
-    <div class="structure-row">
-      <div class="structure-num">04</div>
-      <div class="structure-content">
-        <p class="structure-name">Database Schema</p>
-        <p class="structure-desc">Every table, every column, every gotcha. Warning flags on missing columns. Patched across 10+ sessions.</p>
-      </div>
-    </div>
-    <div class="structure-row">
-      <div class="structure-num">05</div>
-      <div class="structure-content">
-        <p class="structure-name">Spirit System</p>
-        <p class="structure-desc">6 types, 3 evolution stages, 15 traits across 3 categories, alignment mechanics.</p>
-      </div>
-    </div>
-    <div class="structure-row">
-      <div class="structure-num">06</div>
-      <div class="structure-content">
-        <p class="structure-name">Expedition System</p>
-        <p class="structure-desc">3 locations, duration tiers, loot tables, rest timers, spirit count multipliers.</p>
-      </div>
-    </div>
-    <div class="structure-row">
-      <div class="structure-num">07</div>
-      <div class="structure-content">
-        <p class="structure-name">Building System</p>
-        <p class="structure-desc">5 buildings, 3 upgrade tiers, staff roles, production cycles, tier-specific costs.</p>
-      </div>
-    </div>
-    <div class="structure-row">
-      <div class="structure-num">08</div>
-      <div class="structure-content">
-        <p class="structure-name">RPCs</p>
-        <p class="structure-desc">Complete list of server-side functions. Security definer, owned by postgres, signature-tracked.</p>
-      </div>
-    </div>
-    <div class="structure-row">
-      <div class="structure-num">09</div>
-      <div class="structure-content">
-        <p class="structure-name">localStorage Keys</p>
-        <p class="structure-desc">User-scoped client state. Building tiers, research progress, first-visit flags.</p>
-      </div>
-    </div>
-    <div class="structure-row">
-      <div class="structure-num">10</div>
-      <div class="structure-content">
-        <p class="structure-name">Known Dead Code</p>
-        <p class="structure-desc">Legacy functions preserved intentionally. Marked harmless so no session removes them by accident.</p>
-      </div>
-    </div>
-    <div class="structure-row">
-      <div class="structure-num">11</div>
-      <div class="structure-content">
-        <p class="structure-name">Materials & Sprites</p>
-        <p class="structure-desc">Full reference tables for 10+ materials, 19 sprite files, and their source locations.</p>
-      </div>
-    </div>
-    <div class="structure-row">
-      <div class="structure-num">12</div>
-      <div class="structure-content">
-        <p class="structure-name">Session Log</p>
-        <p class="structure-desc">Dated entries for every session. What changed, what SQL ran, what broke, what's deferred.</p>
-      </div>
-    </div>
+  <div class="callout-block">
+    <p class="callout-tag">Core idea</p>
+    <p class="callout-quote">"The document IS the product. The code just implements it."</p>
+    <p class="callout-body">Documentation describes what was built. The manifesto describes what the product <strong>is</strong> — the philosophy, the constraints, the decisions that have already been made and why. It's the document the team builds <em>against</em>, not a record they write <em>after</em>.</p>
   </div>
+
+  <p class="body-text">The manifesto covers everything a new session or a new teammate needs to start contributing without breaking what already exists:</p>
+  <p class="body-text"><strong>Product philosophy</strong> — what kind of experience this is, who it's for, what it should feel like. This isn't a PRD. It's the one-paragraph articulation that prevents an AI from accidentally turning a cozy companion app into a competitive game.</p>
+  <p class="body-text"><strong>Design constraints</strong> — hard rules. Not style guides — behavioral constraints with reasoning attached. "Don't add mechanics that demand active attention" isn't a preference. It's the product's identity, and every session needs to understand it before touching anything.</p>
+  <p class="body-text"><strong>Decision history</strong> — what's been tried, what failed, and why. When Session 21 attempted a visual redesign and it was reverted, that became a rule. The manifesto learns from the team's mistakes and makes them unrepeatable.</p>
+  <p class="body-text"><strong>Data model and system architecture</strong> — a shared understanding of how the product actually works, so nobody builds a feature that contradicts the existing system.</p>
+  <p class="body-text"><strong>Session log</strong> — a running record. Every session appends what it changed, what's still open, and what the next session should know. It's the team's institutional memory.</p>
 </section>
 
 <div class="section-divider"></div>
 
-<!-- THE RULES -->
+<!-- HOW IT WORKS IN PRACTICE -->
 <section class="section fade-in">
-  <p class="section-label">The Rules</p>
-  <h2 class="section-title">16 rules that every AI reads before writing code.</h2>
-  <p class="body-text">These aren't suggestions. They're hard constraints forged from real regressions. Every rule exists because something broke without it.</p>
+  <p class="section-label">In Practice</p>
+  <h2 class="section-title">Five things the manifesto does for a team.</h2>
 
-  <div class="rules-block">
-    <p class="rules-tag">From the manifesto — Rules for AI Assistants</p>
-    <div class="rule-item">
-      <span class="rule-num">01</span>
-      <span class="rule-text">Vanilla JS only. <em>No frameworks, no build tools, no npm. The entire app is one HTML file.</em></span>
-    </div>
-    <div class="rule-item">
-      <span class="rule-num">02</span>
-      <span class="rule-text">Do not refactor CSS. <em>Add new styles at the end. The existing CSS has been carefully built over many sessions.</em></span>
-    </div>
-    <div class="rule-item">
-      <span class="rule-num">03</span>
-      <span class="rule-text">Companion, not game. <em>Do not add mechanics that demand active attention.</em></span>
-    </div>
-    <div class="rule-item">
-      <span class="rule-num">05</span>
-      <span class="rule-text">Test against actual DB schema. <em>ALWAYS verify column names. The schema has been patched many times.</em></span>
-    </div>
-    <div class="rule-item">
-      <span class="rule-num">06</span>
-      <span class="rule-text">RPC over direct mutations. <em>All game state changes go through SECURITY DEFINER RPCs.</em></span>
-    </div>
-    <div class="rule-item">
-      <span class="rule-num">09</span>
-      <span class="rule-text">When you finish your session, append a dated entry to the Session Log. <em>What you changed, what SQL ran, what broke.</em></span>
-    </div>
-    <div class="rule-item">
-      <span class="rule-num">13</span>
-      <span class="rule-text">Always DROP old function overloads before recreating RPCs. <em>PostgREST 400s when it can't resolve ambiguity.</em></span>
-    </div>
-    <div class="rule-item">
-      <span class="rule-num">16</span>
-      <span class="rule-text">When asked to redesign visually, propose first — do not build. <em>Session 21 proved full CSS rewrites break the product's feel.</em></span>
-    </div>
+  <div class="principle">
+    <span class="principle-num">01</span>
+    <h3 class="principle-title">Eliminates context-rebuilding.</h3>
+    <p class="principle-body">Without the manifesto, every AI session starts with 10–20 minutes of re-explaining: what the product is, what the data looks like, what was built last time. <strong>With the manifesto, every session starts at full velocity.</strong> The document carries the context. The team doesn't have to.</p>
+    <p class="principle-evidence"><strong>Receipt —</strong> 24+ sessions across Ehoro Village. Zero time spent re-establishing context at the start of any session after the manifesto was introduced.</p>
+  </div>
+
+  <div class="principle">
+    <span class="principle-num">02</span>
+    <h3 class="principle-title">Protects design intent at scale.</h3>
+    <p class="principle-body">When six people are building a product and multiple AI tools are in the loop, design intent is the first thing that erodes. The manifesto holds the product philosophy still — <strong>what this product should feel like, who it's for, what it should never become</strong> — so that velocity doesn't come at the cost of coherence.</p>
+    <p class="principle-evidence"><strong>Receipt —</strong> Ehoro Village's core identity — a lo-fi companion that rewards presence, not attention — survived 24+ sessions because it was written into the manifesto as a hard constraint, not a soft suggestion.</p>
+  </div>
+
+  <div class="principle">
+    <span class="principle-num">03</span>
+    <h3 class="principle-title">Turns failures into institutional memory.</h3>
+    <p class="principle-body">Most teams lose their lessons in Slack threads nobody searches. The manifesto's session log captures what went wrong and converts it into a new rule or a new constraint. <strong>The document gets smarter every session.</strong> A mistake made once becomes a constraint the entire team — and every AI session — respects going forward.</p>
+    <p class="principle-evidence"><strong>Receipt —</strong> Session 21 attempted a full visual redesign. It was reverted. That failure became two new rules in the manifesto — and no subsequent session repeated it.</p>
+  </div>
+
+  <div class="principle">
+    <span class="principle-num">04</span>
+    <h3 class="principle-title">Onboards new contributors instantly.</h3>
+    <p class="principle-body">A new teammate, a new contractor, a new AI model — the manifesto is the same onboarding artifact for all of them. Instead of tribal knowledge spread across six people's heads, there's <strong>one document that reconstructs the entire product's mental model from scratch</strong> in minutes.</p>
+    <p class="principle-evidence"><strong>Receipt —</strong> Multiple AI models (Claude, ChatGPT, Gemini) have been used across the project. The manifesto made model-switching seamless — same document, same constraints, same output quality.</p>
+  </div>
+
+  <div class="principle">
+    <span class="principle-num">05</span>
+    <h3 class="principle-title">Gives the designer authority over the build.</h3>
+    <p class="principle-body">The person who writes the manifesto shapes the product. It's not a passive spec that engineering interprets — it's an active collaboration protocol that <strong>encodes design decisions, product philosophy, and UX constraints directly into the workflow</strong>. I wrote the manifesto, so my design intent is the thing the entire team — and every AI session — builds against.</p>
+    <p class="principle-evidence"><strong>Receipt —</strong> The manifesto is how I lead a team of 6 without managing through meetings. The document is the authority. The team builds against it. I own the document.</p>
   </div>
 </section>
 
 <div class="section-divider"></div>
 
-<!-- THE S OBJECT -->
-<section class="section fade-in">
-  <p class="section-label">Architecture</p>
-  <h2 class="section-title">One global object. Every render reads from it.</h2>
-  <p class="body-text">The client architecture is intentionally simple: a single global <strong>S object</strong> holds all state. Every RPC writes to it. Every UI render reads from it. No state management library, no framework indirection — just a flat, inspectable source of truth that any AI or human can trace through in seconds.</p>
-
-  <div class="code-block">
-    <p class="code-label">The S Object — client-side single source of truth</p>
-    <code><span class="comment">// All client state in one flat object</span>
-<span class="key">let</span> S = {
-  <span class="comment">// Auth</span>
-  <span class="key">user</span>: <span class="val">null</span>,
-  <span class="key">isGuest</span>: <span class="val">true</span>,
-
-  <span class="comment">// Game data — fetched from Supabase</span>
-  <span class="key">spirits</span>: [],
-  <span class="key">emblems</span>: { cafe_bean: 0, wild_essence: 0, ... },
-  <span class="key">buildings</span>: [],
-  <span class="key">expeditions</span>: [],
-
-  <span class="comment">// Streaming state</span>
-  <span class="key">playing</span>: <span class="val">false</span>,
-  <span class="key">currentStream</span>: <span class="val">'ehoro'</span>,
-  <span class="key">eggT</span>: 0,
-  <span class="key">EGG_SEC</span>: <span class="val">3600</span>,
-};
-
-<span class="comment">// Data flow: Action → RPC → loadUserData() → updateAllUI()</span></code>
-  </div>
-
-  <p class="body-text">This pattern means any AI session can understand the entire data flow in one read. No dependency graphs, no context-splitting, no hidden state. The manifesto documents the shape of S in full so every session starts with the same mental model of what the app's state looks like.</p>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- FAILURE MODE -->
-<section class="section fade-in">
-  <p class="section-label">What It Prevents</p>
-  <h2 class="section-title">The failure mode the manifesto kills.</h2>
-
-  <div class="failure-block">
-    <p class="failure-tag">Session 21 — The revert</p>
-    <p class="failure-title">A full CSS rewrite was attempted. The owner reviewed it and reverted.</p>
-    <p class="failure-body">Session 21 attempted a glassmorphism redesign — a wholesale CSS rewrite replacing all existing variables. The result looked visually worse than what 20 prior sessions had carefully built up. <strong>The entire session was discarded.</strong> The V2.9 file was restored as the working baseline.</p>
-    <p class="failure-body" style="margin-top: 12px;">This produced two new rules (15 and 16): CSS fixes go at the bottom as a patch block. When asked to redesign visually, propose first — do not build. <strong>The manifesto learned from the failure and made it unrepeatable.</strong></p>
-  </div>
-
-  <div class="failure-block">
-    <p class="failure-tag">Session 18 — The 400 errors</p>
-    <p class="failure-title">PostgREST couldn't resolve which function to call.</p>
-    <p class="failure-body">A prior session changed an RPC's signature without dropping the old one. PostgreSQL kept both as overloads. PostgREST threw 400 errors because it couldn't disambiguate. This spawned Rule 13: <strong>always DROP old function overloads before recreating RPCs.</strong></p>
-  </div>
-
-  <p class="body-text" style="margin-top: 28px;">Every rule in the manifesto has a story like these. The document doesn't just tell AI what to do — it tells it <strong>why</strong>, with a specific failure as the receipt. An AI that understands the reason behind a constraint doesn't accidentally route around it.</p>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- SESSION LOG -->
+<!-- THE EVOLUTION -->
 <section class="section fade-in">
   <p class="section-label">Evolution</p>
-  <h2 class="section-title">24+ sessions. The manifesto grew with the product.</h2>
-  <p class="body-text">The session log is the manifesto's memory. Every session appends a dated entry documenting what changed, what SQL ran, what broke, and what's deferred to next time. Here's the arc:</p>
+  <h2 class="section-title">The manifesto grew with the product.</h2>
+  <p class="body-text">It didn't start as a 12-section spec. It started as a one-page set of rules after the first phase of building produced too many regressions. Over 24+ sessions, it evolved organically — each session adding the constraints it needed, each failure becoming a new rule.</p>
 
-  <div class="timeline">
-    <div class="timeline-item">
-      <p class="timeline-version">Sessions 1–14</p>
-      <p class="timeline-title">Pre-manifesto</p>
-      <p class="timeline-body">Core game loop established. No documentation. Exact details not captured. This is what the manifesto was built to prevent.</p>
+  <div class="evo-grid">
+    <div class="evo-cell">
+      <p class="evo-phase">Phase 1 · Sessions 1–14</p>
+      <p class="evo-title">Before the manifesto</p>
+      <p class="evo-body">Building fast, but context lost between sessions. Regressions, naming conflicts, design drift. No shared source of truth.</p>
     </div>
-    <div class="timeline-item milestone">
-      <p class="timeline-version">Session 15 — V2.6</p>
-      <p class="timeline-title">First manifesto session</p>
-      <p class="timeline-body">18 client fixes, full trait system, expedition locations, building UI. The first session that carried the manifesto in.</p>
+    <div class="evo-cell">
+      <p class="evo-phase">Phase 2 · Sessions 15–17</p>
+      <p class="evo-title">First version</p>
+      <p class="evo-body">Core rules, product philosophy, data model. Immediately eliminated the context-rebuilding problem. Sessions started landing cleanly.</p>
     </div>
-    <div class="timeline-item">
-      <p class="timeline-version">Session 17 — V2.7</p>
-      <p class="timeline-title">All RPCs written from scratch</p>
-      <p class="timeline-body">11 server-side functions, schema columns added, RLS policies. Backend catches up to the client.</p>
+    <div class="evo-cell">
+      <p class="evo-phase">Phase 3 · Sessions 18–21</p>
+      <p class="evo-title">Stress-tested</p>
+      <p class="evo-body">Backend work, economy balancing, a failed redesign. Each challenge added new rules. The manifesto proved it could learn from failure.</p>
     </div>
-    <div class="timeline-item">
-      <p class="timeline-version">Session 18 — V2.7 Hotfix</p>
-      <p class="timeline-title">Rule 13 born from a 400 error</p>
-      <p class="timeline-body">Overload conflict, missing constraint, wrong column reference. Three bugs, three new manifesto rules.</p>
+    <div class="evo-cell">
+      <p class="evo-phase">Phase 4 · Sessions 22–24+</p>
+      <p class="evo-title">Mature methodology</p>
+      <p class="evo-body">Surgical precision. Sessions targeted, clean, no regressions. The manifesto's maturity visible in the quality of the output.</p>
     </div>
-    <div class="timeline-item">
-      <p class="timeline-version">Session 19–20 — V2.8 → V2.9</p>
-      <p class="timeline-title">Feature sprints at full velocity</p>
-      <p class="timeline-body">Spirit naming, building modals, library research, tier upgrades. No regressions. Manifesto kept the context clean.</p>
-    </div>
-    <div class="timeline-item milestone">
-      <p class="timeline-version">Session 21 — V3.0 attempt</p>
-      <p class="timeline-title">The revert that proved the system works</p>
-      <p class="timeline-body">CSS rewrite discarded. Rules 15 and 16 added. The manifesto learned from the failure and prevented it from recurring.</p>
-    </div>
-    <div class="timeline-item">
-      <p class="timeline-version">Sessions 22–24 — V3.0 → V3.3</p>
-      <p class="timeline-title">Targeted fixes, claim RPC, material persistence</p>
-      <p class="timeline-body">Clean surgical sessions. Each one building on stable ground. The manifesto's maturity shows in the precision of the work.</p>
-    </div>
+  </div>
+
+  <div class="failure-block">
+    <p class="failure-tag">The moment that proved it works</p>
+    <p class="failure-title">Session 21: a full redesign was attempted and reverted.</p>
+    <p class="failure-body">An AI session attempted a wholesale visual overhaul. The result looked worse than what 20 prior sessions had carefully built. <strong>I reviewed it, reverted it, and added two new rules to the manifesto.</strong> The lesson didn't live in one person's memory — it became a permanent constraint that no future session could violate. That's the system working exactly as designed.</p>
   </div>
 </section>
 
 <div class="section-divider"></div>
 
-<!-- OUTCOME -->
+<!-- OUTCOMES -->
 <section class="section fade-in">
-  <p class="section-label">What It Produces</p>
-  <h2 class="section-title">The methodology's output is coherence under velocity.</h2>
+  <p class="section-label">Outcomes</p>
+  <h2 class="section-title">What the methodology produces.</h2>
 
   <div class="outcome-card">
-    <p class="outcome-tag">Result</p>
-    <p class="outcome-title">Zero context-rebuild time at the start of every session.</p>
-    <p class="outcome-body">The manifesto eliminates the 10–20 minutes teams lose re-explaining their product to AI at the start of every chat. Carry the document in, and the session starts at full velocity from line one. Across 24+ sessions with a six-person team, <strong>no session started from confusion about what the product is, how the data flows, or what the rules are</strong>.</p>
+    <p class="outcome-tag">Team alignment</p>
+    <p class="outcome-title">One document replaced the alignment meetings.</p>
+    <p class="outcome-body">A six-person team (product, engineering, sound design, illustration, PM) working across multiple AI tools stayed aligned without syncs about "what are we building again?" <strong>The manifesto was the meeting.</strong> Everyone read the same document. Everyone built against the same intent.</p>
   </div>
 
   <div class="outcome-card">
-    <p class="outcome-tag">Result</p>
-    <p class="outcome-title">Regressions die in the document, not in production.</p>
-    <p class="outcome-body">The rules section acts as institutional memory. When Session 21's rewrite was reverted, the lesson didn't live in one person's head — it became a rule that every future session reads. <strong>The manifesto learns from failures automatically</strong>, because every session that encounters a new edge case appends it to the log.</p>
+    <p class="outcome-tag">Velocity</p>
+    <p class="outcome-title">24+ sessions with zero context-rebuild overhead.</p>
+    <p class="outcome-body">No session after the manifesto's introduction spent time re-establishing what the product is, what's been built, or what the constraints are. <strong>Every session started working immediately.</strong> That compounding time savings is the difference between shipping and stalling.</p>
   </div>
 
-  <p class="body-text" style="margin-top: 28px;">The methodology is now portable. Every new AI-augmented project I touch starts with a version of this document. The specifics change — different data model, different rules, different product philosophy — but the structure and the discipline travel.</p>
+  <div class="outcome-card">
+    <p class="outcome-tag">Quality</p>
+    <p class="outcome-title">Design intent survived the entire build.</p>
+    <p class="outcome-body">Ehoro Village shipped as a cozy, low-pressure companion — exactly what it was designed to be. Across 24+ sessions, six teammates, and multiple AI models, the product's identity never drifted. <strong>The manifesto held it still while velocity went up.</strong></p>
+  </div>
 </section>
 
 <div class="section-divider"></div>
 
-<!-- CLOSING THESIS -->
+<!-- PORTABILITY -->
+<section class="section fade-in">
+  <p class="section-label">Portability</p>
+  <h2 class="section-title">The methodology travels. Every new project starts with one.</h2>
+  <p class="body-text">The specific content of the Ehoro Village manifesto is unique to that product. But the structure — product philosophy, design constraints, decision history, system model, session log — is universal. <strong>Every AI-augmented project I touch now starts with a manifesto.</strong></p>
+  <p class="body-text"><a href="breaklab.html" style="color: var(--accent); border-bottom: 1px solid var(--accent-border); padding-bottom: 2px;">Break Lab</a> was built under it. The <a href="analyzer.html" style="color: var(--accent); border-bottom: 1px solid var(--accent-border); padding-bottom: 2px;">UX Feedback Analyzer</a> was built under it. Each project's manifesto looks different — different data model, different constraints, different philosophy — but the discipline is the same.</p>
+  <p class="body-text">The argument this page makes is simple: <strong>AI-augmented teams need a collaboration protocol, and the designer who writes it shapes everything downstream.</strong> I write the manifesto. The team builds against it. The product stays coherent.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CLOSING -->
 <section class="section fade-in">
   <p class="section-label">The Argument</p>
-  <p class="thesis">The team that builds a shared mental model <em>before</em> it builds code is the team that stays coherent when AI is in the loop.</p>
-  <p class="body-text">This isn't a document about AI tooling. It's a document about <strong>team cognition under new constraints</strong>. AI introduced a collaborator with no memory, no taste, and no context by default. The manifesto is the answer to that constraint — a protocol that gives every session the context it needs to build against the team's actual intent, not its own assumptions.</p>
-  <p class="body-text">The manifesto methodology is the foundation beneath every other project on this portfolio. Break Lab uses it. The UX Feedback Analyzer was built under it. Ehoro Village is its proof of concept at scale. <strong>This is the work that makes the other work possible.</strong></p>
+  <p class="thesis">The team that <em>writes down</em> what it's building — and carries that document into every session — is the team that stays coherent when AI is in the loop.</p>
+  <p class="body-text">This isn't about any specific technology. It's about <strong>team cognition under new constraints</strong>. AI introduced a collaborator with no memory and no shared context by default. The manifesto is the protocol that fills that gap — giving every session, every model, and every teammate the same foundation to build from.</p>
+  <p class="body-text">It's the work that makes the other work possible. And it's the kind of work that only comes from someone who's been in the room when things drift — and decided to build the system that prevents it.</p>
 </section>
 
 <!-- FOOTER -->
