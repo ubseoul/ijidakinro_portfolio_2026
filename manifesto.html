@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Manifesto — Adé Ijidakinro</title>
+<meta name="description" content="A living technical manifesto that travels with the team into every AI session. 12 sections, 16 rules, 24+ build sessions, one shared mental model that never drifts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: #050505;
+  color: #f5f5f5;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+:root {
+  --bg: #050505;
+  --card: rgba(255,255,255,.03);
+  --card-border: rgba(255,255,255,.06);
+  --card-hover: rgba(255,255,255,.06);
+  --t1: #f5f5f5;
+  --t2: #b0b0b0;
+  --t3: #707070;
+  --t4: #404040;
+  --accent: #c8a87c;
+  --accent-dim: rgba(200,168,124,.08);
+  --accent-border: rgba(200,168,124,.18);
+  --positive: #6c9;
+  --warning: #f5a623;
+  --serif: 'Fraunces', Georgia, serif;
+  --mono: 'JetBrains Mono', monospace;
+  --max-w: 980px;
+  --content-w: 720px;
+}
+
+::selection { background: rgba(200,168,124,.25); color: #fff; }
+a { color: var(--t2); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--t1); }
+
+.back-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  padding: 20px 32px;
+  background: linear-gradient(to bottom, rgba(5,5,5,.95) 0%, rgba(5,5,5,.6) 70%, transparent 100%);
+  pointer-events: none;
+}
+.back-link {
+  pointer-events: all;
+  font-size: .75rem;
+  color: var(--t3);
+  letter-spacing: .08em;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color .2s;
+}
+.back-link:hover { color: var(--t1); }
+.back-link svg { width: 16px; height: 16px; }
+
+/* Hero */
+.hero {
+  min-height: 88vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 32px 80px;
+  position: relative;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 30%, rgba(200,168,124,.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(102,204,153,.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-label {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--accent);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  opacity: 0; animation: fadeUp .8s .3s ease forwards;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  max-width: 820px;
+  opacity: 0; animation: fadeUp .8s .5s ease forwards;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 300;
+}
+.hero-sub {
+  font-size: 1.0625rem;
+  color: var(--t2);
+  margin-top: 22px;
+  max-width: 640px;
+  font-weight: 300;
+  line-height: 1.65;
+  opacity: 0; animation: fadeUp .8s .7s ease forwards;
+}
+.hero-sub strong { color: var(--t1); font-weight: 500; }
+
+/* Stats strip */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--card-border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 48px auto;
+  max-width: var(--content-w);
+  opacity: 0; animation: fadeUp .8s .9s ease forwards;
+}
+.stat-cell {
+  background: var(--bg);
+  padding: 28px 24px;
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--t3);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* Sections */
+.section {
+  padding: 64px 32px;
+  max-width: var(--content-w);
+  margin: 0 auto;
+}
+.section-divider { width: 40px; height: 1px; background: var(--t4); margin: 0 auto; }
+.section-label {
+  font-family: var(--mono);
+  font-size: .6rem;
+  color: var(--accent);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  margin-bottom: 24px;
+}
+.body-text {
+  font-size: .95rem;
+  color: var(--t2);
+  line-height: 1.75;
+  font-weight: 300;
+}
+.body-text + .body-text { margin-top: 16px; }
+.body-text strong { color: var(--t1); font-weight: 500; }
+
+/* Thesis */
+.thesis {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--t1);
+  line-height: 1.35;
+  letter-spacing: -.01em;
+  border-left: 2px solid var(--accent);
+  padding: 8px 0 8px 28px;
+  margin: 12px 0 36px;
+}
+.thesis em { color: var(--accent); font-style: italic; font-weight: 400; }
+
+/* Structure diagram */
+.structure-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  margin: 32px 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.structure-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  transition: border-color .2s, background .2s;
+}
+.structure-row:hover {
+  border-color: var(--accent-border);
+  background: var(--card-hover);
+}
+.structure-num {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--accent);
+  border-right: 1px solid var(--card-border);
+  padding: 16px 0;
+}
+.structure-content {
+  padding: 16px 20px;
+}
+.structure-name {
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--t1);
+  margin-bottom: 3px;
+}
+.structure-desc {
+  font-size: .78rem;
+  color: var(--t3);
+  font-weight: 300;
+}
+
+/* Rules showcase */
+.rules-block {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 18px;
+  padding: 40px;
+  margin: 36px 0;
+}
+.rules-tag {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--accent);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.rule-item {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(200,168,124,.1);
+}
+.rule-item:last-child { border-bottom: none; }
+.rule-num {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--accent);
+  margin-right: 10px;
+}
+.rule-text {
+  font-size: .9rem;
+  color: var(--t1);
+  font-weight: 400;
+  line-height: 1.55;
+}
+.rule-text em {
+  font-style: italic;
+  color: var(--t2);
+  font-weight: 300;
+}
+
+/* Session timeline */
+.timeline {
+  position: relative;
+  padding-left: 28px;
+  margin: 32px 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), var(--card-border));
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+  padding-left: 20px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -25px; top: 8px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+}
+.timeline-item.milestone::before {
+  width: 9px; height: 9px;
+  box-shadow: 0 0 8px rgba(200,168,124,.5);
+}
+.timeline-version {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--accent);
+  letter-spacing: .08em;
+  margin-bottom: 4px;
+}
+.timeline-title {
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--t1);
+  margin-bottom: 4px;
+}
+.timeline-body {
+  font-size: .82rem;
+  color: var(--t3);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+/* Code sample */
+.code-block {
+  background: rgba(0,0,0,.4);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 28px 0;
+  overflow-x: auto;
+}
+.code-label {
+  font-family: var(--mono);
+  font-size: .6rem;
+  color: var(--t3);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.code-block code {
+  font-family: var(--mono);
+  font-size: .78rem;
+  color: var(--t2);
+  line-height: 1.7;
+  display: block;
+  white-space: pre-wrap;
+}
+.code-block code .comment { color: var(--t4); }
+.code-block code .key { color: var(--accent); }
+.code-block code .val { color: var(--positive); }
+
+/* Failure callout */
+.failure-block {
+  background: rgba(245,166,35,.05);
+  border: 1px solid rgba(245,166,35,.18);
+  border-radius: 14px;
+  padding: 32px;
+  margin: 32px 0;
+}
+.failure-tag {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--warning);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.failure-title {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--t1);
+  margin-bottom: 12px;
+}
+.failure-body {
+  font-size: .9rem;
+  color: var(--t2);
+  line-height: 1.65;
+  font-weight: 300;
+}
+.failure-body strong { color: var(--t1); font-weight: 500; }
+
+/* Outcome card */
+.outcome-card {
+  background: rgba(102,204,153,.04);
+  border: 1px solid rgba(102,204,153,.15);
+  border-radius: 16px;
+  padding: 36px;
+  margin: 36px 0;
+}
+.outcome-tag {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--positive);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.outcome-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--t1);
+  margin-bottom: 12px;
+}
+.outcome-body {
+  font-size: .9rem;
+  color: var(--t2);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.outcome-body strong { color: var(--t1); font-weight: 500; }
+
+/* Footer */
+.case-footer { padding: 80px 32px; text-align: center; }
+.case-footer-label {
+  font-family: var(--mono);
+  font-size: .55rem; color: var(--t4);
+  letter-spacing: .25em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.case-footer-title {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 28px;
+}
+.case-footer-links {
+  display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+}
+.case-footer-links a {
+  font-size: .8rem;
+  color: var(--t3);
+  padding: 12px 22px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  transition: all .2s;
+}
+.case-footer-links a:hover {
+  color: var(--t1);
+  border-color: var(--accent-border);
+  background: var(--card);
+}
+
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 0 20px 60px; min-height: 86vh; }
+  .section { padding: 56px 20px; }
+  .rules-block { padding: 28px 20px; }
+  .structure-row { grid-template-columns: 44px 1fr; }
+  .stats-strip { margin: 36px 20px; }
+  .failure-block, .outcome-card { padding: 24px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .fade-in { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="back-nav">
+  <a href="ai.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to AI Projects
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <p class="hero-label">Living Technical Document · Ehoro Village · V3.3</p>
+  <h1>The document <em>is</em> the product. The code just implements it.</h1>
+  <p class="hero-sub">A 12-section living manifesto that travels into every AI session and every teammate's hands. <strong>16 rules, a full data model, session logs, and a single source of truth</strong> that kept a six-person team coherent across 24+ AI-augmented build cycles.</p>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-cell">
+    <p class="stat-num">12</p>
+    <p class="stat-label">Sections</p>
+  </div>
+  <div class="stat-cell">
+    <p class="stat-num">16</p>
+    <p class="stat-label">Rules for AI</p>
+  </div>
+  <div class="stat-cell">
+    <p class="stat-num">24+</p>
+    <p class="stat-label">Build Sessions</p>
+  </div>
+  <div class="stat-cell">
+    <p class="stat-num">V3.3</p>
+    <p class="stat-label">Current Ver.</p>
+  </div>
+</div>
+
+<!-- WHY IT EXISTS -->
+<section class="section fade-in">
+  <p class="section-label">The Problem</p>
+  <h2 class="section-title">AI has no memory. Teams have drift.</h2>
+  <p class="body-text">Every AI conversation starts from zero context. Every new session risks contradicting decisions the last one made. And every teammate who wasn't in the room when a choice was made will build against their own assumption of what the product should be.</p>
+  <p class="body-text">Across Ehoro Village's first 14 sessions, this produced real damage: <strong>schema drift, regressions, conflicting naming conventions, design decisions that contradicted the product's core philosophy</strong>. The codebase grew but coherence didn't.</p>
+  <p class="body-text">The manifesto was born out of necessity. It's the document that makes every session start from the same shared model — whether the session is with Claude, with ChatGPT, with Gemini, or with a human teammate who missed last week.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- WHAT IT IS -->
+<section class="section fade-in">
+  <p class="section-label">The Artifact</p>
+  <h2 class="section-title">12 sections. One source of truth.</h2>
+  <p class="body-text">The manifesto isn't documentation written after the fact. It's a living spec that evolves every session. Each section has a specific job — together they reconstruct the entire product's mental model from scratch in any new context window.</p>
+
+  <div class="structure-grid">
+    <div class="structure-row">
+      <div class="structure-num">01</div>
+      <div class="structure-content">
+        <p class="structure-name">Rules for AI Assistants</p>
+        <p class="structure-desc">16 hard rules. Read before touching any code. Vanilla JS only. Don't refactor CSS. Companion, not game.</p>
+      </div>
+    </div>
+    <div class="structure-row">
+      <div class="structure-num">02</div>
+      <div class="structure-content">
+        <p class="structure-name">Product Overview</p>
+        <p class="structure-desc">Stack, auth, target user, core philosophy. One paragraph that sets the tone for everything else.</p>
+      </div>
+    </div>
+    <div class="structure-row">
+      <div class="structure-num">03</div>
+      <div class="structure-content">
+        <p class="structure-name">The S Object</p>
+        <p class="structure-desc">Single global state object. Every render reads from it. Every RPC writes to it. The client-side truth.</p>
+      </div>
+    </div>
+    <div class="structure-row">
+      <div class="structure-num">04</div>
+      <div class="structure-content">
+        <p class="structure-name">Database Schema</p>
+        <p class="structure-desc">Every table, every column, every gotcha. Warning flags on missing columns. Patched across 10+ sessions.</p>
+      </div>
+    </div>
+    <div class="structure-row">
+      <div class="structure-num">05</div>
+      <div class="structure-content">
+        <p class="structure-name">Spirit System</p>
+        <p class="structure-desc">6 types, 3 evolution stages, 15 traits across 3 categories, alignment mechanics.</p>
+      </div>
+    </div>
+    <div class="structure-row">
+      <div class="structure-num">06</div>
+      <div class="structure-content">
+        <p class="structure-name">Expedition System</p>
+        <p class="structure-desc">3 locations, duration tiers, loot tables, rest timers, spirit count multipliers.</p>
+      </div>
+    </div>
+    <div class="structure-row">
+      <div class="structure-num">07</div>
+      <div class="structure-content">
+        <p class="structure-name">Building System</p>
+        <p class="structure-desc">5 buildings, 3 upgrade tiers, staff roles, production cycles, tier-specific costs.</p>
+      </div>
+    </div>
+    <div class="structure-row">
+      <div class="structure-num">08</div>
+      <div class="structure-content">
+        <p class="structure-name">RPCs</p>
+        <p class="structure-desc">Complete list of server-side functions. Security definer, owned by postgres, signature-tracked.</p>
+      </div>
+    </div>
+    <div class="structure-row">
+      <div class="structure-num">09</div>
+      <div class="structure-content">
+        <p class="structure-name">localStorage Keys</p>
+        <p class="structure-desc">User-scoped client state. Building tiers, research progress, first-visit flags.</p>
+      </div>
+    </div>
+    <div class="structure-row">
+      <div class="structure-num">10</div>
+      <div class="structure-content">
+        <p class="structure-name">Known Dead Code</p>
+        <p class="structure-desc">Legacy functions preserved intentionally. Marked harmless so no session removes them by accident.</p>
+      </div>
+    </div>
+    <div class="structure-row">
+      <div class="structure-num">11</div>
+      <div class="structure-content">
+        <p class="structure-name">Materials & Sprites</p>
+        <p class="structure-desc">Full reference tables for 10+ materials, 19 sprite files, and their source locations.</p>
+      </div>
+    </div>
+    <div class="structure-row">
+      <div class="structure-num">12</div>
+      <div class="structure-content">
+        <p class="structure-name">Session Log</p>
+        <p class="structure-desc">Dated entries for every session. What changed, what SQL ran, what broke, what's deferred.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- THE RULES -->
+<section class="section fade-in">
+  <p class="section-label">The Rules</p>
+  <h2 class="section-title">16 rules that every AI reads before writing code.</h2>
+  <p class="body-text">These aren't suggestions. They're hard constraints forged from real regressions. Every rule exists because something broke without it.</p>
+
+  <div class="rules-block">
+    <p class="rules-tag">From the manifesto — Rules for AI Assistants</p>
+    <div class="rule-item">
+      <span class="rule-num">01</span>
+      <span class="rule-text">Vanilla JS only. <em>No frameworks, no build tools, no npm. The entire app is one HTML file.</em></span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-num">02</span>
+      <span class="rule-text">Do not refactor CSS. <em>Add new styles at the end. The existing CSS has been carefully built over many sessions.</em></span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-num">03</span>
+      <span class="rule-text">Companion, not game. <em>Do not add mechanics that demand active attention.</em></span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-num">05</span>
+      <span class="rule-text">Test against actual DB schema. <em>ALWAYS verify column names. The schema has been patched many times.</em></span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-num">06</span>
+      <span class="rule-text">RPC over direct mutations. <em>All game state changes go through SECURITY DEFINER RPCs.</em></span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-num">09</span>
+      <span class="rule-text">When you finish your session, append a dated entry to the Session Log. <em>What you changed, what SQL ran, what broke.</em></span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-num">13</span>
+      <span class="rule-text">Always DROP old function overloads before recreating RPCs. <em>PostgREST 400s when it can't resolve ambiguity.</em></span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-num">16</span>
+      <span class="rule-text">When asked to redesign visually, propose first — do not build. <em>Session 21 proved full CSS rewrites break the product's feel.</em></span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- THE S OBJECT -->
+<section class="section fade-in">
+  <p class="section-label">Architecture</p>
+  <h2 class="section-title">One global object. Every render reads from it.</h2>
+  <p class="body-text">The client architecture is intentionally simple: a single global <strong>S object</strong> holds all state. Every RPC writes to it. Every UI render reads from it. No state management library, no framework indirection — just a flat, inspectable source of truth that any AI or human can trace through in seconds.</p>
+
+  <div class="code-block">
+    <p class="code-label">The S Object — client-side single source of truth</p>
+    <code><span class="comment">// All client state in one flat object</span>
+<span class="key">let</span> S = {
+  <span class="comment">// Auth</span>
+  <span class="key">user</span>: <span class="val">null</span>,
+  <span class="key">isGuest</span>: <span class="val">true</span>,
+
+  <span class="comment">// Game data — fetched from Supabase</span>
+  <span class="key">spirits</span>: [],
+  <span class="key">emblems</span>: { cafe_bean: 0, wild_essence: 0, ... },
+  <span class="key">buildings</span>: [],
+  <span class="key">expeditions</span>: [],
+
+  <span class="comment">// Streaming state</span>
+  <span class="key">playing</span>: <span class="val">false</span>,
+  <span class="key">currentStream</span>: <span class="val">'ehoro'</span>,
+  <span class="key">eggT</span>: 0,
+  <span class="key">EGG_SEC</span>: <span class="val">3600</span>,
+};
+
+<span class="comment">// Data flow: Action → RPC → loadUserData() → updateAllUI()</span></code>
+  </div>
+
+  <p class="body-text">This pattern means any AI session can understand the entire data flow in one read. No dependency graphs, no context-splitting, no hidden state. The manifesto documents the shape of S in full so every session starts with the same mental model of what the app's state looks like.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FAILURE MODE -->
+<section class="section fade-in">
+  <p class="section-label">What It Prevents</p>
+  <h2 class="section-title">The failure mode the manifesto kills.</h2>
+
+  <div class="failure-block">
+    <p class="failure-tag">Session 21 — The revert</p>
+    <p class="failure-title">A full CSS rewrite was attempted. The owner reviewed it and reverted.</p>
+    <p class="failure-body">Session 21 attempted a glassmorphism redesign — a wholesale CSS rewrite replacing all existing variables. The result looked visually worse than what 20 prior sessions had carefully built up. <strong>The entire session was discarded.</strong> The V2.9 file was restored as the working baseline.</p>
+    <p class="failure-body" style="margin-top: 12px;">This produced two new rules (15 and 16): CSS fixes go at the bottom as a patch block. When asked to redesign visually, propose first — do not build. <strong>The manifesto learned from the failure and made it unrepeatable.</strong></p>
+  </div>
+
+  <div class="failure-block">
+    <p class="failure-tag">Session 18 — The 400 errors</p>
+    <p class="failure-title">PostgREST couldn't resolve which function to call.</p>
+    <p class="failure-body">A prior session changed an RPC's signature without dropping the old one. PostgreSQL kept both as overloads. PostgREST threw 400 errors because it couldn't disambiguate. This spawned Rule 13: <strong>always DROP old function overloads before recreating RPCs.</strong></p>
+  </div>
+
+  <p class="body-text" style="margin-top: 28px;">Every rule in the manifesto has a story like these. The document doesn't just tell AI what to do — it tells it <strong>why</strong>, with a specific failure as the receipt. An AI that understands the reason behind a constraint doesn't accidentally route around it.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SESSION LOG -->
+<section class="section fade-in">
+  <p class="section-label">Evolution</p>
+  <h2 class="section-title">24+ sessions. The manifesto grew with the product.</h2>
+  <p class="body-text">The session log is the manifesto's memory. Every session appends a dated entry documenting what changed, what SQL ran, what broke, and what's deferred to next time. Here's the arc:</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <p class="timeline-version">Sessions 1–14</p>
+      <p class="timeline-title">Pre-manifesto</p>
+      <p class="timeline-body">Core game loop established. No documentation. Exact details not captured. This is what the manifesto was built to prevent.</p>
+    </div>
+    <div class="timeline-item milestone">
+      <p class="timeline-version">Session 15 — V2.6</p>
+      <p class="timeline-title">First manifesto session</p>
+      <p class="timeline-body">18 client fixes, full trait system, expedition locations, building UI. The first session that carried the manifesto in.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-version">Session 17 — V2.7</p>
+      <p class="timeline-title">All RPCs written from scratch</p>
+      <p class="timeline-body">11 server-side functions, schema columns added, RLS policies. Backend catches up to the client.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-version">Session 18 — V2.7 Hotfix</p>
+      <p class="timeline-title">Rule 13 born from a 400 error</p>
+      <p class="timeline-body">Overload conflict, missing constraint, wrong column reference. Three bugs, three new manifesto rules.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-version">Session 19–20 — V2.8 → V2.9</p>
+      <p class="timeline-title">Feature sprints at full velocity</p>
+      <p class="timeline-body">Spirit naming, building modals, library research, tier upgrades. No regressions. Manifesto kept the context clean.</p>
+    </div>
+    <div class="timeline-item milestone">
+      <p class="timeline-version">Session 21 — V3.0 attempt</p>
+      <p class="timeline-title">The revert that proved the system works</p>
+      <p class="timeline-body">CSS rewrite discarded. Rules 15 and 16 added. The manifesto learned from the failure and prevented it from recurring.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-version">Sessions 22–24 — V3.0 → V3.3</p>
+      <p class="timeline-title">Targeted fixes, claim RPC, material persistence</p>
+      <p class="timeline-body">Clean surgical sessions. Each one building on stable ground. The manifesto's maturity shows in the precision of the work.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- OUTCOME -->
+<section class="section fade-in">
+  <p class="section-label">What It Produces</p>
+  <h2 class="section-title">The methodology's output is coherence under velocity.</h2>
+
+  <div class="outcome-card">
+    <p class="outcome-tag">Result</p>
+    <p class="outcome-title">Zero context-rebuild time at the start of every session.</p>
+    <p class="outcome-body">The manifesto eliminates the 10–20 minutes teams lose re-explaining their product to AI at the start of every chat. Carry the document in, and the session starts at full velocity from line one. Across 24+ sessions with a six-person team, <strong>no session started from confusion about what the product is, how the data flows, or what the rules are</strong>.</p>
+  </div>
+
+  <div class="outcome-card">
+    <p class="outcome-tag">Result</p>
+    <p class="outcome-title">Regressions die in the document, not in production.</p>
+    <p class="outcome-body">The rules section acts as institutional memory. When Session 21's rewrite was reverted, the lesson didn't live in one person's head — it became a rule that every future session reads. <strong>The manifesto learns from failures automatically</strong>, because every session that encounters a new edge case appends it to the log.</p>
+  </div>
+
+  <p class="body-text" style="margin-top: 28px;">The methodology is now portable. Every new AI-augmented project I touch starts with a version of this document. The specifics change — different data model, different rules, different product philosophy — but the structure and the discipline travel.</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CLOSING THESIS -->
+<section class="section fade-in">
+  <p class="section-label">The Argument</p>
+  <p class="thesis">The team that builds a shared mental model <em>before</em> it builds code is the team that stays coherent when AI is in the loop.</p>
+  <p class="body-text">This isn't a document about AI tooling. It's a document about <strong>team cognition under new constraints</strong>. AI introduced a collaborator with no memory, no taste, and no context by default. The manifesto is the answer to that constraint — a protocol that gives every session the context it needs to build against the team's actual intent, not its own assumptions.</p>
+  <p class="body-text">The manifesto methodology is the foundation beneath every other project on this portfolio. Break Lab uses it. The UX Feedback Analyzer was built under it. Ehoro Village is its proof of concept at scale. <strong>This is the work that makes the other work possible.</strong></p>
+</section>
+
+<!-- FOOTER -->
+<footer class="case-footer fade-in">
+  <p class="case-footer-label">See the methodology in action</p>
+  <h2 class="case-footer-title">The products it built →</h2>
+  <div class="case-footer-links">
+    <a href="ehoro.html">Ehoro Village</a>
+    <a href="breaklab.html">Break Lab</a>
+    <a href="analyzer.html">UX Feedback Analyzer</a>
+    <a href="ai.html">← AI Projects</a>
+    <a href="index.html">← Portfolio</a>
+  </div>
+</footer>
+
+<div style="height: 60px;"></div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
