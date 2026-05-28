@@ -1,589 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adé Ijidakinro — Founding Product Designer</title>
-    <meta name="description" content="Founding Product Designer at Ehoro Village. Michigan HCI grad, ex-P&G. I lead product design, research, and AI-augmented workflows on shipping teams.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adé Ijidakinro — Learning Experience Designer</title>
+<meta name="description" content="Learning Experience Designer & HCI Specialist. Michigan HCI grad, ex-P&G. I design learning that changes behavior — grounded in research, built as product.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root {
-            --bg: #050505;
-            --text-primary: rgba(255, 255, 255, 0.95);
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-tertiary: rgba(255, 255, 255, 0.5);
-            --card-bg: rgba(255, 255, 255, 0.04);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --card-hover: rgba(255, 255, 255, 0.07);
-            --accent: #c8a87c;
-            --accent-dim: rgba(200, 168, 124, 0.1);
-            --accent-border: rgba(200, 168, 124, 0.2);
-            --positive: #6c9;
-            --serif: 'Fraunces', Georgia, serif;
-            --mono: 'JetBrains Mono', monospace;
-        }
+:root {
+  --bg: #ffffff;
+  --ink: #141414;
+  --ink-soft: #444444;
+  --ink-faint: #777777;
+  --line: #ebe6e8;
+  --sakura: #d4658a;
+  --sakura-soft: #f5dde5;
+  --sakura-wash: #fdf6f8;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Outfit', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
 
-        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--bg);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  font-weight: 300;
+}
 
-        /* Video Background */
-        .video-bg {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100vh;
-            z-index: -1; overflow: hidden;
-        }
+::selection { background: var(--sakura-soft); color: var(--ink); }
+a { color: inherit; text-decoration: none; }
 
-        .video-bg::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(180deg,
-                rgba(5, 5, 5, 0.4) 0%,
-                rgba(5, 5, 5, 0.7) 60%,
-                rgba(5, 5, 5, 1) 100%);
-        }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
 
-        .video-bg video {
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
+/* ─── HERO ─── */
+.hero { padding: 100px 28px 72px; max-width: 760px; margin: 0 auto; }
+.hero-photo {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 36px;
+  border: 3px solid var(--sakura-soft);
+  animation: fadeUp .8s .1s both;
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--sakura);
+  margin-bottom: 20px;
+  animation: fadeUp .8s .2s both;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 26px;
+  animation: fadeUp .8s .3s both;
+}
+.hero h1 em { font-style: italic; color: var(--sakura); font-weight: 300; }
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  max-width: 580px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  animation: fadeUp .8s .4s both;
+}
+.hero-sub strong { font-weight: 500; color: var(--ink); }
+.status {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono);
+  font-size: .78rem;
+  color: var(--ink-faint);
+  animation: fadeUp .8s .5s both;
+}
+.status-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--sakura);
+  animation: pulse 2.2s infinite;
+}
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
+/* ─── SECTION ─── */
+.section { padding: 56px 28px; max-width: 760px; margin: 0 auto; }
+.section-top { border-top: 1px solid var(--line); }
+.label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--sakura);
+  margin-bottom: 28px;
+}
 
-        /* ═══ HERO ═══ */
-        .hero {
-            min-height: 100vh;
-            display: flex; flex-direction: column;
-            justify-content: center;
-            padding: 80px 32px 60px;
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-        }
+/* ─── WORK LIST ─── */
+.work-item {
+  display: block;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left .3s ease;
+}
+.work-item:hover { padding-left: 10px; }
+.work-item:first-of-type { border-top: 1px solid var(--line); }
+.work-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px; margin-bottom: 8px; flex-wrap: wrap;
+}
+.work-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.work-title .arrow { color: var(--sakura); transition: margin-left .25s ease; display: inline-block; }
+.work-item:hover .arrow { margin-left: 6px; }
+.work-tag {
+  font-family: var(--mono);
+  font-size: .64rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+.work-outcome {
+  font-family: var(--mono);
+  font-size: .82rem;
+  color: var(--sakura);
+  margin-bottom: 10px;
+}
+.work-desc {
+  font-size: .98rem;
+  color: var(--ink-soft);
+  max-width: 600px;
+  line-height: 1.6;
+}
+.live-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono);
+  font-size: .58rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--sakura);
+  background: var(--sakura-wash);
+  border: 1px solid var(--sakura-soft);
+  padding: 3px 9px; border-radius: 100px;
+  vertical-align: middle; margin-left: 10px;
+}
+.live-pill::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--sakura); animation: pulse 2.2s infinite;
+}
 
-        .hero-content { animation: fadeUp 1.2s ease-out; max-width: 820px; }
+/* ─── ABOUT ─── */
+.about-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--ink);
+  border-left: 2px solid var(--sakura);
+  padding-left: 22px;
+  margin-bottom: 32px;
+}
+.about-p { font-size: 1rem; color: var(--ink-soft); margin-bottom: 16px; line-height: 1.7; }
+.about-p strong { color: var(--ink); font-weight: 500; }
+.about-fun {
+  font-family: var(--mono);
+  font-size: .78rem;
+  color: var(--ink-faint);
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
 
-        .greeting {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            font-weight: 400;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 24px;
-        }
+/* ─── FOOTER ─── */
+.footer { padding: 48px 28px 72px; max-width: 760px; margin: 0 auto; border-top: 1px solid var(--line); }
+.footer-nav { display: flex; flex-wrap: wrap; gap: 22px; margin-bottom: 22px; }
+.footer-nav a {
+  font-size: .9rem; color: var(--ink-soft); transition: color .2s;
+}
+.footer-nav a:hover { color: var(--sakura); }
+.footer-meta {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
 
-        .name {
-            font-family: var(--serif);
-            font-size: clamp(2.75rem, 7vw, 4.75rem);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            line-height: 1.05;
-            margin-bottom: 28px;
-            color: var(--text-primary);
-        }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
 
-        .name em {
-            font-style: italic;
-            color: var(--accent);
-            font-weight: 300;
-        }
+@media (max-width: 600px) {
+  .hero { padding: 72px 24px 56px; }
+  .section, .footer { padding-left: 24px; padding-right: 24px; }
+  .work-head { flex-direction: column; gap: 4px; }
+}
 
-        .tagline {
-            font-size: clamp(1.125rem, 2vw, 1.375rem);
-            font-weight: 300;
-            color: var(--text-secondary);
-            max-width: 620px;
-            line-height: 1.55;
-            margin-bottom: 36px;
-        }
-
-        .tagline strong {
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .currently {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 18px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 100px;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        .currently-dot {
-            width: 7px; height: 7px;
-            border-radius: 50%;
-            background: var(--positive);
-            box-shadow: 0 0 12px rgba(102, 204, 153, 0.6);
-            animation: livePulse 2s infinite;
-            flex-shrink: 0;
-        }
-
-        .currently strong {
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 40px; left: 32px;
-            display: flex; align-items: center;
-            gap: 10px;
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-tertiary);
-            animation: float 2.4s ease-in-out infinite;
-        }
-
-        .scroll-hint svg { width: 14px; height: 14px; stroke: currentColor; }
-
-        /* ═══ SECTION TITLES ═══ */
-        .section {
-            padding: 100px 32px;
-            position: relative;
-            background: var(--bg);
-        }
-
-        .section-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .section-heading {
-            font-family: var(--serif);
-            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-            font-weight: 400;
-            letter-spacing: -0.015em;
-            line-height: 1.15;
-            margin-bottom: 56px;
-            max-width: 720px;
-        }
-
-        .section-heading em {
-            font-style: italic;
-            color: var(--accent);
-            font-weight: 300;
-        }
-
-        /* ═══ PROJECT CARDS ═══ */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 36px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 32px;
-            align-items: start;
-            cursor: pointer;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        .project-card:hover {
-            background: var(--card-hover);
-            border-color: var(--accent-border);
-            transform: translateY(-2px);
-        }
-
-        .project-meta {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 14px;
-        }
-
-        .project-label {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            font-weight: 400;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--text-tertiary);
-        }
-
-        .project-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 3px 10px;
-            border-radius: 100px;
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: rgba(102, 204, 153, 0.08);
-            color: var(--positive);
-            border: 1px solid rgba(102, 204, 153, 0.2);
-        }
-
-        .project-badge::before {
-            content: '';
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: var(--positive);
-            animation: livePulse 2s infinite;
-        }
-
-        .project-title {
-            font-family: var(--serif);
-            font-size: clamp(1.5rem, 3vw, 1.875rem);
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            line-height: 1.2;
-            margin-bottom: 14px;
-            color: var(--text-primary);
-        }
-
-        .project-outcome {
-            font-size: 0.95rem;
-            color: var(--accent);
-            font-weight: 400;
-            margin-bottom: 10px;
-            font-family: var(--mono);
-            letter-spacing: 0.01em;
-        }
-
-        .project-desc {
-            font-size: 1rem;
-            font-weight: 300;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            max-width: 580px;
-        }
-
-        .project-arrow {
-            align-self: end;
-            color: var(--text-tertiary);
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        .project-arrow svg { width: 22px; height: 22px; stroke: currentColor; }
-
-        .project-card:hover .project-arrow {
-            transform: translateX(6px);
-            color: var(--accent);
-        }
-
-        /* ═══ ABOUT ═══ */
-        .about {
-            border-top: 1px solid var(--card-border);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 48px;
-            max-width: 820px;
-        }
-
-        .about-philosophy {
-            font-family: var(--serif);
-            font-style: italic;
-            font-size: clamp(1.375rem, 2.6vw, 1.75rem);
-            font-weight: 300;
-            color: var(--text-primary);
-            line-height: 1.4;
-            letter-spacing: -0.01em;
-            border-left: 2px solid var(--accent);
-            padding-left: 24px;
-        }
-
-        .about-arc {
-            font-size: 1.0625rem;
-            font-weight: 300;
-            color: var(--text-secondary);
-            line-height: 1.75;
-        }
-
-        .about-arc strong {
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        .about-arc + .about-arc {
-            margin-top: 18px;
-        }
-
-        .about-fun {
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            color: var(--text-tertiary);
-            letter-spacing: 0.02em;
-            padding-top: 12px;
-            border-top: 1px solid var(--card-border);
-        }
-
-        /* ═══ FOOTER ═══ */
-        .footer {
-            padding: 56px 32px 80px;
-            text-align: center;
-            border-top: 1px solid var(--card-border);
-            background: var(--bg);
-        }
-
-        .footer-nav {
-            display: flex;
-            justify-content: center;
-            gap: 28px;
-            flex-wrap: wrap;
-            margin-bottom: 24px;
-        }
-
-        .footer-nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 400;
-            transition: color 0.2s ease;
-        }
-
-        .footer-nav a:hover { color: var(--accent); }
-
-        .footer-meta {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-        }
-
-        /* ═══ ANIMATIONS ═══ */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); opacity: 0.6; }
-            50% { transform: translateY(6px); opacity: 1; }
-        }
-
-        @keyframes livePulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        /* ═══ RESPONSIVE ═══ */
-        @media (max-width: 720px) {
-            .hero { padding: 100px 24px 80px; }
-            .section { padding: 72px 24px; }
-            .project-card {
-                grid-template-columns: 1fr;
-                padding: 28px;
-            }
-            .project-arrow { justify-self: end; }
-            .scroll-hint { left: 24px; }
-        }
-
-        /* ═══ PAGE TRANSITION ═══ */
-        .page-transition {
-            position: fixed; inset: 0;
-            background: var(--bg);
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-        .page-transition.active { opacity: 1; pointer-events: all; }
-    </style>
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
 </head>
 <body>
-    <div class="video-bg">
-        <video autoplay muted loop playsinline>
-            <source src="background.mp4" type="video/mp4">
-        </video>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <img src="images/ade-photo.jpg" alt="Adé Ijidakinro" class="hero-photo">
+  <p class="eyebrow">Adé Ijidakinro — Portfolio 2026</p>
+  <h1>Learning Experience Designer &amp; <em>HCI Specialist</em>.</h1>
+  <div class="status">
+    <span class="status-dot"></span>
+    <span>Currently — designing learning systems at Ehoro Village</span>
+  </div>
+</section>
+
+<!-- ─── SELECTED WORK ─── -->
+<section class="section section-top">
+  <p class="label">01 — Selected Work</p>
+
+  <a href="ehoro.html" class="work-item">
+    <div class="work-head">
+      <span class="work-title">Ehoro Village <span class="arrow">→</span><span class="live-pill">Live</span></span>
+      <span class="work-tag">Learning Experience · Product · Research</span>
     </div>
+    <p class="work-outcome">→ 35% lift in 7-day retention · interactive onboarding module</p>
+    <p class="work-desc">I diagnosed why new users were leaving in their first session, then designed and built an interactive, scenario-based onboarding module that taught them how to use the product before asking them to commit.</p>
+  </a>
 
-    <div class="page-transition" id="pageTransition"></div>
+  <a href="braid.html" class="work-item">
+    <div class="work-head">
+      <span class="work-title">Braid <span class="arrow">→</span></span>
+      <span class="work-tag">Instructional Design · UX Research</span>
+    </div>
+    <p class="work-outcome">→ 40% lift in new sign-ups · 100+ stakeholder synthesis</p>
+    <p class="work-desc">Directed learning and UX research across 100+ community members in public interest technology.</p>
+  </a>
+</section>
 
-    <!-- ═══ HERO ═══ -->
-    <section class="hero">
-        <div class="hero-content">
-            <p class="greeting">Adé Ijidakinro — Portfolio 2026</p>
-            <h1 class="name">Product designer who <em>ships</em>.</h1>
-            <p class="tagline">
-                <strong>Founding Product Designer at Ehoro Village.</strong>
-                Michigan HCI grad, ex-P&G ($20M+ initiatives). I lead product design,
-                learning experience design, research, and AI-augmented workflows on shipping teams.
-            </p>
-            <div class="currently">
-                <span class="currently-dot"></span>
-                <span>Currently — <strong>shipping Ehoro Village</strong> with a team of 6 and an AI-augmented workflow</span>
-            </div>
-        </div>
-        <div class="scroll-hint">
-            <span>Selected work</span>
-            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-            </svg>
-        </div>
-    </section>
+<!-- ─── ABOUT ─── -->
+<section class="section">
+  <p class="label">02 — About</p>
+  <p class="about-quote">"I design like sushi — few high-quality ingredients, applied in a way that makes sense."</p>
+  <p class="about-p" style="font-size:1rem;color:var(--ink-soft);margin-bottom:20px;line-height:1.7;">I build AI directly into how I design learning — using it to accelerate scripting, voiceover, and asset production without losing instructional rigor, guided by a methodology I authored across 24+ build sessions.</p>
+  <p class="about-fun">// goblin :: a small green creature found loitering around Lumbridge, easily distracted by a spinning gold coin</p>
+  <p class="about-fun" style="margin-top:12px;border:none;padding-top:0;">// Fun fact — I make beats, and I'm allergic to carrots.</p>
+</section>
 
-    <!-- ═══ FEATURED CASE STUDIES ═══ -->
-    <section class="section">
-        <div class="section-inner">
-            <span class="section-label">01 — Featured Case Studies</span>
-            <h2 class="section-heading">Two products. One researched into a 40% engagement lift.</h2>
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <nav class="footer-nav">
+    <a href="ehoro.html">Ehoro Village</a>
+    <a href="braid.html">Braid</a>
+    <a href="resume.html">Resume</a>
+    <a href="mailto:ijidakinroade@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/adeijidakinro" target="_blank" rel="noopener">LinkedIn</a>
+  </nav>
+  <p class="footer-meta">Adé Ijidakinro · Learning Experience Designer · 2026</p>
+</footer>
 
-            <div class="projects-grid">
-                <!-- Ehoro Village -->
-                <a href="ehoro.html" class="project-card" onclick="navigateTo(event, 'ehoro.html')">
-                    <div>
-                        <div class="project-meta">
-                            <span class="project-label">Product Design · Learning Experience · Research · AI Workflow</span>
-                            <span class="project-badge">Live</span>
-                        </div>
-                        <h3 class="project-title">Ehoro Village</h3>
-                        <p class="project-outcome">→ Live in production · Team of 6 · Founding Product Designer</p>
-                        <p class="project-desc">A lo-fi music companion that rewards presence instead of asking for attention. I led product vision, UX architecture across 7 views, the onboarding learning system, and an AI-augmented development workflow documented across 24+ sessions.</p>
-                    </div>
-                    <div class="project-arrow">
-                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                    </div>
-                </a>
-
-                <!-- Braid / PITKN -->
-                <a href="braid.html" class="project-card" onclick="navigateTo(event, 'braid.html')">
-                    <div>
-                        <div class="project-meta">
-                            <span class="project-label">Instructional Design · UX Research · Product Design · Public Interest Tech</span>
-                        </div>
-                        <h3 class="project-title">Braid</h3>
-                        <p class="project-outcome">→ 40% engagement lift · 100+ stakeholder coordination · Org-wide redesign</p>
-                        <p class="project-desc">Directed generative and evaluative research across 100+ community members in public interest technology. Synthesized qualitative data into an insight repository, ran cross-functional workshops, and translated findings into a redesign that drove a 40% engagement lift.</p>
-                    </div>
-                    <div class="project-arrow">
-                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ AI PROJECTS ═══ -->
-    <section class="section">
-        <div class="section-inner">
-            <span class="section-label">02 — AI Projects</span>
-            <h2 class="section-heading">I don't just <em>use</em> AI. I design how teams work with it.</h2>
-
-            <div class="projects-grid">
-                <a href="ai.html" class="project-card" onclick="navigateTo(event, 'ai.html')">
-                    <div>
-                        <div class="project-meta">
-                            <span class="project-label">Methodology · EdTech · Tooling · Multi-Model Workflow</span>
-                        </div>
-                        <h3 class="project-title">AI-Augmented Design Practice</h3>
-                        <p class="project-outcome">→ Manifesto · Stress Tester · Break Lab · UX Feedback Analyzer · Multi-model workflow</p>
-                        <p class="project-desc">A living methodology for AI-augmented product work. Includes the manifesto, an assignment stress tester for faculty (multi-agent + research-grounded), an internal feedback tool that cut triage time 40–60%, and Break Lab — a drum sampler shipped to real producers.</p>
-                    </div>
-                    <div class="project-arrow">
-                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ ABOUT ═══ -->
-    <section class="section about">
-        <div class="section-inner">
-            <span class="section-label">03 — About</span>
-            <h2 class="section-heading">Engineer first. Then a <em>designer</em> who never stopped shipping.</h2>
-
-            <div class="about-grid">
-                <p class="about-philosophy">"I view design like sushi — few high-quality ingredients, applied in a way that makes sense."</p>
-
-                <div>
-                    <p class="about-arc">
-                        Started writing code before I knew what design was. Spent <strong>three years at Procter &amp; Gamble</strong> running international program management — a 7-person BI redesign, a global loss-analysis operation across 11 regional PMs, $20M+ in initiatives. That work taught me what enterprise stakeholder management actually feels like.
-                    </p>
-                    <p class="about-arc">
-                        Crystallized the design half at <strong>Michigan's HCI master's program</strong>, then went founding. Today I'm the <strong>Founding Product Designer at Ehoro Village</strong>, shipping a live product with a team of six and an AI-augmented workflow I document publicly.
-                    </p>
-                    <p class="about-arc">
-                        I make beats, play games, and care too much about food. Midwesterner at heart with a soft spot for Y2K culture.
-                    </p>
-                </div>
-
-                <p class="about-fun">// Fun fact — I'm allergic to carrots.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ FOOTER ═══ -->
-    <footer class="footer">
-        <nav class="footer-nav">
-            <a href="ehoro.html">Ehoro Village</a>
-            <a href="braid.html">Braid</a>
-            <a href="ai.html">AI Projects</a>
-            <a href="manifesto.html">The Manifesto</a>
-            <a href="how-i-work.html">How I Work</a>
-            <a href="resume.html">Resume</a>
-            <a href="mailto:ijidakinroade@gmail.com">Email</a>
-            <a href="https://github.com/ubseoul" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://linkedin.com/in/adeijidakinro" target="_blank" rel="noopener">LinkedIn</a>
-        </nav>
-        <p class="footer-meta">Adé Ijidakinro · Portfolio 2026 · Built by hand</p>
-    </footer>
-
-    <script>
-        function navigateTo(event, url) {
-            event.preventDefault();
-            document.getElementById('pageTransition').classList.add('active');
-            setTimeout(() => { window.location.href = url; }, 400);
-        }
-
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.6s ease';
-            setTimeout(() => { document.body.style.opacity = '1'; }, 100);
-        });
-    </script>
 </body>
 </html>
