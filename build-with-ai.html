@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build With AI — Adé Ijidakinro</title>
+<meta name="description" content="A learning experience design case study: a workshop teaching practitioners to audit AI-generated content, with pre/post measurement and behavioral follow-up across Kirkpatrick levels.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg:#fff; --ink:#141414; --ink-soft:#444; --ink-faint:#777; --line:#ebe6e8;
+  --sakura:#d4658a; --sakura-deep:#b14a6e; --sakura-soft:#f5dde5; --sakura-wash:#fdf6f8;
+  --serif:'Fraunces',Georgia,serif; --sans:'Outfit',sans-serif; --mono:'JetBrains Mono',monospace; --max:760px;
+}
+html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+body { font-family:var(--sans); background:var(--bg); color:var(--ink); line-height:1.65; font-weight:300; }
+::selection { background:var(--sakura-soft); color:var(--ink); }
+a { color:inherit; text-decoration:none; }
+img { max-width:100%; display:block; border-radius:10px; }
+
+.back-nav { position:fixed; top:0; left:0; right:0; z-index:50; padding:20px 28px;
+  background:linear-gradient(to bottom,rgba(255,255,255,.96) 0%,rgba(255,255,255,.7) 70%,transparent 100%); pointer-events:none; }
+.back-link { pointer-events:all; font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; color:var(--ink-faint);
+  display:inline-flex; align-items:center; gap:8px; transition:color .2s; }
+.back-link:hover { color:var(--sakura); }
+.back-link svg { width:15px; height:15px; transition:transform .2s; }
+.back-link:hover svg { transform:translateX(-3px); }
+
+.hero { max-width:var(--max); margin:0 auto; padding:120px 28px 56px; }
+.hero-label { font-family:var(--mono); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--sakura); margin-bottom:22px; animation:fadeUp .8s .1s both; }
+.hero h1 { font-family:var(--serif); font-size:clamp(2.6rem,7vw,4.2rem); font-weight:400; font-style:italic; line-height:1.05; letter-spacing:-.02em; margin-bottom:22px; animation:fadeUp .8s .2s both; }
+.hero-sub { font-size:1.15rem; color:var(--ink-soft); max-width:560px; line-height:1.6; margin-bottom:40px; animation:fadeUp .8s .3s both; }
+.hero-sub strong { font-weight:500; color:var(--ink); }
+
+.meta-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:20px 28px; padding:28px 0;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:36px; animation:fadeUp .8s .4s both; }
+.meta-item { display:flex; flex-direction:column; gap:4px; }
+.meta-label { font-family:var(--mono); font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); }
+.meta-val { font-size:.9rem; color:var(--ink); font-weight:400; }
+
+.section { max-width:var(--max); margin:0 auto; padding:56px 28px; }
+.label { font-family:var(--mono); font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--sakura); margin-bottom:16px; }
+.title { font-family:var(--serif); font-size:clamp(1.7rem,4vw,2.3rem); font-weight:400; font-style:italic; line-height:1.2; letter-spacing:-.01em; margin-bottom:24px; }
+.body { font-size:1rem; color:var(--ink-soft); line-height:1.75; }
+.body+.body { margin-top:16px; }
+.body strong { color:var(--ink); font-weight:500; }
+.body em { font-style:italic; color:var(--sakura-deep); }
+.divider { width:36px; height:2px; background:var(--sakura-soft); margin:8px auto; }
+.pull { font-family:var(--serif); font-style:italic; font-size:1.5rem; font-weight:300; line-height:1.4; color:var(--ink); border-left:2px solid var(--sakura); padding-left:24px; margin:36px 0; }
+.pull cite { display:block; font-family:var(--mono); font-style:normal; font-size:.7rem; letter-spacing:.06em; color:var(--ink-faint); margin-top:14px; }
+
+.phase { display:grid; grid-template-columns:44px 1fr; gap:20px; margin-bottom:36px; position:relative; }
+.phase:not(:last-child)::after { content:''; position:absolute; left:21px; top:48px; bottom:-36px; width:1px; background:var(--line); }
+.phase-num { width:44px; height:44px; border-radius:50%; border:1px solid var(--sakura-soft); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:.72rem; color:var(--sakura); background:var(--sakura-wash); position:relative; z-index:1; }
+.phase-title { font-family:var(--serif); font-size:1.2rem; font-style:italic; font-weight:400; margin-bottom:8px; }
+.phase-text { font-size:.95rem; color:var(--ink-soft); line-height:1.7; }
+.phase-text strong { color:var(--ink); font-weight:500; }
+
+.obj-box { background:var(--sakura-wash); border:1px solid var(--sakura-soft); border-radius:14px; padding:26px 28px; margin-top:18px; }
+.obj-box-label { font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:var(--sakura-deep); margin-bottom:16px; }
+.obj { display:grid; grid-template-columns:auto 1fr; gap:14px; padding:11px 0; align-items:center; }
+.obj:not(:last-child) { border-bottom:1px solid var(--sakura-soft); }
+.obj-step { font-family:var(--mono); font-size:.72rem; font-weight:400; color:var(--sakura-deep); }
+.obj-text { font-size:.9rem; color:var(--ink-soft); line-height:1.55; }
+
+.dec-grid { display:grid; grid-template-columns:1fr; gap:12px; margin:28px 0; }
+.dec { border:1px solid var(--line); border-left:2px solid var(--sakura); border-radius:0 12px 12px 0; padding:22px 26px; }
+.dec-num { font-family:var(--mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--sakura); margin-bottom:8px; }
+.dec-title { font-family:var(--serif); font-size:1.1rem; font-style:italic; margin-bottom:8px; }
+.dec-text { font-size:.9rem; color:var(--ink-soft); line-height:1.65; }
+
+.art-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:28px 0 8px; }
+.art { display:block; border:1px solid var(--line); border-radius:12px; padding:20px 22px; transition:all .2s; }
+.art:hover { border-color:var(--sakura-soft); background:var(--sakura-wash); transform:translateY(-2px); }
+.art-cat { font-family:var(--mono); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase; color:var(--sakura); margin-bottom:7px; }
+.art-name { font-family:var(--serif); font-style:italic; font-size:1.05rem; color:var(--ink); margin-bottom:5px; }
+.art-desc { font-size:.82rem; color:var(--ink-faint); line-height:1.5; }
+
+.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden; margin:32px 0; }
+.stat { background:var(--bg); padding:26px 20px; text-align:center; }
+.stat-num { font-family:var(--serif); font-size:1.8rem; color:var(--sakura-deep); line-height:1; margin-bottom:6px; }
+.stat-label { font-family:var(--mono); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); }
+
+.kp-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:28px 0; }
+.kp { border:1px solid var(--line); border-radius:12px; padding:20px 22px; }
+.kp-lvl { font-family:var(--mono); font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--sakura); }
+.kp-nm { font-family:var(--serif); font-style:italic; font-size:1.05rem; margin:3px 0 9px; }
+.kp-val { font-size:.85rem; color:var(--ink-soft); line-height:1.6; }
+
+.shot { margin:24px 0 8px; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff; }
+.shot img { display:block; width:100%; border-radius:0; }
+.shot-cap { font-family:var(--mono); font-size:.62rem; color:var(--ink-faint); text-align:center; margin:0 0 22px; padding:0 4px; }
+.shot-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:24px 0 8px; }
+.shot-row .shot { margin:0; }
+@media(max-width:600px){ .shot-row{grid-template-columns:1fr;} }
+
+.foot { max-width:var(--max); margin:0 auto; padding:64px 28px 80px; text-align:center; border-top:1px solid var(--line); }
+.foot-label { font-family:var(--mono); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:14px; }
+.foot-title { font-family:var(--serif); font-size:1.7rem; font-style:italic; font-weight:300; margin-bottom:26px; }
+.foot-links { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+.foot-links a { font-family:var(--mono); font-size:.76rem; color:var(--ink-soft); padding:11px 20px; border:1px solid var(--line); border-radius:8px; transition:all .2s; }
+.foot-links a:hover { color:var(--sakura-deep); border-color:var(--sakura-soft); background:var(--sakura-wash); }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);} }
+.fade { opacity:0; transform:translateY(22px); transition:opacity .7s ease,transform .7s ease; }
+.fade.vis { opacity:1; transform:translateY(0); }
+@media(max-width:600px){.hero{padding:96px 24px 48px;}.section,.foot{padding-left:24px;padding-right:24px;}.phase{grid-template-columns:36px 1fr;gap:14px;}.phase-num{width:36px;height:36px;}.phase:not(:last-child)::after{left:17px;top:40px;}.art-grid,.kp-grid{grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}.fade{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+
+<nav class="back-nav">
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back
+  </a>
+</nav>
+
+<section class="hero">
+  <p class="hero-label">Learning Experience Design · Facilitation · Evaluation</p>
+  <h1>Build With AI</h1>
+  <p class="hero-sub">Practitioners are using AI to make learning content faster than they can tell whether it's any good. I designed and ran a workshop that teaches them to audit AI output before it reaches a learner — and <strong>measured the skill gain across four Kirkpatrick levels</strong>.</p>
+  <div class="meta-grid">
+    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-val">Design · Build · Facilitate · Evaluate</span></div>
+    <div class="meta-item"><span class="meta-label">Method</span><span class="meta-val">Frame · Generate · Audit · Log</span></div>
+    <div class="meta-item"><span class="meta-label">Frameworks</span><span class="meta-val">Action Mapping · Bloom's · Mayer · Kirkpatrick</span></div>
+    <div class="meta-item"><span class="meta-label">Format</span><span class="meta-val">75-min workshop + Rise module</span></div>
+    <div class="meta-item"><span class="meta-label">Audience</span><span class="meta-val">Corporate L&D · Higher Ed</span></div>
+  </div>
+</section>
+
+<section class="section fade">
+  <p class="label">The Problem</p>
+  <h2 class="title">Everyone's using AI. Few can tell when it's wrong.</h2>
+  <p class="body">AI made content drafting fast — but speed exposed a new gap. The output <em>looks</em> finished. It reads fluently, cites confidently, formats cleanly. The question nobody had a method for: is it actually good, before it reaches a learner?</p>
+  <p class="body">I started the way I start any design problem — with research. I interviewed two senior practitioners across the two worlds I design for: a Director of Learning Experience Design at a global enterprise, and a Senior Learning Experience Designer embedded in a university. One sentence from the higher-ed interview became the thesis of the whole workshop.</p>
+  <p class="pull">AI can help me execute faster, but it can also let me — or faculty — jump to solutions before we've actually diagnosed the problem.<cite>— Senior Learning Experience Designer, higher education</cite></p>
+</section>
+
+<section class="section fade">
+  <p class="label">Needs Analysis</p>
+  <h2 class="title">Diagnose before designing.</h2>
+  <p class="body">I synthesized the interviews into five findings and one performance gap. The most important move wasn't choosing what to teach — it was choosing what to cut.</p>
+  <div style="margin-top:32px;">
+    <div class="phase">
+      <div class="phase-num">01</div>
+      <div><div class="phase-title">The performance gap</div><div class="phase-text">Practitioners lack a structured method for evaluating AI-generated content at the point of review — before it reaches learners — so output that <strong>looks</strong> pedagogically sound can model the wrong behavior, flatten disciplinary voice, or pass off recall as rigor.</div></div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">02</div>
+      <div><div class="phase-title">What I scoped out, and why</div><div class="phase-text">Enterprise governance, student-facing AI ethics, and large-scale localization all came up — and all got cut. They're <strong>organizational and policy problems, not skill gaps</strong> a 75-minute workshop can close. Naming the boundary kept the work focused on behavior I could actually change.</div></div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">03</div>
+      <div><div class="phase-title">The checklist was derived, not invented</div><div class="phase-text">Every audit criterion maps to a specific failure the two practitioners described. I turned their descriptions of bad AI output into checkable questions. <strong>They essentially built the checklist for me.</strong></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section fade">
+  <p class="label">The Framework</p>
+  <h2 class="title">Frame → Generate → Audit → Log.</h2>
+  <p class="body">I productized my own AI methodology — the one I authored across 24+ Ehoro build sessions — into four steps a practitioner can apply to any content task. Audit is the heart of it, and what separates this from generic "AI tips."</p>
+  <div class="obj-box">
+    <p class="obj-box-label">The Loop</p>
+    <div class="obj"><span class="obj-step">Frame</span><span class="obj-text">Define objective, audience, constraints, and quality bar before prompting.</span></div>
+    <div class="obj"><span class="obj-step">Generate</span><span class="obj-text">Structured prompts, then iterate — one variable at a time.</span></div>
+    <div class="obj"><span class="obj-step">Audit</span><span class="obj-text">Evaluate against seven criteria built from real failure modes.</span></div>
+    <div class="obj"><span class="obj-step">Log</span><span class="obj-text">Document decisions so the workflow is reproducible.</span></div>
+  </div>
+  <div class="shot" style="margin-top:28px;"><img src="images/bwai/slide-framework.png" alt="Workshop slide showing the four-step framework: Frame, Generate, Audit, Log"></div>
+  <p class="shot-cap">Workshop slide — the four-step loop, with Audit weighted as the core skill</p>
+</section>
+
+<section class="section fade">
+  <p class="label">Key Design Decisions</p>
+  <h2 class="title">Backward design, start to finish.</h2>
+  <div class="dec-grid">
+    <div class="dec">
+      <p class="dec-num">01 — Time follows the gap</p>
+      <p class="dec-title">Audit gets the most minutes.</p>
+      <p class="dec-text">Audit runs 15 minutes against 10 for every other step. It's the core skill gap from the needs analysis, so the time allocation follows the diagnosis, not convention.</p>
+    </div>
+    <div class="dec">
+      <p class="dec-num">02 — The hook is the pre-task</p>
+      <p class="dec-title">Let them fail before you teach.</p>
+      <p class="dec-text">I cut a standalone framework lecture. Participants meet a deliberately flawed AI module first and audit it cold — and that unaided baseline becomes the pre-measurement.</p>
+    </div>
+    <div class="dec">
+      <p class="dec-num">03 — Engineer the evidence in</p>
+      <p class="dec-title">One flaw per criterion.</p>
+      <p class="dec-text">The demo artifact carries exactly one flaw per checklist item, so the pre/post flaw-count captures the specific skill the workshop was built to produce — not a vague sense that it went well.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section fade">
+  <p class="label">Artifacts</p>
+  <h2 class="title">The full production package.</h2>
+  <p class="body">Every document below was built for this workshop. The process artifacts matter more than the polish.</p>
+  <div class="shot-row">
+    <div class="shot"><img src="images/bwai/checklist.png" alt="The AI Content Audit Checklist — seven questions"></div>
+    <div class="shot"><img src="images/bwai/needs-brief.png" alt="Needs Analysis Brief first page"></div>
+  </div>
+  <p class="shot-cap">The audit checklist job aid (left) and the needs analysis brief (right)</p>
+  <div class="shot-row">
+    <div class="shot"><img src="images/bwai/facilitator.png" alt="Facilitator guide run-of-show"></div>
+    <div class="shot"><img src="images/bwai/workbook.png" alt="Participant workbook audit worksheet"></div>
+  </div>
+  <p class="shot-cap">Facilitator guide run-of-show (left) and a participant workbook page (right)</p>
+  <div class="art-grid">
+    <a class="art" href="assets/needs-analysis-brief.pdf"><div class="art-cat">Research</div><div class="art-name">Needs Analysis Brief</div><div class="art-desc">Five findings, the gap, the action map, and what I cut.</div></a>
+    <a class="art" href="assets/audit-checklist.pdf"><div class="art-cat">Core IP · Job Aid</div><div class="art-name">The Audit Checklist</div><div class="art-desc">Seven questions. The one-page artifact that travels.</div></a>
+    <a class="art" href="assets/facilitator-guide.pdf"><div class="art-cat">Facilitation</div><div class="art-name">Facilitator Guide</div><div class="art-desc">Timed run-of-show, every block, with contingencies.</div></a>
+    <a class="art" href="assets/participant-workbook.pdf"><div class="art-cat">Learner Materials</div><div class="art-name">Participant Workbook</div><div class="art-desc">Worksheets for all four steps plus a commitment card.</div></a>
+    <a class="art" href="assets/slide-deck.pptx"><div class="art-cat">Delivery</div><div class="art-name">Slide Deck</div><div class="art-desc">Mayer principles annotated in the speaker notes.</div></a>
+    <a class="art" href="assets/evaluation-report.pdf"><div class="art-cat">Measurement</div><div class="art-name">Evaluation Report</div><div class="art-desc">Kirkpatrick Levels 1–4, limitations stated plainly.</div></a>
+  </div>
+</section>
+
+<section class="section fade">
+  <p class="label">Results</p>
+  <h2 class="title">It moved the skill it was built to move.</h2>
+  <p class="body">I ran the workshop as a pilot with two senior practitioners — one from enterprise L&D, one from higher education — with pre/post measurement and a two-week behavioral follow-up. Small cohort, reported honestly as directional.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">2→4–5</div><div class="stat-label">Confidence / 5</div></div>
+    <div class="stat"><div class="stat-num">+57%</div><div class="stat-label">Detection Rate</div></div>
+    <div class="stat"><div class="stat-num">2/2</div><div class="stat-label">Applied in 2 Weeks</div></div>
+    <div class="stat"><div class="stat-num">5/5</div><div class="stat-label">Relevance</div></div>
+  </div>
+  <div class="kp-grid">
+    <div class="kp"><div class="kp-lvl">Level 1 · Reaction</div><div class="kp-nm">Calibrated, not inflated.</div><div class="kp-val">Relevance 5/5 from both. Confidence rose from a shared 2/5 to 4 and 5, with each naming specific conditions for more.</div></div>
+    <div class="kp"><div class="kp-lvl">Level 2 · Learning</div><div class="kp-nm">Instinct, then method.</div><div class="kp-val">Flaw detection rose from 2–3/7 unaided to 6–7/7 with the checklist — a 57% improvement in detection rate across the cohort.</div></div>
+    <div class="kp"><div class="kp-lvl">Level 3 · Behavior</div><div class="kp-nm">It left the room.</div><div class="kp-val">Two weeks out, both had applied the framework to real work — an audit gate in enterprise, a reframed faculty consult in higher ed.</div></div>
+    <div class="kp"><div class="kp-lvl">Level 4 · Results</div><div class="kp-nm">Early, but pointing right.</div><div class="kp-val">A compliance error caught upstream of legal review; a risk-mitigation hold on premature AI feedback.</div></div>
+  </div>
+  <p class="pull">Unaided, the enterprise reviewer caught the fabricated statistic the higher-ed reviewer read past; she caught the cultural flatness he missed. Expert instinct is real but domain-specific — that's the whole case for a checklist, in one data point.</p>
+</section>
+
+<div class="divider"></div>
+
+<section class="section fade">
+  <p class="label">Reflection</p>
+  <h2 class="title">What the pilot changed.</h2>
+  <p class="body">A pilot is only worth running if you let it change the work. The enterprise reviewer flagged a real irony: the audit criteria were right, but every worked example I used to teach them drew on soft-skills content — so the checklist meant to catch "this could be for anyone" was itself generic in its own teaching. I added a parallel technical-content column to the facilitator guide, so each flaw now shows up in both a leadership and a certification context. One workshop, both audiences.</p>
+  <p class="body">A second, smaller fix: the Log step felt rushed at the end, so I made its asynchronous-completion option prominent rather than buried in a contingency note. The temptation after a pilot is to redesign everything. The discipline is changing only what the evidence supports — and being able to say exactly why.</p>
+</section>
+
+<div class="divider"></div>
+
+<section class="section fade">
+  <p class="label">How This Was Made</p>
+  <h2 class="title">AI helped draft it. Judgment shaped it.</h2>
+  <p class="body">In keeping with the framework this workshop teaches, I'll be transparent about my own process. I used AI as a drafting partner for several of the production artifacts — the <strong>needs analysis brief</strong>, the <strong>facilitator guide</strong>, and the <strong>participant workbook</strong> — generating first passes I then audited, rewrote, and shaped against the interview data and my own design decisions.</p>
+  <p class="body">The thinking is mine: the performance gap, what to scope out, the seven audit criteria, the time allocation, the assessment design, and every revision made from the pilot. AI accelerated the writing; it didn't make the calls. That's the entire point of <em>Frame → Generate → Audit → Log</em> — and applying it to my own work is the most honest demonstration of it I can offer.</p>
+</section>
+
+<footer class="foot fade">
+  <p class="foot-label">Thanks for reading</p>
+  <h2 class="foot-title">Want to see more?</h2>
+  <div class="foot-links">
+    <a href="assets/audit-checklist.pdf" target="_blank" rel="noopener">The Checklist →</a>
+    <a href="ehoro.html">Ehoro Village →</a>
+    <a href="index.html">← Portfolio</a>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
