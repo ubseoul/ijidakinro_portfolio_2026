@@ -42,7 +42,7 @@
       <span>Adé Ijidakinro</span>
     </a>
     <nav class="nav" aria-label="Sections">
-      <a href="#lanes">Lanes</a><a href="#system">System</a><a href="#platforms">Platforms</a><a href="#work">Work</a><a href="#experience">Experience</a>
+      <a href="#case">Case study</a><a href="#experience">Experience</a><a href="#lanes">Lanes</a><a href="#work">Work</a><a href="#lab">Lab</a>
     </nav>
     <div class="actions">
       <a class="btn ghost small" href="resume/Ade_Ijidakinro_Resume.pdf">Résumé</a>
@@ -56,7 +56,7 @@
     </div>
   </div>
   <nav class="mnav" id="mnav" hidden aria-label="Menu"><div class="wrap">
-    <a href="#lanes">Lanes</a><a href="#system">System</a><a href="#platforms">Platforms</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="resume/Ade_Ijidakinro_Resume.pdf">Résumé</a>
+    <a href="#case">Case study</a><a href="#experience">Experience</a><a href="#lanes">Lanes</a><a href="#work">Work</a><a href="#lab">Lab</a><a href="resume/Ade_Ijidakinro_Resume.pdf">Résumé</a>
   </div></nav>
 </header>
 
@@ -70,7 +70,8 @@
         {{H1}}
         <p class="lede fade">I’m a program manager with experience in learning technology, product design, and enterprise IT. At Ehoro Village, I develop AI-supported workflows, support team adoption, and use learner data to guide improvements. My work combines practical implementation, clear documentation, and human review.</p>
         <div class="cta fade">
-          <a class="btn" href="#work" data-magnetic>View selected work <span class="arr">→</span></a>
+          <a class="btn" href="#case" data-magnetic>View selected work <span class="arr">→</span></a>
+          <a class="btn ghost" href="mailto:ijidakinroade@gmail.com" data-magnetic>Email me</a>
           <a class="btn ghost" href="resume/Ade_Ijidakinro_Resume.pdf" data-magnetic>Résumé (PDF)</a>
         </div>
       </div>
@@ -92,11 +93,44 @@
   </div></div>
 </section>
 
+<section class="block" id="case">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <div>
+        <p class="label"><span class="n">01</span> Featured case study</p>
+        <h2>AI course production at <span class="serif">Ehoro Village.</span></h2>
+      </div>
+      <p class="sub">The clearest example of what I do: take a process that already exists, build the AI-supported version, train the team and document it, then measure the result.</p>
+    </div>
+    {{CASE}}
+  </div>
+</section>
+
+<section class="block" id="experience">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <div>
+        <p class="label"><span class="n">02</span> Experience</p>
+        <h2>Where I learned <span class="serif">to run programs.</span></h2>
+      </div>
+      <p class="sub">Program management came first. AI made it faster; it didn't replace it.</p>
+    </div>
+    <div class="xp reveal">
+      {{JOBS}}
+    </div>
+    <div class="edu reveal">
+      <span class="chip">M.S. Information, Human-Computer Interaction · University of Michigan · 2024</span>
+      <span class="chip">B.A. Computer Science &amp; Political Science · University of Michigan · 2021</span>
+      <span class="chip">Professional Scrum Master I</span>
+    </div>
+  </div>
+</section>
+
 <section class="block" id="lanes">
   <div class="wrap">
     <div class="head-row reveal">
       <div>
-        <p class="label"><span class="n">01</span> Lanes</p>
+        <p class="label"><span class="n">03</span> Lanes</p>
         <h2>One operator, <span class="serif">four lanes.</span></h2>
       </div>
       <p class="sub">Pick the lane you're hiring for. The proof is the same work, seen from a different side.</p>
@@ -107,13 +141,13 @@
         <button role="tab" id="t-enable" aria-controls="l-enable" aria-selected="true">AI Enablement</button>
         <button role="tab" id="t-pm" aria-controls="l-pm" aria-selected="false" tabindex="-1">Program Management</button>
         <button role="tab" id="t-learn" aria-controls="l-learn" aria-selected="false" tabindex="-1">Learning &amp; Workflow Design</button>
-        <button role="tab" id="t-orch" aria-controls="l-orch" aria-selected="false" tabindex="-1">Agent Orchestration</button>
+        <button role="tab" id="t-orch" aria-controls="l-orch" aria-selected="false" tabindex="-1">AI Builds</button>
       </div>
       <div class="lane-panels">
         <div class="lane" role="tabpanel" id="l-enable" aria-labelledby="t-enable">
           <div>
-            <p class="pitch">I help teams adopt AI workflows they keep using: the workflow itself, the training, the documentation and the review step.</p>
-            <p class="for">For AI enablement, AI adoption, technical education and customer education roles.</p>
+            <p class="pitch">I help teams adopt AI workflows they keep using: the workflow itself, the training and onboarding, the documentation, and the review step. Change management, not just tools.</p>
+            <p class="for">For AI enablement, AI adoption, change management, technical education and customer education roles.</p>
           </div>
           <ul class="proof">
             <li><b>3 wks → 4–7 days</b> course production after moving it into an AI-supported workflow</li>
@@ -123,18 +157,18 @@
         </div>
         <div class="lane" role="tabpanel" id="l-pm" aria-labelledby="t-pm" hidden>
           <div>
-            <p class="pitch">I scope AI projects, set decision rules and review gates, and keep delivery documented so anyone can follow what was decided and why.</p>
+            <p class="pitch">I run cross-functional programs: scope, decision rules, review gates and stakeholder management, documented so anyone can follow what was decided and why.</p>
             <p class="for">For program manager, enablement program manager and technical program roles.</p>
           </div>
           <ul class="proof">
             <li><b>11</b> regional project managers coordinated on a $20M+ P&amp;G initiative</li>
             <li><b>10+</b> teams adopted a program-management framework I scaled with training and documentation</li>
-            <li><b>8</b> phase gates and 30+ written decisions on Codename R</li>
+            <li><b>8</b> review gates and 30+ written decisions on an agent-built web app</li>
           </ul>
         </div>
         <div class="lane" role="tabpanel" id="l-learn" aria-labelledby="t-learn" hidden>
           <div>
-            <p class="pitch">I design learning and workflows people can follow: needs analysis, action mapping, facilitator guides and job aids, and the process behind them.</p>
+            <p class="pitch">I design learning and onboarding people can follow: instructional design, needs analysis, action mapping, facilitator guides and job aids, and the workflow behind them.</p>
             <p class="for">For learning experience design, curriculum, and workflow or process design roles.</p>
           </div>
           <ul class="proof">
@@ -145,37 +179,52 @@
         </div>
         <div class="lane" role="tabpanel" id="l-orch" aria-labelledby="t-orch" hidden>
           <div>
-            <p class="pitch">I coordinate AI agents across Claude, ChatGPT, Gemini and DeepSeek, and I vibe-code the prototypes: each agent owns a lane, handoffs are written down, and a usage meter stops runs before they hit the limit.</p>
-            <p class="for">For AI operations, internal AI tooling and agent workflow roles.</p>
+            <p class="pitch">I vibe-code small AI tools and run AI agents across Claude, ChatGPT, Gemini and DeepSeek like a program: each agent owns a lane, handoffs are written down, and a usage meter stops runs before the limit.</p>
+            <p class="for">For AI generalist, AI operations and internal tooling roles.</p>
           </div>
           <ul class="proof">
-            <li><b>v1 → v2</b> rebuilt the system after a usage study showed where it broke</li>
-            <li><b>6.9K → 2.4K</b> tokens on the shared board every agent reads</li>
-            <li><b>2</b> live tools (Damage Shield, Break Lab) and a four-agent stress tester</li>
+            <li><b>2</b> live tools: Damage Shield and Break Lab</li>
+            <li><b>4 agents</b> in the Assignment Stress Tester: three attempt, one advises</li>
+            <li><b>Auto-stop</b> agent runs end at a usage limit; shared context cut from 6.9K to 2.4K tokens</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="why reveal">
-      <svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">{{MARK}}</svg>
-      <p>An octopus keeps about two-thirds of its neurons in its arms. Each arm works on its own; the head sets the intent. That's how I run AI agents.<small>One owner of intent. Many arms that think. A written rule for when they disagree.</small></p>
+  </div>
+</section>
+
+<section class="block" id="work">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <div>
+        <p class="label"><span class="n">04</span> Work</p>
+        <h2>Selected <span class="serif">work.</span></h2>
+      </div>
+      <p class="sub">Learning design and independent builds that show the technical side. Open any row.</p>
+    </div>
+    <div class="rows reveal">
+      {{WORK}}
     </div>
   </div>
 </section>
 
-<section class="block" id="system">
+<section class="block" id="lab">
   <div class="wrap">
     <div class="head-row reveal">
       <div>
-        <p class="label"><span class="n">02</span> System</p>
-        <h2>How I orchestrate <span class="serif">AI agents.</span></h2>
-        <p class="sub" style="margin-top:14px">In plain terms: one model makes decisions, one plans, several build and test, and I approve. It runs on the same habits I bring to teams: decision logs, review gates, written handoffs and a budget.</p>
+        <p class="label"><span class="n">05</span> The lab</p>
+        <h2>How I run AI <span class="serif">agents.</span></h2>
+        <p class="sub" style="margin-top:14px">Outside client work, I run small teams of AI models on real builds. In plain terms: one model decides, one plans, others build and test, and I approve. It runs on the habits I bring to teams: decision logs, review gates, written handoffs and a budget.</p>
       </div>
       <div class="switch" role="group" aria-label="System version">
         <span class="pill" aria-hidden="true"></span>
-        <button data-v="v1" aria-pressed="true">v1 · Overlord · Sep</button>
-        <button data-v="v2" aria-pressed="false">v2 · Kitchen · Oct</button>
+        <button data-v="v1" aria-pressed="true">v1 · First build · Sep</button>
+        <button data-v="v2" aria-pressed="false">v2 · Lean workflow · Oct</button>
       </div>
+    </div>
+    <div class="why reveal lab-why">
+      <svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">{{MARK}}</svg>
+      <p>An octopus keeps about two-thirds of its neurons in its arms. Each arm works on its own; the head sets the intent. That's how I run AI agents.<small>One owner of intent. Many arms that think. A written rule for when they disagree.</small></p>
     </div>
     <div class="map-card reveal">
       <div class="map" data-version="v1">
@@ -200,71 +249,18 @@
       </div>
       <div class="map-foot"><span class="caption"></span><span class="keys"><span>Click a node</span><span>·</span><span>Toggle v1 / v2</span></span></div>
     </div>
-  </div>
-</section>
-
-<section class="block" id="platforms">
-  <div class="wrap">
-    <div class="head-row reveal">
-      <div>
-        <p class="label"><span class="n">03</span> Platforms</p>
-        <h2>What I learned <span class="serif">about each model.</span></h2>
+    <div class="lessons">
+      <h3 class="lessons-title reveal">What broke, and the rule that came out of it</h3>
+      <div class="log">
+        {{EXPERIMENTS}}
       </div>
-      <p class="sub">Field notes from running them side by side on the same work. Not benchmarks: what each one was good for, and the rule I wrote afterward.</p>
     </div>
-    <div class="plats">
-      {{PLATFORMS}}
-    </div>
-  </div>
-</section>
-
-<section class="block" id="experiments">
-  <div class="wrap">
-    <div class="head-row reveal">
-      <div>
-        <p class="label"><span class="n">04</span> Experiments</p>
-        <h2>What broke, <span class="serif">and what changed.</span></h2>
+    <details class="notes reveal">
+      <summary><span>Field notes by model</span><span class="muted">Claude · ChatGPT · Gemini · DeepSeek</span></summary>
+      <div class="plats">
+        {{PLATFORMS}}
       </div>
-      <p class="sub">Every rule in the system came from a failure. Four of them, with the numbers.</p>
-    </div>
-    <div class="log">
-      {{EXPERIMENTS}}
-    </div>
-  </div>
-</section>
-
-<section class="block" id="work">
-  <div class="wrap">
-    <div class="head-row reveal">
-      <div>
-        <p class="label"><span class="n">05</span> Work</p>
-        <h2>Selected <span class="serif">work.</span></h2>
-      </div>
-      <p class="sub">My work at Ehoro Village first, then independent builds that show the technical side. Open any row.</p>
-    </div>
-    <div class="rows reveal">
-      {{WORK}}
-    </div>
-  </div>
-</section>
-
-<section class="block" id="experience">
-  <div class="wrap">
-    <div class="head-row reveal">
-      <div>
-        <p class="label"><span class="n">06</span> Experience</p>
-        <h2>Where I learned <span class="serif">to run programs.</span></h2>
-      </div>
-      <p class="sub">Program management came first. AI made it faster; it didn't replace it.</p>
-    </div>
-    <div class="xp reveal">
-      {{JOBS}}
-    </div>
-    <div class="edu reveal">
-      <span class="chip">M.S. Information, Human-Computer Interaction · University of Michigan · 2024</span>
-      <span class="chip">B.A. Computer Science &amp; Political Science · University of Michigan · 2021</span>
-      <span class="chip">Professional Scrum Master I</span>
-    </div>
+    </details>
   </div>
 </section>
 
@@ -272,7 +268,7 @@
   <div class="wrap about reveal">
     <img src="images/ade-photo.jpg" alt="Adé Ijidakinro" width="200" height="200" loading="lazy">
     <div>
-      <p class="label"><span class="n">07</span> About</p>
+      <p class="label"><span class="n">06</span> About</p>
       <p class="big">“I design like sushi: few high-quality ingredients, applied in a way that makes sense.”</p>
       <p>I came to AI through learning design and program management, and I still work that way. AI speeds up the scripting, the code and the busywork; people make the calls. The method on this page grew out of a playbook I wrote across 24+ AI build sessions.</p>
       <p>Fun fact: I make beats, and I'm allergic to carrots.</p>
@@ -282,7 +278,7 @@
 
 <section class="contact" id="contact">
   <div class="wrap reveal">
-    <p class="label" style="justify-content:center"><span class="n">08</span> Contact</p>
+    <p class="label" style="justify-content:center"><span class="n">07</span> Contact</p>
     <h2>Let’s build better <span class="serif">ways of working.</span></h2>
     <p class="sub">I’m open to AI enablement, program management, and workflow improvement roles in New York or remote.</p>
     <div class="cta">
@@ -290,6 +286,15 @@
       <a class="btn ghost" href="https://www.linkedin.com/in/adeijidakinro" data-magnetic>LinkedIn</a>
       <a class="btn ghost" href="resume/Ade_Ijidakinro_Resume.pdf" data-magnetic>Résumé</a>
     </div>
+    <div class="ninety">
+      <p class="ninety-title">My first 90 days in an enablement role</p>
+      <ol>
+        <li><b>Days 1–30</b>Learn how the team works today, with the people who do the work, and map where AI helps.</li>
+        <li><b>Days 31–60</b>Pilot one workflow with a small champion group: training, documentation and a human review step.</li>
+        <li><b>Days 61–90</b>Measure adoption and time saved, fix what slows people down, then scale what works.</li>
+      </ol>
+    </div>
+    <p class="roles-label">Roles I’m open to</p>
     <div class="roles">
       <span class="chip">AI Enablement Specialist</span><span class="chip">Enablement Program Manager</span><span class="chip">AI Generalist</span>
       <span class="chip">Learning Experience Designer</span><span class="chip">Curriculum Manager</span><span class="chip">Technical Education</span>

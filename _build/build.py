@@ -39,48 +39,46 @@ PLATFORMS = [
      "Spend expensive models on judgment and cheap ones on breadth. Research arrives as a brief; another agent commits it."),
 ]
 
+# Lessons (the Lab): the rule now comes first, the failure that produced it second, and the headline number is the win.
 EXPERIMENTS = [
-    ("E-01", "The brigade burn",
-     "Five agents shared one board and coordinated through claims and heartbeats: 259 commits in 7 hours, 146 of them in a single hour.",
-     "98%", "of a 5-hour usage window, gone in one night",
-     "Lean lanes: one session per lane, one commit per finished ticket, bookkeeping once at handoff. A script reads the real usage meter and stops the run before the limit.",
+    ("L-01", "Runs stop themselves",
+     "Five agents coordinating through claims and heartbeats used 98% of a 5-hour usage window in one night.",
+     "−65%", "tokens on the shared board every agent reads",
+     "A script reads the real usage meter and stops each run before the limit. Each platform works its own lane, with one commit per finished ticket.",
      [("before", "6.9K", 1.0, True), ("after", "2.4K", 2.4 / 6.9, False)], "tokens on the shared board"),
-    ("E-02", "Status vs. evidence",
+    ("L-02", "Evidence over status",
      "The planning agent's status reports understated problems three separate times.",
-     "3×", "problems understated in status reports",
-     "Reports lead with failures, attach evidence and prove absence. I check the repo, not the summary.", None, None),
-    ("E-03", "Ruling from memory",
-     "A design ruling was made from memory instead of the written source, and had to be withdrawn later.",
-     "1", "ruling withdrawn",
-     "A clerk gate asks “already written or already ruled?” before anything reaches the decision-maker, and rulings cite sources.", None, None),
-    ("E-04", "Busy isn't done",
-     "Agents kept producing drafts and prep work while the main queue waited on five answers only I could give.",
-     "0", "finished deliverables after a full night of work",
-     "The queue asks the human first: a ten-minute question list unblocked the held work. A ping budget caps interruptions at three a week.", None, None),
+     "3", "understated reports caught by checking the work itself",
+     "Reports lead with failures and attach evidence. I check the work, not the summary.", None, None),
+    ("L-03", "Rule from the source",
+     "A design ruling made from memory instead of the written source had to be withdrawn.",
+     "1 → gate", "one withdrawn ruling led to a check-first gate",
+     "A check-first gate asks “already written or already ruled?” before anything reaches the decision-maker, and rulings cite their source.", None, None),
+    ("L-04", "Ask the human first",
+     "Agents drafted all night while the work waited on five answers only I could give.",
+     "10 min", "question list that unblocked a full night's held work",
+     "The queue asks me first, and a ping budget caps interruptions at three a week.", None, None),
 ]
 
 # A body is either one paragraph or a list of (label, text) rows. [[CONFIRM: ...]] marks a fact Ube still has to supply;
 # it shows as a dashed "To confirm" note and the build lists it. Don't publish while any remain.
+CASE = {
+    "rows": [
+        ("Bottleneck", "Building a course took about three weeks. [[CONFIRM: which steps took the longest before the change?]]"),
+        ("My role", "I translated the existing course-production process into a structured, AI-supported workflow in Claude Code, "
+                    "used across multiple instructional teams. AI speeds up scripting, voiceover and asset production."),
+        ("Adoption", "I drove adoption with the instructional design team: training, plus the guides, tip sheets, FAQs and support "
+                     "documentation the teams use to run the workflow. [[CONFIRM: how many designers or teams use it, and how many "
+                     "courses have shipped through it?]]"),
+        ("Human review", "[[CONFIRM: who reviews AI-assisted drafts, at which step, and against what standard?]]"),
+        ("Result", "Course-creation time fell from about three weeks to 4–7 days, 66–80% faster, for courses reaching 200+ students."),
+    ],
+    "stats": [("3 weeks → 4–7 days", "Course-creation time, 66–80% faster"),
+              ("200+", "Students reached by courses built this way")],
+    "chips": ["Claude Code", "Instructional design", "Change management", "Guides · tip sheets · FAQs"],
+}
+
 WORK = [
-    ("AI course production", "An AI-supported course-production workflow at Ehoro Village", "Enablement · Ehoro Village",
-     [("Bottleneck", "Building a course took about three weeks. [[CONFIRM: which steps took the longest before the change?]]"),
-      ("My role", "I translated the existing course-production process into a structured, AI-supported workflow in Claude Code, "
-                  "used across multiple instructional teams. AI speeds up scripting, voiceover and asset production."),
-      ("Adoption", "I drove adoption with the instructional design team and wrote the guides, tip sheets, FAQs and support "
-                   "documentation the teams use to run the workflow."),
-      ("Human review", "[[CONFIRM: who reviews AI-assisted drafts, at which step, and against what standard?]]"),
-      ("Result", "Course-creation time fell from about three weeks to 4–7 days (66–80% faster), for courses reaching 200+ students.")],
-     ["3 weeks → 4–7 days", "200+ students", "Claude Code", "Guides · tip sheets · FAQs"], None),
-    ("Codename R", "An interactive narrative web app built with a coordinated agent team", "Independent · Orchestration",
-     "My first multi-agent build, and where the Overlord / Underlord method came from. I set the direction, made the creator "
-     "decisions and relayed every packet. Claude Opus ruled, ChatGPT planned, and Claude Sonnet, Codex, Gemini and DeepSeek built, "
-     "tested and researched. Work moved through eight phase gates, and every finding had to be fixed, kept on purpose, sourced or "
-     "deferred with a reason. Unreleased.",
-     ["349 commits", "90 branches", "14 days", "Vanilla JS"], ("#system", "See the system")),
-    ("AI Assignment Stress Tester", "Three agents attempt an assignment; a fourth recommends fixes", "Independent · Multi-agent tool",
-     "Built for faculty. An instructor pastes an assignment and rubric; three agents attempt it the way students commonly use AI, "
-     "and an advisor agent writes a vulnerability report with specific revisions. Status: functional prototype.",
-     ["Python", "Streamlit", "Claude API", "DeepSeek"], ("stress-tester.html", "Case study")),
     ("Build With AI", "A workshop on auditing AI-generated learning content", "Learning · Workshop",
      "I designed, facilitated and evaluated a 75-minute workshop built on one framework: Frame → Generate → Audit → Log. In a "
      "two-person pilot, both participants caught more planted flaws with the audit checklist than without it. Evaluated at "
@@ -89,6 +87,10 @@ WORK = [
      [("build-with-ai.html", "Case study"), ("assets/facilitator-guide.pdf", "Facilitator guide (PDF)"),
       ("assets/participant-workbook.pdf", "Participant workbook (PDF)"), ("assets/audit-checklist.pdf", "Audit checklist (PDF)"),
       ("assets/evaluation-report.pdf", "Evaluation report (PDF)")]),
+    ("AI Assignment Stress Tester", "Three agents attempt an assignment; a fourth recommends fixes", "Independent · Multi-agent tool",
+     "Built for faculty. An instructor pastes an assignment and rubric; three agents attempt it the way students commonly use AI, "
+     "and an advisor agent writes a vulnerability report with specific revisions. Status: functional prototype.",
+     ["Python", "Streamlit", "Claude API", "DeepSeek"], ("stress-tester.html", "Case study")),
     ("UX Feedback Analyzer", "Turns survey scores and comments into explainable churn risk", "Independent · ML tool",
      "Cleans mixed-method feedback, turns comments into signals and ranks churn risk by segment, with the reasons shown. It scrubs "
      "personal details and labels results as directional when there are fewer than 200 responses. Status: MVP.",
@@ -107,12 +109,14 @@ WORK = [
 
 JOBS = [
     ("2024–now", "Program Manager, AI & Learning", "Ehoro Village",
-     "AI-supported course production, team adoption and documentation, hands-on workshops for 20+ internal champions, and a "
-     "Python/Streamlit review tool that cut manual triage 40–60%. I use learner data to guide improvements.", None),
+     "AI-supported course production, team training, onboarding design and documentation, cross-functional enablement "
+     "workshops for 20+ internal champions, and a Python/Streamlit review tool that cut manual triage 40–60%. I use learner "
+     "data to guide improvements.", None),
     ("2023–24", "Product Designer & UX Researcher", "University of Michigan · BRAID",
      "Research with 100+ stakeholders; a redesign that lifted new sign-ups 40% in four weeks. ", ("braid.html", "Case study")),
     ("2021–22", "IT Project Manager", "Procter & Gamble",
-     "Coordinated 11 regional project managers on a $20M+ global initiative; scaled a framework to 10+ teams; CEO Award.", None),
+     "Coordinated 11 regional project managers on a $20M+ global initiative; drove adoption of a program-management "
+     "framework across 10+ teams with training and documentation; P&G CEO Award for program impact.", None),
     ("2017–21", "Project Coordinator, Arts & Cultural Programs", "University of Michigan · Multi-Ethnic Student Affairs",
      "Nearly four years of heritage months, seminars and workshops, including anti-racism workshops for classes of 40+.", None),
 ]
@@ -136,9 +140,9 @@ def experiments():
                 for k, v, w, old in bars) + "</div>"
         out.append(f"""<article class="exp reveal">
         <span class="id">{eid}</span>
-        <div><h3>{e(title)}</h3><p class="broke">{e(broke)}</p></div>
+        <div><h3>{e(title)}</h3><p class="fix">{e(fix)}</p>{viz}</div>
         <div class="big">{e(big)}<small>{e(small)}</small></div>
-        <div><p class="fix">{e(fix)}</p>{viz}</div>
+        <div><p class="broke">{e(broke)}</p></div>
       </article>""")
     return "\n".join(out)
 
@@ -157,6 +161,26 @@ def text(t):
     return out
 
 
+def clean(body):
+    """Release builds publish only confirmed facts: confirm notes are removed, and a row that was only a question goes."""
+    if not RELEASE:
+        return body
+    if isinstance(body, list):
+        CONFIRMS.extend(m for _, v in body for m in re.findall(r"\[\[CONFIRM: (.+?)\]\]", v))
+        body = [(k, re.sub(CONFIRM_RE, "", v).strip()) for k, v in body]
+        return [(k, v) for k, v in body if v]
+    CONFIRMS.extend(re.findall(r"\[\[CONFIRM: (.+?)\]\]", body))
+    return re.sub(CONFIRM_RE, "", body).strip()
+
+
+def case():
+    rows = clean(CASE["rows"])
+    dl = '<dl class="case">' + "".join(f"<div><dt>{e(k)}</dt><dd>{text(v)}</dd></div>" for k, v in rows) + "</dl>"
+    stats = "".join(f'<div class="feature-stat"><b>{e(b)}</b><span>{e(t)}</span></div>' for b, t in CASE["stats"])
+    chips = '<div class="chips">' + "".join(f'<span class="chip">{e(c)}</span>' for c in CASE["chips"]) + "</div>"
+    return f'<div class="feature reveal"><div>{dl}</div><aside class="feature-side">{stats}{chips}</aside></div>'
+
+
 def work():
     out = []
     for n, (name, what, tag, body, chips, link) in enumerate(WORK):
@@ -166,21 +190,13 @@ def work():
             go += f'<a class="go" href="{e(href)}"{" target=_blank rel=noopener" if ext else ""}>{e(label)} <span>{"↗" if ext else "→"}</span></a>'
         if go:
             go = f'<div class="links">{go}</div>'
-        if RELEASE:   # publish only what's confirmed; a row that was only a question disappears
-            if isinstance(body, list):
-                CONFIRMS.extend(m for _, v in body for m in re.findall(r"\[\[CONFIRM: (.+?)\]\]", v))
-                body = [(k, re.sub(CONFIRM_RE, "", v).strip()) for k, v in body]
-                body = [(k, v) for k, v in body if v]
-            else:
-                CONFIRMS.extend(re.findall(r"\[\[CONFIRM: (.+?)\]\]", body))
-                body = re.sub(CONFIRM_RE, "", body).strip()
+        body = clean(body)
         if isinstance(body, list):
             main = '<dl class="case">' + "".join(f"<div><dt>{e(k)}</dt><dd>{text(v)}</dd></div>" for k, v in body) + "</dl>"
         else:
             main = f"<p>{text(body)}</p>"
-        first = n == 0   # the lead case study starts open
-        out.append(f"""<div class="row{" open" if first else ""}">
-        <button aria-expanded="{"true" if first else "false"}" aria-controls="w{n}">
+        out.append(f"""<div class="row">
+        <button aria-expanded="false" aria-controls="w{n}">
           <span class="name">{e(name)}</span><span class="what">{e(what)}</span><span class="tag">{e(tag)}</span>
           <span class="plus" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></span>
         </button>
@@ -217,7 +233,7 @@ def jobs():
 def page():
     src = open(os.path.join(HERE, "index.src.html"), encoding="utf-8").read()
     marquee = "".join(f"<span>{e(m)}</span>" for m in MARQUEE * 2)
-    for key, val in {"MARK": octo.mark(), "HERO": octo.hero(), "H1": h1(), "MARQUEE": marquee, "PLATFORMS": platforms(),
+    for key, val in {"MARK": octo.mark(), "HERO": octo.hero(), "H1": h1(), "CASE": case(), "MARQUEE": marquee, "PLATFORMS": platforms(),
                      "EXPERIMENTS": experiments(), "WORK": work(), "JOBS": jobs()}.items():
         src = src.replace("{{" + key + "}}", val)
     assert "{{" not in src, "unfilled placeholder"

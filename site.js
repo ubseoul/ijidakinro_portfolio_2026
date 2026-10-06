@@ -47,7 +47,7 @@
       if (en.isIntersecting) navLinks.forEach(function (a) { a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id); });
     });
   }, { rootMargin: "-45% 0px -50% 0px" });
-  ["lanes", "system", "platforms", "work", "experience"].forEach(function (id) { var el = document.getElementById(id); if (el) spy.observe(el); });
+  ["case", "experience", "lanes", "work", "lab"].forEach(function (id) { var el = document.getElementById(id); if (el) spy.observe(el); });
 
   /* reveal + count-up */
   function countUp(el) {
@@ -161,36 +161,36 @@
   /* ---------- the system map ---------- */
   var MAP = {
     v1: {
-      caption: "v1 · The Overlord system · built Codename R · 349 commits · 90 branches · 14 days",
+      caption: "v1 · the first build (the Overlord system): an interactive web app, unreleased",
       nodes: {
-        me: ["Human", "Me", "Creator + relay"], brain: ["Claude Opus", "Overlord", "Rulings + gates"],
-        gate: ["Gate", "Canon Clerk", "Already ruled?"], plan: ["ChatGPT", "Underlord", "Plans + packets"],
+        me: ["Human", "Me", "Creator + approver"], brain: ["Claude Opus", "Decision-maker", "(the Overlord)"],
+        gate: ["Gate", "Duplicate check", "(the Canon Clerk)"], plan: ["ChatGPT", "Planner", "(the Underlord)"],
         a1: ["Claude Sonnet", "Sole merger"], a2: ["Codex", "Builder"], a3: ["Gemini", "Smoke tests"], a4: ["DeepSeek", "Research"],
-        out: ["GitHub", "The repo", "349 commits"]
+        out: ["GitHub", "Output", "the code"]
       },
       detail: {
         me: ["Human · creator and PM", "Me", "I set the intent, answered the creator questions, and carried every packet between agents by copy-paste. Each packet opened with one line telling me what I had to do, or “nothing.”", "Protect the human's attention: decisions only, never status."],
-        brain: ["Claude Opus", "The Overlord", "Ruled on design, quality and the eight phase gates, from first build to release candidate: 30+ written rulings. The standing habit was to verify claims against the real repo before ruling.", "Rule from the source, never from memory. One memory-based ruling had to be withdrawn."],
-        gate: ["Gate", "The Canon Clerk", "First stop for anything headed to the Overlord: is this already written, or already ruled? Duplicate questions stopped here instead of costing a ruling.", "Put cheap checks in front of expensive judgment."],
-        plan: ["ChatGPT", "The Underlord", "Turned rulings into build packets for the agents, ran the board and reported back. Its status reports understated problems three times.", "Evidence over status. Failures go in the headline."],
+        brain: ["Claude Opus", "Decision-maker (the Overlord)", "Ruled on design, quality and the eight phase gates, from first build to release candidate: 30+ written rulings. The standing habit was to verify claims against the real repo before ruling.", "Rule from the source, never from memory. One memory-based ruling had to be withdrawn."],
+        gate: ["Gate", "Duplicate check (the Canon Clerk)", "First stop for anything headed to the Overlord: is this already written, or already ruled? Duplicate questions stopped here instead of costing a ruling.", "Put cheap checks in front of expensive judgment."],
+        plan: ["ChatGPT", "Planner (the Underlord)", "Turned rulings into build packets for the agents, ran the board and reported back. Its status reports understated problems three times.", "Evidence over status. Failures go in the headline."],
         a1: ["Claude Sonnet", "Sole merger", "Only one agent could merge to the trunk, so parallel work never fought over the same code.", "One merge authority beats clever conflict resolution."],
         a2: ["Codex", "Builder", "Built pieces on their own branches and stayed on call as the reserve builder when capacity ran short. It never merged.", "Keep a second builder warm; keep the merge key in one place."],
         a3: ["Gemini", "Smoke tests", "Smoke-tested finished pieces before they could move forward. The core loop passed before it was integrated.", "The tester should be a different model than the builder."],
         a4: ["DeepSeek", "Research", "Cheap, wide research and source checks that fed the planner.", "Spend expensive models on judgment, cheap ones on breadth."],
-        out: ["GitHub", "The repo", "349 commits across 90 branches in 14 days, with a triage ledger: every finding fixed, kept on purpose, waiting on a source, or deferred. A release candidate needs zero untriaged items.", "Every finding gets a status and a reason. Nothing ships untriaged."]
+        out: ["GitHub", "Output", "349 commits across 90 branches in 14 days, with a triage ledger: every finding fixed, kept on purpose, waiting on a source, or deferred. A release candidate needs zero untriaged items.", "Every finding gets a status and a reason. Nothing ships untriaged."]
       }
     },
     v2: {
-      caption: "v2 · The Kitchen · the same method, rebuilt lean: lanes, a usage meter and human approval",
+      caption: "v2 · the lean rebuild (the Kitchen): lanes, a usage meter and human approval",
       nodes: {
-        me: ["Human", "Me", "≤ 3 pings a week"], brain: ["Brief + ledger", "Executive Chef", "One page, written rulings"],
+        me: ["Human", "Me", "≤ 3 pings a week"], brain: ["Brief + ledger", "One-page brief", "(the Executive Chef)"],
         gate: ["Board", "Ticket board", "Ranked by value ÷ size"], plan: ["Lanes + meter", "One lane per platform", "Stops at 12% left"],
         a1: ["Codex", "Runner"], a2: ["Gemini · Antigravity", "Research + documents"], a3: ["DeepSeek", "Research briefs"], a4: ["Claude", "Strategy + review"],
         out: ["Output", "Reviewed work", "One commit per ticket"]
       },
       detail: {
         me: ["Human · approver", "Me", "I answer a short question list and approve anything that leaves. Agents act on my behalf only up to a written delegation level, and they can ping me three times a week at most, bundled.", "Busy isn't done. Ask the human first, then cook."],
-        brain: ["Brief + ledger", "Executive Chef", "A one-page brief and a ledger of written rulings. Every agent reads the brief, the board and one station file, instead of 58 KB of rules.", "Context is a cost. Make it one page."],
+        brain: ["Brief + ledger", "One-page brief (the Executive Chef)", "A one-page brief and a ledger of written rulings. Every agent reads the brief, the board and one station file, instead of 58 KB of rules.", "Context is a cost. Make it one page."],
         gate: ["Board", "Ticket board", "Each ticket carries value, urgency and size; agents pull the highest value for the effort first (WSJF). One commit per finished ticket, bookkeeping once at handoff.", "The shared board went from about 6.9K to 2.4K tokens, and every agent got faster."],
         plan: ["Lanes + meter", "One lane per platform", "Each platform owns its lanes, so there's nothing to claim and nothing to collide. A script reads the real usage meter: pause when the 5-hour window runs low, stop at 12% of the week.", "A five-agent run once burned 98% of a 5-hour window in one night. Runs stop themselves now."],
         a1: ["Codex", "Runner", "Long unattended runs on my PC that stop on the meter, one session per repo.", "Even the best runner needs a stop rule."],
