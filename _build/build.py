@@ -68,14 +68,18 @@ CASE = {
         ("My role", "I translated the existing course-production process into a structured, AI-supported workflow in Claude Code, "
                     "used across multiple instructional teams. AI speeds up scripting, voiceover and asset production."),
         ("Adoption", "I drove adoption with the instructional design team: training, plus the guides, tip sheets, FAQs and support "
-                     "documentation the teams use to run the workflow. [[CONFIRM: how many designers or teams use it, and how many "
-                     "courses have shipped through it?]]"),
+                     "documentation the teams use to run the workflow. Internal AI usage at Ehoro Village rose from 18% to 47%, "
+                     "and I helped drive that increase."),
+        ("Delivery", "I led 5+ product teams and higher-education and corporate vendors to deliver Articulate learning modules on "
+                     "AI onboarding and financial literacy. Learners who completed the onboarding module showed 35% higher 7-day "
+                     "retention."),
         ("Human review", "[[CONFIRM: who reviews AI-assisted drafts, at which step, and against what standard?]]"),
         ("Result", "Course-creation time fell from about three weeks to 4–7 days, 66–80% faster, for courses reaching 200+ students."),
     ],
     "stats": [("3 weeks → 4–7 days", "Course-creation time, 66–80% faster"),
+              ("18% → 47%", "Internal AI usage at Ehoro Village, which I helped increase"),
               ("200+", "Students reached by courses built this way")],
-    "chips": ["Claude Code", "Instructional design", "Change management", "Guides · tip sheets · FAQs"],
+    "chips": ["Claude Code", "Articulate", "Instructional design", "Change management", "Guides · tip sheets · FAQs"],
 }
 
 WORK = [
@@ -110,15 +114,17 @@ WORK = [
 JOBS = [
     ("2024–now", "Program Manager, AI & Learning", "Ehoro Village",
      "AI-supported course production, team training, onboarding design and documentation, cross-functional enablement "
-     "workshops for 20+ internal champions, and a Python/Streamlit review tool that cut manual triage 40–60%. I use learner "
-     "data to guide improvements.", None),
+     "workshops for 20+ internal champions, 5+ product teams and vendors delivering Articulate modules, and a Python/Streamlit "
+     "review tool that cut manual content-review time 18–37%. Internal AI usage rose from 18% to 47%.", None),
     ("2023–24", "Product Designer & UX Researcher", "University of Michigan · BRAID",
-     "Research with 100+ stakeholders; a redesign that lifted new sign-ups 40% in four weeks. ", ("braid.html", "Case study")),
+     "Turned 100+ interviews and surveys into 10+ product requirements and roadmaps in Jira; led a redesign that lifted new "
+     "sign-ups 40% in four weeks and workshops that raised post-workshop survey approval 25%. ", ("braid.html", "Case study")),
     ("2021–22", "IT Project Manager", "Procter & Gamble",
      "Coordinated 11 regional project managers on a $20M+ global initiative; drove adoption of a program-management "
      "framework across 10+ teams with training and documentation; P&G CEO Award for program impact.", None),
     ("2017–21", "Project Coordinator, Arts & Cultural Programs", "University of Michigan · Multi-Ethnic Student Affairs",
-     "Nearly four years of heritage months, seminars and workshops, including anti-racism workshops for classes of 40+.", None),
+     "Coordinated 100+ cultural events averaging 86% approval in post-event evaluations, and facilitated anti-racism workshops "
+     "for classes of 40+.", None),
 ]
 
 
@@ -291,7 +297,10 @@ if __name__ == "__main__":
 # 30+ rulings (OL-001..OL-032), R1-R8 gates, clerk gate, memory ruling withdrawn (OL-025 -> OL-029),
 #   status understated 3x, Sonnet sole merger, Codex reserve builder, Gemini smoke PASS: OVERLORD HANDOFF through OL-029.md
 # 259 commits / 7 h / 146 in one hour, 98% 5-hour window, 6.9K -> 2.4K board tokens, 18 drafts, 0 ready packets: 13_UBE_KITCHEN/REPORTS/2026-10-05-USAGE_STUDY.md
-# 3 weeks -> 4-7 days, 66-80%, 200+ students, guides/tip sheets/FAQs, 20+ champions, 40-60% triage, P&G facts: 13_UBE_KITCHEN/resume/master.yaml (confirmed by Ube, P007)
+# 3 weeks -> 4-7 days, 66-80%, 200+ students, guides/tip sheets/FAQs, 20+ champions, P&G facts: 13_UBE_KITCHEN/resume/master.yaml (confirmed by Ube, P007)
+# Oct 11 2026, from Ube's three résumés in Desktop/iji bird: 18% -> 47% internal AI usage, 5+ product teams and vendors, Articulate modules on AI onboarding
+#   and financial literacy, 35% higher 7-day retention for onboarding completers, triage/content-review time -18-37% (replaces the older 40-60%),
+#   100+ interviews/surveys -> 10+ requirements in Jira, +25% post-workshop approval, 100+ events at 86% approval.
 # AI for scripting, voiceover and asset production: Ube's own About copy on the previous ijidakinro.com homepage
 # Damage Shield problem/users/steps/pricing: damageshield.org (checked Oct 5 2026; no usage or testimonial data published there)
 # Break Lab, Stress Tester, Analyzer, Build With AI, 24+ sessions, sushi line: Ube's own portfolio pages (ijidakinro_portfolio_2026)

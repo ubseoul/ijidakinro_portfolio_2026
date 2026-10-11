@@ -150,7 +150,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 
 /* stats */
-.stats { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 56px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 56px; }
 .stat { padding: 22px 20px 22px 0; }
 .stat + .stat { padding-left: 20px; border-left: 1px solid var(--line); }
 .stat b { display: block; font-size: clamp(28px, 3.2vw, 40px); letter-spacing: -.035em; font-weight: 600; line-height: 1.05; font-variant-numeric: tabular-nums; }
