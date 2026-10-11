@@ -364,6 +364,31 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--m
 footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 footer a:hover { color: var(--ink); }
 
+/* ---------- inner pages (case studies); see STYLE_GUIDE.md section 5 ---------- */
+.page-hero { padding: 64px 0 28px; }
+.page-hero h1 { font-size: clamp(36px, 5vw, 64px); line-height: 1.02; letter-spacing: -.04em; font-weight: 600; margin: 0 0 20px; max-width: 14em; text-wrap: balance; }
+.page-hero h1 .serif { font-weight: 400; letter-spacing: -.02em; }
+.page-hero .lede { max-width: 680px; }
+.page-hero .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 22px; }
+.crumb { display: inline-block; font-size: 14px; color: var(--muted); margin-bottom: 26px; transition: color .2s; }
+.crumb:hover { color: var(--ink); }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 28px; }
+.meta > div { padding: 18px 18px 18px 0; }
+.meta > div + div { padding-left: 18px; border-left: 1px solid var(--line); }
+.meta span { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.meta b { font-weight: 500; font-size: 15px; letter-spacing: -.01em; }
+.prose { max-width: 740px; }
+.prose h2 { font-size: clamp(24px, 2.6vw, 32px); margin: 44px 0 12px; }
+.prose h2:first-child { margin-top: 0; }
+.prose p, .prose li { font-size: 17px; color: var(--ink-2); line-height: 1.7; }
+.prose ul { padding-left: 20px; }
+.prose a { border-bottom: 1px solid var(--line-2); }
+.prose a:hover { border-color: var(--ink); }
+.prose figure { margin: 28px 0; }
+.prose figure img { width: 100%; border-radius: 16px; border: 1px solid var(--line); }
+.prose figcaption { font-size: 13.5px; color: var(--muted); margin-top: 8px; }
+.prose blockquote { margin: 24px 0; padding: 4px 0 4px 18px; border-left: 2px solid var(--ink); font-size: 19px; line-height: 1.5; letter-spacing: -.015em; color: var(--ink); }
+
 /* ---------- responsive ---------- */
 @media (max-width: 1000px) {
   .plats { grid-template-columns: 1fr 1fr; }
@@ -405,6 +430,8 @@ footer a:hover { color: var(--ink); }
   .switch button { flex: 1; padding: 0 8px; font-size: 12.5px; }
   .case > div { grid-template-columns: 1fr; gap: 2px; }
   .xp { grid-template-columns: 1fr; }
+  .meta > div, .meta > div + div { padding: 14px 0; border-left: 0; }
+  .meta > div + div { border-top: 1px solid var(--line); }
   .about { grid-template-columns: 1fr; gap: 24px; }
   .about img { width: 120px; height: 120px; }
   section.block { padding-top: 80px; }

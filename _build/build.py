@@ -291,16 +291,9 @@ if __name__ == "__main__":
         images()
     print("built index.html" + (" + images" if "--images" in sys.argv else ""))
 
-# SOURCES (checked Oct 5, 2026)
-# 349 commits / 90 branches / Sep 21 - Oct 4: git clone of ubseoul/rich_alucard, rev-list --all, for-each-ref refs/remotes (91 incl. HEAD)
-# 441 commits (354 + 87), 148 [x] tickets (126 + 22): ubseoul/ube_kitchen + ubseoul/ube_stoves, Oct 4-5
-# 30+ rulings (OL-001..OL-032), R1-R8 gates, clerk gate, memory ruling withdrawn (OL-025 -> OL-029),
-#   status understated 3x, Sonnet sole merger, Codex reserve builder, Gemini smoke PASS: OVERLORD HANDOFF through OL-029.md
-# 259 commits / 7 h / 146 in one hour, 98% 5-hour window, 6.9K -> 2.4K board tokens, 18 drafts, 0 ready packets: 13_UBE_KITCHEN/REPORTS/2026-10-05-USAGE_STUDY.md
-# 3 weeks -> 4-7 days, 66-80%, 200+ students, guides/tip sheets/FAQs, 20+ champions, P&G facts: 13_UBE_KITCHEN/resume/master.yaml (confirmed by Ube, P007)
-# Oct 11 2026, from Ube's three résumés in Desktop/iji bird: 18% -> 47% internal AI usage, 5+ product teams and vendors, Articulate modules on AI onboarding
-#   and financial literacy, 35% higher 7-day retention for onboarding completers, triage/content-review time -18-37% (replaces the older 40-60%),
-#   100+ interviews/surveys -> 10+ requirements in Jira, +25% post-workshop approval, 100+ events at 86% approval.
-# AI for scripting, voiceover and asset production: Ube's own About copy on the previous ijidakinro.com homepage
-# Damage Shield problem/users/steps/pricing: damageshield.org (checked Oct 5 2026; no usage or testimonial data published there)
-# Break Lab, Stress Tester, Analyzer, Build With AI, 24+ sessions, sushi line: Ube's own portfolio pages (ijidakinro_portfolio_2026)
+# SOURCES: every number above comes from Ube's confirmed records, kept privately (see STYLE_GUIDE.md section 7).
+# Update this comment when a fact changes: what it is, where it came from (private record, public page, or Ube's message) and the date checked.
+#  - Résumé facts and numbers (3 weeks -> 4-7 days, 66-80%, 200+ students, 20+ champions, P&G facts, Oct 11 numbers): the master résumé record, confirmed by Ube.
+#  - Build With AI, Stress Tester, Analyzer, Braid: the public case-study pages in this repo.
+#  - Agent-system counts and lessons: Ube's own project records and a usage study (private).
+#  - Damage Shield: damageshield.org (it publishes no usage numbers).
