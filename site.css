@@ -410,6 +410,14 @@ footer a:hover { color: var(--ink); }
 }
 @media (max-width: 540px) { .concept-project-body { padding: 22px 18px; } }
 
+/* Writing index; .thoughts-list is the insertion point for future posts. */
+.thoughts-section { padding: 48px 0 0; }
+.thoughts-list { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.thoughts-empty { max-width: 740px; padding: 56px 0 68px; }
+.thoughts-empty .label { margin-bottom: 20px; }
+.thoughts-empty h2 { margin-bottom: 14px; }
+.thoughts-empty p:last-child { margin: 0; color: var(--ink-2); }
+
 /* ---------- responsive ---------- */
 @media (max-width: 1000px) {
   .plats { grid-template-columns: 1fr 1fr; }
