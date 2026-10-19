@@ -68,7 +68,7 @@ CASE = {
         ("My role", "I translated the existing course-production process into a structured, AI-supported workflow in Claude Code, "
                     "used across multiple instructional teams. AI speeds up scripting, voiceover and asset production."),
         ("Adoption", "I drove adoption with the instructional design team: training, plus the guides, tip sheets, FAQs and support "
-                     "documentation the teams use to run the workflow. Internal AI usage at Ehoro Village rose from 18% to 47%, "
+                     "documentation the teams use to run the workflow. Internal AI usage at Ehoro Village rose from 18% to 32%, "
                      "and I helped drive that increase."),
         ("Delivery", "I led 5+ product teams and higher-education and corporate vendors to deliver Articulate learning modules on "
                      "AI onboarding and financial literacy. Learners who completed the onboarding module showed 35% higher 7-day "
@@ -77,7 +77,7 @@ CASE = {
         ("Result", "Course-creation time fell from about three weeks to 4–7 days, 66–80% faster, for courses reaching 200+ students."),
     ],
     "stats": [("3 weeks → 4–7 days", "Course-creation time, 66–80% faster"),
-              ("18% → 47%", "Internal AI usage at Ehoro Village, which I helped increase"),
+              ("18% → 32%", "Internal AI usage at Ehoro Village, which I helped increase"),
               ("200+", "Students reached by courses built this way")],
     "chips": ["Claude Code", "Articulate", "Instructional design", "Change management", "Guides · tip sheets · FAQs"],
 }
@@ -115,7 +115,7 @@ JOBS = [
     ("2024–now", "Program Manager, AI & Learning", "Ehoro Village",
      "AI-supported course production, team training, onboarding design and documentation, cross-functional enablement "
      "workshops for 20+ internal champions, 5+ product teams and vendors delivering Articulate modules, and a Python/Streamlit "
-     "review tool that cut manual content-review time 18–37%. Internal AI usage rose from 18% to 47%.", None),
+     "review tool that cut manual content-review time 18–37%. Internal AI usage rose from 18% to 32%.", None),
     ("2023–24", "Product Designer & UX Researcher", "University of Michigan · BRAID",
      "Turned 100+ interviews and surveys into 10+ product requirements and roadmaps in Jira; led a redesign that lifted new "
      "sign-ups 40% in four weeks and workshops that raised post-workshop survey approval 25%. ", ("braid.html", "Case study")),
