@@ -1,4 +1,4 @@
-"""Keep the three clean portfolio routes in sync with their .html aliases.
+"""Keep the clean portfolio routes in sync with their .html aliases.
 
 Run from the repository root: python _build/clean_routes.py
 The root .html files stay available for links already shared. Both copies use
@@ -10,8 +10,9 @@ import re
 
 
 SITE = Path(__file__).resolve().parent.parent
-SLUGS = ("thoughts", "concepts", "figma-make-protected-edits")
+SLUGS = ("thoughts", "concepts", "figma-make-protected-edits", "roblox-startup-diagnostics")
 LINKS = {
+    "roblox-startup-diagnostics.html": "/roblox-startup-diagnostics/",
     "index.html": "/",
     "thoughts.html": "/thoughts/",
     "concepts.html": "/concepts/",

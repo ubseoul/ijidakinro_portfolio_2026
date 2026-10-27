@@ -109,6 +109,11 @@ WORK = [
     ("Break Lab", "A browser drum sampler for producers", "Independent · Live",
      "Waveform slicing, a step sequencer and a live looper in the browser. No install, no signup.",
      ["JavaScript", "Web Audio API", "Canvas"], ("https://breaklab.app", "Visit")),
+    ("Roblox first-session diagnostics", "Helping creators distinguish a slow start from a problem after play begins", "Independent · Research proposal",
+     "A proposed readiness preset and startup report, grounded in limited public-forum evidence. "
+     "The concept separates before-readiness, after-readiness, and unknown cases to clarify the next investigation. "
+     "Status: research and proposal; no implementation or experiment completed. Not affiliated with Roblox.",
+     ["Public research", "Problem framing", "Creator tools", "Validation plan"], ("/roblox-startup-diagnostics/", "Case study")),
 ]
 
 JOBS = [
@@ -297,3 +302,7 @@ if __name__ == "__main__":
 #  - Build With AI, Stress Tester, Analyzer, Braid: the public case-study pages in this repo.
 #  - Agent-system counts and lessons: Ube's own project records and a usage study (private).
 #  - Damage Shield: damageshield.org (it publishes no usage numbers).
+
+#  - Roblox first-session diagnostics: supplied Roblox Startup Diagnostics Proposal and source-reviewed editorial brief (October 27, 2026).
+#    Broad counts 100 posts / 28 discussions / 62 accounts; focused startup subset 3 posts / 2 discussions / 3 accounts are proposal-reported, not independently audited.
+#    The 4-6 creator study is proposed; no implementation, interviews, or measured retention outcome is claimed.
