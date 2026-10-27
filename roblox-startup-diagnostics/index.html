@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Roblox first-session diagnostics · Adé Ijidakinro</title>
-<meta name="description" content="A concept for helping Roblox creators distinguish a slow start from a problem after play begins.">
+<meta name="description" content="A proposal to help Roblox creators tell whether players leave while loading or after play begins.">
 <link rel="canonical" href="https://ijidakinro.com/roblox-startup-diagnostics/">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ijidakinro.com/roblox-startup-diagnostics/">
 <meta property="og:title" content="Roblox first-session diagnostics · Adé Ijidakinro">
-<meta property="og:description" content="A concept for helping Roblox creators distinguish a slow start from a problem after play begins.">
+<meta property="og:description" content="A proposal to help Roblox creators tell whether players leave while loading or after play begins.">
 <meta property="og:image" content="https://ijidakinro.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
@@ -59,133 +59,79 @@
 
 <main id="main" class="rb-main">
   <section class="rb-hero wrap" aria-labelledby="case-title">
-    <a class="crumb" href="/index.html#work">← Selected work</a>
-    <div class="rb-kicker"><span>Roblox</span><span>Independent product research</span></div>
+    <a class="crumb" href="/#work">← Selected work</a>
+    <p class="rb-kicker">Roblox / Product research</p>
     <div class="rb-hero-grid">
-      <h1 id="case-title">Did they leave<br>before they<br><span>could play?</span></h1>
-      <div class="rb-hero-aside">
-        <p class="rb-project-name">First-session diagnostics</p>
-        <p class="rb-lede">Helping creators distinguish a slow start from a problem after play begins.</p>
-        <p class="rb-status">Research + concept proposal<br>Not affiliated with or commissioned by Roblox.</p>
-        <a class="btn" href="#proposal">Explore the concept <span aria-hidden="true">↓</span></a>
+      <h1 id="case-title">Did they get<br><span>to play?</span></h1>
+      <div>
+        <p class="rb-lede">When players leave early, creators need to know whether they were still waiting to load.</p>
+        <p class="rb-status">Independent proposal, not affiliated with Roblox.<br>Not built or tested.</p>
       </div>
     </div>
-    <dl class="rb-facts">
-      <div><dt>By</dt><dd>Adé Ijidakinro</dd></div>
-      <div><dt>Focus</dt><dd>Creator-facing diagnostics</dd></div>
-      <div><dt>Contribution</dt><dd>Research synthesis · Problem framing</dd></div>
-      <div><dt>Stage</dt><dd>Proposal · October 2026</dd></div>
-    </dl>
+    <p class="rb-byline">Adé Ijidakinro <span>Research &amp; product idea</span> October 2026</p>
   </section>
-
-  <div class="wrap">
-    <figure class="rb-journey" aria-labelledby="journey-caption">
-      <div class="rb-figure-top"><span class="rb-micro">Concept / Not observed telemetry</span><span class="rb-micro">The first session</span></div>
-      <ol class="rb-flow">
-        <li><span class="rb-step-no">01</span><strong>Join</strong><span>A player arrives</span></li>
-        <li><span class="rb-step-no">02</span><strong>Loading</strong><span>Preparing the experience</span></li>
-        <li class="rb-ready"><span class="rb-step-no">03</span><strong>Ready to play</strong><span>Playable content is available</span><b class="rb-event">Proposed readiness event</b></li>
-        <li><span class="rb-step-no">04</span><strong>First interaction</strong><span>Tutorial or play begins</span></li>
-      </ol>
-      <div class="rb-flow-zones"><span>← Before readiness</span><span>After readiness →</span></div>
-      <figcaption id="journey-caption"><span class="rb-unknown-mark" aria-hidden="true">?</span><span><b>Readiness unknown is a separate case.</b> An absent event is not proof of a loading failure.</span></figcaption>
-    </figure>
-  </div>
-
-  <nav class="rb-jump wrap" aria-label="Case study sections">
-    <a href="#problem">01 / Question</a><a href="#evidence">02 / Evidence</a><a href="#context">03 / Context</a><a href="#proposal">04 / Concept</a><a href="#validation">05 / Validation</a>
-  </nav>
 
   <section class="rb-section wrap" id="problem" aria-labelledby="problem-title">
-    <div class="rb-section-label"><span>01</span><p>The question</p></div>
-    <div class="rb-section-content">
-      <h2 id="problem-title">One early exit.<br>Different explanations.</h2>
-      <div class="rb-prose"><p>An exit before the tutorial can mean a player is still waiting to load. It can also mean the experience is already playable and something else is getting in the way. Those situations call for different investigations.</p><p>The supplied research reviewed Roblox’s 2026 Creator Roadmap and public Developer Forum discussions. I used that research to frame a narrower question: <strong>can creators tell whether departing players ever reached playable content?</strong></p></div>
-      <div class="rb-callout"><span class="rb-micro">Design opportunity</span><p>Make the next investigation clearer before promising a better retention outcome.</p></div>
+    <div class="rb-section-heading"><p class="rb-kicker">01 / The problem</p><h2 id="problem-title">Leaving before the fun starts</h2></div>
+    <div class="rb-section-body">
+      <p class="rb-intro">A player who leaves before the tutorial might be bored. Or they might still be loading. I wanted to help creators tell the difference.</p>
+      <div class="rb-quotes">
+        <figure class="rb-quote">
+          <blockquote>“an over a minute loading screen”</blockquote>
+          <figcaption>A tester describing the wait in MINE.<br><a href="https://devforum.roblox.com/t/stuck-on-low-retention-players-leave-before-playing-the-tutorial/4557364/2" target="_blank" rel="noopener">DevForum · April 4, 2026 ↗</a></figcaption>
+        </figure>
+        <figure class="rb-quote">
+          <blockquote>“without awfull asset-stutters”</blockquote>
+          <figcaption>MINE’s creator explaining why they load assets upfront.<br><a href="https://devforum.roblox.com/t/stuck-on-low-retention-players-leave-before-playing-the-tutorial/4557364/4" target="_blank" rel="noopener">DevForum · April 4, 2026 ↗</a></figcaption>
+        </figure>
+        <figure class="rb-quote">
+          <blockquote>“the loadtimes are so long”</blockquote>
+          <figcaption>Project Zero Stop’s creator describing a similar wait.<br><a href="https://devforum.roblox.com/t/players-joining-and-leaving-my-game/4810038/1" target="_blank" rel="noopener">DevForum · August 14, 2026 ↗</a></figcaption>
+        </figure>
+      </div>
+      <p class="rb-note">The supplied proposal singled out these three posts from two discussions within a 100-post review. They suggest a question to investigate; they don’t show that loading caused players to leave.</p>
     </div>
   </section>
 
-  <section class="rb-section wrap" id="evidence" aria-labelledby="evidence-title">
-    <div class="rb-section-label"><span>02</span><p>The signal</p></div>
-    <div class="rb-section-content">
-      <h2 id="evidence-title">A narrow signal.<br>A reason to investigate.</h2>
-      <p class="rb-intro">The proposal reports a broad public-forum review, then a much smaller startup subset. These counts describe the supplied research, not independently audited demand.</p>
-      <div class="rb-sample-grid">
-        <div class="rb-sample"><span class="rb-micro">Broad review</span><p><strong>100</strong> selected posts</p><span>28 discussions · 62 accounts</span><small>January 10–October 19, 2026</small></div>
-        <div class="rb-sample rb-sample-focus"><span class="rb-micro">Focused startup evidence</span><p><strong>3</strong> posts</p><span>2 discussions · 3 accounts</span><small>April 4–August 14, 2026</small></div>
-      </div>
-      <p class="rb-note">Purposive English-language research, not a representative survey. Replies and follow-ups are not independent customer complaints.</p>
-      <div class="rb-evidence-list">
-        <article class="rb-evidence"><div><span class="rb-micro">MINE / Tester</span><span class="rb-date">April 4, 2026</span></div><blockquote>“an over a minute loading screen”</blockquote><p>A player reported a long wait. The report was not independently reproduced.</p><a href="https://devforum.roblox.com/t/stuck-on-low-retention-players-leave-before-playing-the-tutorial/4557364/2" target="_blank" rel="noopener">Read the tester’s post <span aria-hidden="true">↗</span></a></article>
-        <article class="rb-evidence"><div><span class="rb-micro">MINE / Creator</span><span class="rb-date">April 4, 2026</span></div><blockquote>“without awfull asset-stutters”</blockquote><p>The upfront wait was intended to avoid disruption during play. That reveals a tradeoff between loading time and smoothness.</p><a href="https://devforum.roblox.com/t/stuck-on-low-retention-players-leave-before-playing-the-tutorial/4557364/4" target="_blank" rel="noopener">Read the creator’s reply <span aria-hidden="true">↗</span></a></article>
-        <article class="rb-evidence"><div><span class="rb-micro">Project Zero Stop / Creator</span><span class="rb-date">August 14, 2026</span></div><blockquote>“the loadtimes are so long”</blockquote><p>Long loading and quick departures were reported together. That does not establish causation.</p><a href="https://devforum.roblox.com/t/players-joining-and-leaving-my-game/4810038/1" target="_blank" rel="noopener">Read the creator’s post <span aria-hidden="true">↗</span></a></article>
-      </div>
-      <details class="rb-disclosure"><summary>What the evidence does and does not show</summary><div><p>MINE’s <a href="https://devforum.roblox.com/t/stuck-on-low-retention-players-leave-before-playing-the-tutorial/4557364/1" target="_blank" rel="noopener">opening post</a> describes a funnel drop before the tutorial. A later <a href="https://devforum.roblox.com/t/stuck-on-low-retention-players-leave-before-playing-the-tutorial/4557364/10" target="_blank" rel="noopener">loading-screen change</a> has no measured retention result. Project Zero Stop’s later <a href="https://devforum.roblox.com/t/players-joining-and-leaving-my-game/4810038/4" target="_blank" rel="noopener">freezing while driving</a> report concerns streaming during play and is excluded from the startup subset.</p><p>Sample counts come from the supplied <cite>Roblox Startup Diagnostics Proposal</cite>. Its supporting workbook was not independently audited for this page. Public quotes preserve the original wording. Usernames are omitted, but the linked posts remain identifiable.</p></div></details>
-    </div>
-  </section>
-
-  <section class="rb-section wrap" id="context" aria-labelledby="context-title">
-    <div class="rb-section-label"><span>03</span><p>Product context</p></div>
-    <div class="rb-section-content">
-      <h2 id="context-title">Start with what<br>creators already have.</h2>
-      <p class="rb-intro">The proposal is a reusable readiness preset and a simple startup report, to be tested against existing analytics and better guidance.</p>
-      <div class="rb-context-grid">
-        <article><span class="rb-micro">Available tools</span><h3>Custom events</h3><p>Numerical values and custom fields already support tailored analytics.</p><a href="https://create.roblox.com/docs/production/analytics/custom-events" target="_blank" rel="noopener">Custom events documentation ↗</a></article>
-        <article><span class="rb-micro">Available tools</span><h3>Performance</h3><p>Crashes, frame rate, memory, and version comparisons help locate performance issues.</p><a href="https://create.roblox.com/docs/production/analytics/performance" target="_blank" rel="noopener">Performance documentation ↗</a></article>
-        <article><span class="rb-micro">Available guidance</span><h3>Load times</h3><p>A partial measurement approach offers a starting point, with coverage limits.</p><a href="https://create.roblox.com/docs/performance-optimization/identify#load-times" target="_blank" rel="noopener">Load-time guidance ↗</a></article>
-        <article><span class="rb-micro">Roadmap / Not a shipped claim</span><h3>Observability</h3><p>The fall 2026 roadmap targets client/server logs and performance information for late 2026.</p><a href="https://devforum.roblox.com/t/creator-roadmap-2026-fall-update/4880208" target="_blank" rel="noopener">2026 Creator Roadmap ↗</a></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="rb-proposal-section" id="proposal" aria-labelledby="proposal-title">
-    <div class="wrap">
-      <div class="rb-proposal-heading"><div><p class="rb-micro">04 / Proposed direction</p><h2 id="proposal-title">Make readiness explicit.<br>Keep uncertainty visible.</h2></div><p>Agree on what “playable” means for an experience. Document the event’s coverage. Then separate the questions worth investigating.</p></div>
-      <figure class="rb-report" aria-labelledby="report-caption">
-        <div class="rb-report-bar"><span>Creator analytics / Proposed report</span><b>Concept · No live data</b></div>
-        <div class="rb-report-body">
-          <div class="rb-report-title"><div><span class="rb-micro">First session</span><h3>Startup diagnostic summary</h3></div><span class="rb-report-tag">Readiness definition required</span></div>
-          <div class="rb-report-cards">
-            <article><span class="rb-state-symbol" aria-hidden="true">←</span><h4>Before readiness</h4><p>Was there a confirmed exit before playable content?</p><div class="rb-report-next"><span>Next investigation</span><p>Check startup loading and the readiness definition.</p></div></article>
-            <article><span class="rb-state-symbol" aria-hidden="true">→</span><h4>After readiness</h4><p>What happened after the experience became playable?</p><div class="rb-report-next"><span>Next investigation</span><p>Look at the tutorial, first interaction, or later performance.</p></div></article>
-            <article class="rb-unknown-card"><span class="rb-state-symbol" aria-hidden="true">?</span><h4>Unknown</h4><p>Is the readiness signal missing or unreliable?</p><div class="rb-report-next"><span>Next investigation</span><p>Audit event coverage before interpreting the exit.</p></div></article>
-          </div>
-          <figcaption id="report-caption">Readiness is experience-specific. This concept guides investigation; it does not identify root cause by itself.</figcaption>
-        </div>
+  <section class="rb-section wrap" id="tools" aria-labelledby="tools-title">
+    <div class="rb-section-heading"><p class="rb-kicker">02 / Existing tools</p><h2 id="tools-title">Start with what’s already there</h2></div>
+    <div class="rb-section-body">
+      <p class="rb-intro">Roblox’s Performance dashboard already covers crashes, frame rate, and memory. Custom events let creators track actions in their own games. My idea builds on those tools: record when a player can actually start playing.</p>
+      <figure class="rb-screenshot">
+        <a class="rb-image-link" href="/images/roblox-startup/performance.png" target="_blank" rel="noopener" aria-label="Open the full-size Roblox Performance dashboard screenshot">
+          <img src="/images/roblox-startup/performance.png" alt="Roblox’s documentation screenshot of the Performance dashboard, with device counts and server CPU and memory charts." width="1458" height="1149" loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>Roblox’s Performance dashboard. Example shown in its documentation.</span><a href="https://create.roblox.com/docs/production/analytics/performance" target="_blank" rel="noopener">Source: Roblox Creator Hub ↗</a></figcaption>
       </figure>
-      <div class="rb-design-decisions">
-        <article><span>01 / Define</span><h3>Playable before measurable</h3><p>Set readiness criteria before choosing a timer or event. <code>game.Loaded</code> alone does not mean ready to play.</p></article>
-        <article><span>02 / Separate</span><h3>Startup before streaming</h3><p>Keep the initial wait separate from later asset loading or gameplay problems.</p></article>
-        <article><span>03 / Preserve</span><h3>Unknown before assumed</h3><p>Missing instrumentation must stay visible. It cannot quietly become a loading failure.</p></article>
+    </div>
+  </section>
+
+  <section class="rb-section wrap" id="proposal" aria-labelledby="proposal-title">
+    <div class="rb-section-heading"><p class="rb-kicker">03 / My proposal</p><h2 id="proposal-title">Mark when play begins</h2></div>
+    <div class="rb-section-body">
+      <p class="rb-intro">Add a reusable “ready to play” event and a short report. Creators define what ready means for their game, then compare exits before and after that point. If the event is missing, the report says “unknown.”</p>
+      <figure class="rb-screenshot">
+        <a class="rb-image-link" href="/images/roblox-startup/custom-events.png" target="_blank" rel="noopener" aria-label="Open the full-size Roblox custom event screenshot">
+          <img src="/images/roblox-startup/custom-events.png" alt="Roblox’s Plant reference-game example: a custom event chart comparing harvested plant types across several days." width="1999" height="806" loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>Custom events already support comparisons. Roblox’s Plant example shows harvests by plant type.</span><a href="https://create.roblox.com/docs/production/analytics/custom-events#use-custom-events-to-grow-your-game" target="_blank" rel="noopener">Source: Roblox Creator Hub ↗</a></figcaption>
+      </figure>
+      <div class="rb-next">
+        <div><h3>The tradeoff</h3><p>Loading more upfront can make play smoother, but it also makes people wait. A useful report must keep that wait separate from problems later in the game.</p></div>
+        <div><h3>What I’d test next</h3><p>Watch 4–6 creators investigate early exits. Compare this report with their current tools and clearer setup guidance. Does it help them choose what to check next, without adding too much work?</p></div>
       </div>
-      <details class="rb-disclosure"><summary>Instrumentation constraints to validate</summary><div><p>Custom events are server-side and published-game-only, with daily aggregation that can take 24 hours. Performance client/server charts require at least 100 daily active users; the first-60-second API-call metric is limited to a small number of top games. The load-time example excludes server connection and avatar loading.</p><p>A real preset needs a validated client-to-server readiness signal and an audit of missing events. These are future implementation considerations, not a completed instrumentation design. See the official documentation linked above.</p></div></details>
+      <details class="rb-notes">
+        <summary>Sources &amp; practical limits</summary>
+        <div>
+          <p><a href="https://create.roblox.com/docs/production/analytics/custom-events#track-custom-events" target="_blank" rel="noopener">Custom events</a> are sent from the server in published games, and charts can take 24 hours to update. A readiness event would need reliable reporting from the player’s device.</p>
+          <p>The <a href="https://create.roblox.com/docs/production/analytics/performance#view-performance-metrics" target="_blank" rel="noopener">Performance charts</a> require at least 100 daily active users. Roblox’s <a href="https://create.roblox.com/docs/performance-optimization/identify#load-times" target="_blank" rel="noopener">load-time example</a> excludes server connection and avatar loading, so it is only part of the wait.</p>
+          <p>The forum sample is small and was selected for relevance. The proposal’s totals were not independently recounted. <a href="https://devforum.roblox.com/t/stuck-on-low-retention-players-leave-before-playing-the-tutorial/4557364/10" target="_blank" rel="noopener">A later loading-screen change</a> had no measured retention result; <a href="https://devforum.roblox.com/t/players-joining-and-leaving-my-game/4810038/4" target="_blank" rel="noopener">freezing while driving</a> was excluded as a later gameplay issue.</p>
+          <p>Screenshots © Roblox Corporation, reproduced unchanged from its <a href="https://github.com/Roblox/creator-docs" target="_blank" rel="noopener">Creator Documentation repository</a>: <a href="https://github.com/Roblox/creator-docs/blob/main/content/en-us/assets/analytics/performance/perf-dash-overview.png" target="_blank" rel="noopener">Performance</a> and <a href="https://github.com/Roblox/creator-docs/blob/main/content/en-us/assets/analytics/event-types/Custom-Event-Graph.png" target="_blank" rel="noopener">Custom Event Graph</a>. See the repository’s <a href="https://github.com/Roblox/creator-docs/blob/main/LICENSE" target="_blank" rel="noopener">CC BY 4.0 license</a>. Sources reviewed October 27, 2026.</p>
+        </div>
+      </details>
+      <a class="rb-back" href="/#work">← More selected work</a>
     </div>
   </section>
-
-  <section class="rb-section wrap" id="validation" aria-labelledby="validation-title">
-    <div class="rb-section-label"><span>05</span><p>Validation plan</p></div>
-    <div class="rb-section-content">
-      <h2 id="validation-title">Test the workflow,<br>not just the report.</h2>
-      <p class="rb-intro">Proposed study: observe <strong>4–6 creators</strong> diagnosing early exits. Compare the startup report with their current workflow and with clearer guidance. No study has been run.</p>
-      <ol class="rb-validation-steps">
-        <li><span aria-hidden="true">01</span><div><h3>Can creators interpret it?</h3><p>Ask them to distinguish before-readiness, after-readiness, and unknown cases. Assess accuracy of interpretation.</p></div></li>
-        <li><span aria-hidden="true">02</span><div><h3>Does it clarify the next step?</h3><p>Observe the time and effort needed to choose a useful next investigation, including incomplete-data cases.</p></div></li>
-        <li><span aria-hidden="true">03</span><div><h3>Is a new feature necessary?</h3><p>Compare the report’s value and setup burden with better guidance. A simpler intervention may solve the problem.</p></div></li>
-      </ol>
-      <div class="rb-callout"><span class="rb-micro">Decision after validation</span><p>Does the preset add enough value to justify a prototype?</p><p class="rb-callout-small">A retention effect would require a separate, measured follow-up after validating the diagnostic workflow.</p></div>
-    </div>
-  </section>
-
-  <section class="rb-section rb-outcome wrap" aria-labelledby="outcome-title">
-    <div class="rb-section-label"><span>06</span><p>Where it stands</p></div>
-    <div class="rb-section-content">
-      <h2 id="outcome-title">A testable direction.<br>Clear limits.</h2>
-      <div class="rb-prose"><p>The outcome is a focused diagnostic question and a proposed way to test it. No creator interviews, telemetry audit, implementation, or experiment has been completed. The public evidence does not establish feature demand or a retention effect.</p><p class="rb-note">Research and documentation reviewed October 27, 2026. This independent portfolio concept is not a Roblox product or an endorsement. Interface diagrams are proposed, with no live data.</p></div>
-      <a class="rb-back-link" href="/concepts/">Explore more independent concepts <span aria-hidden="true">↗</span></a>
-    </div>
-  </section>
-
-  <section class="contact"><div class="wrap"><p class="label" style="justify-content:center"><span class="n">Next</span></p><h2>See the rest <span class="serif">of the work.</span></h2><div class="cta"><a class="btn" href="/index.html#work">Selected work <span class="arr" aria-hidden="true">→</span></a><a class="btn ghost" href="/index.html#lab">How I run AI agents</a><a class="btn ghost" href="mailto:ijidakinroade@gmail.com">Email me</a></div></div></section>
 </main>
 
 <footer>

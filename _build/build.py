@@ -109,11 +109,10 @@ WORK = [
     ("Break Lab", "A browser drum sampler for producers", "Independent · Live",
      "Waveform slicing, a step sequencer and a live looper in the browser. No install, no signup.",
      ["JavaScript", "Web Audio API", "Canvas"], ("https://breaklab.app", "Visit")),
-    ("Roblox first-session diagnostics", "Helping creators distinguish a slow start from a problem after play begins", "Independent · Research proposal",
-     "A proposed readiness preset and startup report, grounded in limited public-forum evidence. "
-     "The concept separates before-readiness, after-readiness, and unknown cases to clarify the next investigation. "
-     "Status: research and proposal; no implementation or experiment completed. Not affiliated with Roblox.",
-     ["Public research", "Problem framing", "Creator tools", "Validation plan"], ("/roblox-startup-diagnostics/", "Case study")),
+    ("Roblox first-session diagnostics", "Did players leave while loading, or after play began?", "Independent · Research proposal",
+     "A proposal to record when players can start playing, so creators know what to check when they leave early. "
+     "Based on a small set of public forum posts; not built or tested. Not affiliated with Roblox.",
+     ["Public research", "Creator tools", "Product idea"], ("/roblox-startup-diagnostics/", "Case study")),
 ]
 
 JOBS = [
