@@ -10,8 +10,9 @@ import re
 
 
 SITE = Path(__file__).resolve().parent.parent
-SLUGS = ("thoughts", "concepts", "figma-make-protected-edits", "roblox-startup-diagnostics")
+SLUGS = ("thoughts", "concepts", "figma-make-protected-edits", "roblox-startup-diagnostics", "north-star")
 LINKS = {
+    "north-star.html": "/north-star/",
     "roblox-startup-diagnostics.html": "/roblox-startup-diagnostics/",
     "index.html": "/",
     "thoughts.html": "/thoughts/",
